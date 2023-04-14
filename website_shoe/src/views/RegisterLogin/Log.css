@@ -1,0 +1,26 @@
+.log-container {
+    height: 100vh;
+    filter: drop-shadow(0 0 8px black); /* FF~35 */
+    filter: drop-shadow(0 0 0 8px black);
+}
+.log-form {
+    width: 35%;
+    padding: 35px 45px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+}
+.form-input {
+    font-size: 18px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    width: 100%;
+    color: #fff;
+    display: block;
+    background: transparent;
+    border: 1px solid #4cb050;
+}

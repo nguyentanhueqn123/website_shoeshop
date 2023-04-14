@@ -83,8 +83,8 @@ function App() {
           <Route path="/da" element={<News/>} /> */}
         </Route>
         <Route element={<LoginLayout />}>
-          <Route path="/dang-ki" element={<Register />} />
-          <Route path="/dang-nhap" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>

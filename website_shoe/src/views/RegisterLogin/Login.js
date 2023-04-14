@@ -6,7 +6,7 @@ import userApi from '../../api/userApi'
 import { showToastSuccess, showToastError } from './../../components/CustomToast/CustomToast';
 import { useNavigate } from 'react-router-dom'
 import { USER_LOGIN } from '../../utils/storage'
-import "./Login.css"
+import "./Log.css"
 // import useDebounce from '../../hooks/useDebounce';
 
 export default function Login() {
@@ -60,14 +60,14 @@ export default function Login() {
   }
 
   return (
-    <div className="w-screen h-screen bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
-      <div className="w-full h-full bg-dark">
-        <div className="w-[500px] mx-auto py-20">
-          <h1 className="text-white text-4xl text-center mb-10 font-medium">Đăng nhập</h1>
+    <div className="log-container w-screen h-screen bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
+      <div className="w-full h-full">
+        <div className="log-form w-[500px] mx-auto py-10 rounded-lg">
+          <h1 className="text-white text-3xl text-center mb-10 font-medium">ĐĂNG NHẬP</h1>
           <form className="">
             <div className="relative  mb-8">
               <input
-                className="w-full border border-gray-300 px-3 py-3"
+                className="form-input w-full border px-4 py-3 rounded-lg"
                 type="email"
                 placeholder="Email"
                 onChange={(e) => {
@@ -86,9 +86,9 @@ export default function Login() {
 
             <div className="relative">
               <input
-                className="w-full border border-gray-300 px-3 py-3"
+                className="form-input w-full border px-3 py-3 rounded-lg"
                 type="password"
-                placeholder="Password"
+                placeholder="Mật khẩu"
                 onChange={(e) => {
                   setPassword(e.target.value)
                 }}
@@ -96,13 +96,13 @@ export default function Login() {
             </div>
             <button
               onClick={(e) => { Login(e) }}
-              className="w-full py-3 bg-black-1 hover:bg-black-2 text-white mt-8 font-medium text-xl"
+              className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]"
             >
               Đăng nhập
             </button>
           </form>
           <div className="text-center text-white mt-5">
-            <Link to="/dang-ki" className="underline">Tạo tài khoản</Link>
+            <Link to="/register" className="underline">Tạo tài khoản</Link>
           </div>
         </div>
       </div>
