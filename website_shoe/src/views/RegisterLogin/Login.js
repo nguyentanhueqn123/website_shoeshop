@@ -6,7 +6,7 @@ import userApi from '../../api/userApi'
 import { showToastSuccess, showToastError } from './../../components/CustomToast/CustomToast';
 import { useNavigate } from 'react-router-dom'
 import { USER_LOGIN } from '../../utils/storage'
-import "./Log.css"
+import "./Log.scss"
 // import useDebounce from '../../hooks/useDebounce';
 
 export default function Login() {

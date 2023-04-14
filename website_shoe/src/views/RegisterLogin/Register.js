@@ -5,7 +5,7 @@ import userApi from '../../api/userApi';
 import { showToastSuccess, showToastError } from '../../components/CustomToast/CustomToast';
 // import Tooltip from '../../components/Tooltip/Tooltip';
 import { AlertCircle } from 'react-feather'
-import "./Log.css"
+import "./Log.scss"
 
 
 export default function Register() {
