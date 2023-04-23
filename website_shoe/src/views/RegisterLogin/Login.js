@@ -7,7 +7,7 @@ import { showToastSuccess, showToastError } from './../../components/CustomToast
 import { useNavigate } from 'react-router-dom'
 import { USER_LOGIN } from '../../utils/storage'
 import "./Log.scss"
-// import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 
 export default function Login() {
   const [email, setEmail] = useState()
@@ -17,21 +17,21 @@ export default function Login() {
 
   const navigate = useNavigate()
 
-//   const emailDebounce = useDebounce(email, 1000)
+  const emailDebounce = useDebounce(email, 1000)
 
-//   useEffect(() => {
-//     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  useEffect(() => {
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-//     // if(emailDebounce) {
-//     //   if (emailDebounce?.match(mailformat)) {
-//     //     setIsValidEmail(true)
-//     //   }
-//     //   else {
-//     //     setEmailValidate("Email không hợp lệ")
-//     //     setIsValidEmail(false)
-//     //   }
-//     // }
-//   }, [emailDebounce])
+    if(emailDebounce) {
+      if (emailDebounce?.match(mailformat)) {
+        setIsValidEmail(true)
+      }
+      else {
+        setEmailValidate("Email không hợp lệ")
+        setIsValidEmail(false)
+      }
+    }
+  }, [emailDebounce])
 
   const Login = async (e) => {
     e.preventDefault()
@@ -74,14 +74,14 @@ export default function Login() {
                   setEmail(e.target.value)
                 }}
               />
-              {/* <Tooltip
+              <Tooltip
                 className="absolute top-1/2 transform -translate-y-1/2 -right-10 text-red-500"
                 classNameTooltip="left-full bottom-1/2 transform translate-y-1/2 translate-x-2"
                 tooltip={<p>{emailValidate}</p>}
                 isShow={!isValidEmail}
               >
                 <AlertCircle />
-              </Tooltip> */}
+              </Tooltip>
             </div>
 
             <div className="relative">
