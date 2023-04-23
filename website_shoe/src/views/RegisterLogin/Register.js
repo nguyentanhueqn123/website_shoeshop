@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-// import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../../hooks/useDebounce';
 import userApi from '../../api/userApi';
 import { showToastSuccess, showToastError } from '../../components/CustomToast/CustomToast';
-// import Tooltip from '../../components/Tooltip/Tooltip';
+import Tooltip from '../../components/Tooltip/Tooltip';
 import { AlertCircle } from 'react-feather'
 import "./Log.scss"
 
@@ -18,22 +18,22 @@ export default function Register() {
   const [isValidEmail, setIsValidEmail] = useState(true)
   const [emailValidate, setEmailValidate] = useState()
   
-  // const emailDebounce = useDebounce(email, 1000)
-  // console.log(emailDebounce)
+  const emailDebounce = useDebounce(email, 1000)
+  console.log(emailDebounce)
 
-  // useEffect(() => {
-  //   let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  useEffect(() => {
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-  //   if (emailDebounce) {
-  //     if (emailDebounce?.match(mailformat)) {
-  //       setIsValidEmail(true)
-  //     }
-  //     else {
-  //       setEmailValidate("Email không hợp lệ")
-  //       setIsValidEmail(false)
-  //     }
-  //   }
-  // }, [emailDebounce])
+    if (emailDebounce) {
+      if (emailDebounce?.match(mailformat)) {
+        setIsValidEmail(true)
+      }
+      else {
+        setEmailValidate("Email không hợp lệ")
+        setIsValidEmail(false)
+      }
+    }
+  }, [emailDebounce])
 
   const handleRegis = async (e) => {
     e.preventDefault();
@@ -83,48 +83,48 @@ export default function Register() {
           <h1 className="text-white text-3xl text-center mb-10 font-medium">ĐĂNG KÍ</h1>
           <form className="">
             <input
-              className="form-input w-full border border-gray-300 px-4 py-3 mb-5 rounded-lg"
+              className="form-input w-full border px-4 py-3 mb-5 rounded-lg"
               type="text"
               placeholder="Tên"
               onChange={e => setNameAccount(e.target.value)}
             />
             <div className="relative mb-5">
               <input
-                className="form-input w-full border border-gray-300 px-3 py-3 rounded-lg"
+                className="form-input w-full border px-3 py-3 rounded-lg"
                 type="email"
                 placeholder="Email"
                 onChange={e => setEmail(e.target.value)}
               />
-              {/* <Tooltip
+              <Tooltip
                 className="absolute top-1/2 transform -translate-y-1/2 -right-10 text-red-500"
                 classNameTooltip="left-full bottom-1/2 transform translate-y-1/2 translate-x-2"
                 tooltip={<p>{emailValidate}</p>}
                 isShow={!isValidEmail}
-              > */}
-                {/* <AlertCircle /> */}
-              {/* </Tooltip> */}
+              >
+                <AlertCircle />
+              </Tooltip>
            </div>
             <input
-              className="form-input w-full border border-gray-300 px-3 py-3 mb-5 rounded-lg"
+              className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="text"
               placeholder="Số điện thoại"
               onChange={e => setPhone(e.target.value)}
             />
             <input
-              className="form-input w-full border border-gray-300 px-3 py-3 mb-5 rounded-lg"
+              className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
               placeholder="Mật khẩu"
               onChange={e => setPassword(e.target.value)}
             />
             <input
-              className="form-input w-full border border-gray-300 px-3 py-3 mb-5 rounded-lg"
+              className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
               placeholder="Xác nhận mật khẩu"
               onChange={e => setConfirmPassword(e.target.value)}
             />
             <button 
               onClick={handleRegis}
-            className="w-full py-3 bg-black-1 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]">Đăng kí</button>
+            className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]">Đăng kí</button>
           </form>
           <div className="text-center text-white mt-5">
             <Link to="/login" className="underline">Đăng nhập</Link>
