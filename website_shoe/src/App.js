@@ -9,16 +9,16 @@ import Register from './views/RegisterLogin/Register';
 // import ProductDetail from './views/ProductDetail/ProductDetail';
 // import Header from './components/Header/Header'
 // import Footer from './components/Footer/Footer'
-// import AdminLeftMenu from './components/AdminLeftMenu/AdminLeftMenu'
-// import Dashboard from './views/Admin/Dashboard/Dashboard'
-// import AdminHeader from './components/AdminHeader/AdminHeader'
-// import Products from './views/Admin/Products/Products'
-// import Category from './views/Admin/Category/Category';
-// import Customers from './views/Admin/Customers/Customers';
-// import Coupons from './views/Admin/Coupons/Coupons';
-// import OurStaff from './views/Admin/OurStaff/OurStaff';
+import AdminSidebar from './components/AdminSidebar/AdminSidebar'
+import Dashboard from './views/Admin/Dashboard/Dashboard'
+import AdminHeader from './components/AdminHeader/AdminHeader'
+import Products from './views/Admin/Products/Products'
+import Category from './views/Admin/Category/Category';
+import Customers from './views/Admin/Customers/Customers';
+import Coupons from './views/Admin/Coupons/Coupons';
+import OurStaff from './views/Admin/OurStaff/OurStaff';
 // import AdminNews from './views/Admin/News/News';
-// import Orders from './views/Admin/Orders/Orders';
+import Orders from './views/Admin/Orders/Orders';
 // import AdminAddProduct from './views/Admin/Products/AddProduct';
 // import AdminEditProduct from './views/Admin/Products/EditProduct';
 // import EditCategory from './views/Admin/Category/EditCategory';
@@ -58,11 +58,11 @@ const AdminLayout = () => {
   }
   return (
     <div>
-      {/* <AdminHeader />
+      <AdminHeader />
       <div className="flex">
-        <AdminLeftMenu />
-        <Outlet />
-      </div> */}
+        <AdminSidebar />
+        {/* <Outlet /> */}
+      </div>
     </div>
   )
 }
@@ -88,19 +88,19 @@ function App() {
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
-          {/* <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
           <Route path="category" element={<Category />} />
           <Route path="customers" element={<Customers />} />
           <Route path="coupons" element={<Coupons />} />
           <Route path="our-staff" element={<OurStaff />} />
-          <Route path="news" element={<AdminNews />} />
+          {/* <Route path="news" element={<AdminNews />} /> */}
           <Route path="orders" element={<Orders />} />
-          <Route path="products/add-product" element={<AdminAddProduct />} />
-          <Route path="products/edit-product/:id" element={<AdminEditProduct />} />
-          <Route path="category/add-category" element={<AddCategory />} />
-          <Route path="category/edit-category/:id" element={<EditCategory />} />
-          <Route path="coupons/add-coupon" element={<AddCoupon />} />
+          {/* <Route path="products/add-product" element={<AdminAddProduct />} /> */}
+          {/* <Route path="products/edit-product/:id" element={<AdminEditProduct />} /> */}
+          {/* <Route path="category/add-category" element={<AddCategory />} /> */}
+          {/* <Route path="category/edit-category/:id" element={<EditCategory />} /> */}
+          {/* <Route path="coupons/add-coupon" element={<AddCoupon />} />
           <Route path="coupons/edit-coupon/:id" element={<EditCoupon />} /> */}
         </Route>
       </Routes>
