@@ -3,7 +3,7 @@ import classnames from 'classnames'
 export default function Button({ onClick, pending, isLoading, children, className, background, backgroundHover }) {
   return (
     <button className={classnames(
-        "rounded-lg px-10 py-3 mt-5 flex items-center",
+        "rounded-lg px-10 py-3 mt-5 flex items-center text-white",
         {"bg-[#62B4FF]": !background},
         {
             "hover:bg-[#349eff]": !backgroundHover

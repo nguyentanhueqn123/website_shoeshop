@@ -1,44 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Input from '../../../components/Input/Input'
 import AdminContainer from '../../../components/AdminContainer/AdminContainer'
 import Dropdown from '../../../components/Dropdown/Dropdown'
-import { useFetchAllProductType, useAllProductType } from './../../../store/product/hook';
+import { useFetchAllProductType, useFetchProduct, useAllProductType, useProduct } from './../../../store/product/hook';
 import productApi from '../../../api/productApi'
 import Button from '../../../components/Button/Button'
-import { showToastError, showToastSuccess } from './../../../components/CustomToast/CustomToast';
-export default function AdminAddProduct() {
-  useFetchAllProductType()
-  const productTypes = useAllProductType()
+import { useParams } from 'react-router-dom';
+import { showToastSuccess, showToastError } from '../../../components/CustomToast/CustomToast';
 
+export default function AdminEditProduct() {
+  useFetchAllProductType()
+  useFetchProduct()
+  const product = useProduct()
+
+  const productTypes = useAllProductType()
+  const { id } = useParams()
   const [nameProduct, setNameProduct] = useState()
   const [price, setPrice] = useState()
   const [sale, setSale] = useState()
   const [description, setDescription] = useState()
-  const [image, setImage] = useState()
   const [metal, setMetal] = useState()
   const [size, setSize] = useState()
   const [typeProductId, setTypeProductId] = useState()
+  const [nameType, setNameType] = useState()
   const [pending, setPending] = useState(false)
 
-  const resetInput = () => {
-    setNameProduct('')
-    setPrice('')
-    setSale('')
-    setDescription('')
-    setMetal('')
-    setSize('')
-    setImage('')
-    setTypeProductId('')
-  }
+  useEffect(() => {
+    if(product) {
+      setNameProduct(product?.data?.nameProduct)
+      setPrice(product?.data?.price)
+      setSale(product?.data?.sale)
+      setDescription(product?.data?.description)
+      setMetal(product?.data?.metal)
+      setSize(product?.data?.size)
+      setTypeProductId(product?.data?.typeProductId)
+      productTypes?.data.map((type) => {
+        if (type?._id === product?.data?.typeId) {
+          setNameType(type?.nameType)
+        }
+      })
+    }
+  }, [product])
 
-
-  const handleAddProduct = async (e) => {
+  const handleEditProduct = async (e) => {
     e.preventDefault()
     setPending(true)
     try {
-      await productApi.postProduct({
+      await productApi.editProduct(id, {
         nameProduct,
-        image,
         typeId: typeProductId,
         description,
         price,
@@ -47,31 +56,16 @@ export default function AdminAddProduct() {
         size,
       })
       setPending(false)
-      resetInput()
-      showToastSuccess("Thêm sản phẩm thành công")
+      showToastSuccess("Cập nhật thành công")
     } catch (error) {
       console.log(error)
-      showToastError("Thêm sản phẩm thất bại")
+      showToastError("Cập nhật thất bại")
     }
   }
 
   return (
     <AdminContainer>
       <form>
-        <div className="mb-5">
-          <div className="mb-3">
-            <label for="product-image">Product Image:</label>
-          </div>
-
-          <textarea
-            onChange={(e) => setImage(e.target.value)}
-            placeholder="Image Link"
-            id="product-image"
-            name="product-image"
-            className="p-3 w-full h-40 border-gray-400 rounded-lg text-md text-black border"
-          />
-        </div>
-
         <Input
           className="border border-gray-400 rounded-lg text-md text-black"
           label="Product Name"
@@ -79,7 +73,7 @@ export default function AdminAddProduct() {
           dark={1}
           type="text"
           value={nameProduct}
-          placeholder="Product name"
+          placeholder="Search by product name"
           onChange={(e) => setNameProduct(e.target.value)}
         />
         <div className="mt-5">
@@ -106,6 +100,7 @@ export default function AdminAddProduct() {
           label="nameType"
           value="typeId"
           onSelect={setTypeProductId}
+          titleDefault={nameType}
         />
 
         <Input
@@ -156,11 +151,11 @@ export default function AdminAddProduct() {
           value={sale}
         />
         <Button
-          onClick={(e) => handleAddProduct(e)}
+          onClick={(e) => handleEditProduct(e)}
           pending={pending}
           isLoading={pending}
         >
-          Add Product
+          Update
         </Button>
       </form>
     </AdminContainer>

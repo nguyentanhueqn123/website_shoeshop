@@ -19,8 +19,8 @@ import Coupons from './views/Admin/Coupons/Coupons';
 import OurStaff from './views/Admin/OurStaff/OurStaff';
 // import AdminNews from './views/Admin/News/News';
 import Orders from './views/Admin/Orders/Orders';
-// import AdminAddProduct from './views/Admin/Products/AddProduct';
-// import AdminEditProduct from './views/Admin/Products/EditProduct';
+import AdminAddProduct from './views/Admin/Products/AddProduct';
+import AdminEditProduct from './views/Admin/Products/EditProduct';
 import EditCategory from './views/Admin/Category/EditCategory';
 import AddCategory from './views/Admin/Category/AddCategory';
 // import AddCoupon from './views/Admin/Coupons/AddCoupon';
@@ -96,8 +96,8 @@ function App() {
           <Route path="our-staff" element={<OurStaff />} />
           {/* <Route path="news" element={<AdminNews />} /> */}
           <Route path="orders" element={<Orders />} />
-          {/* <Route path="products/add-product" element={<AdminAddProduct />} /> */}
-          {/* <Route path="products/edit-product/:id" element={<AdminEditProduct />} /> */}
+          <Route path="products/add-product" element={<AdminAddProduct />} />
+          <Route path="products/edit-product/:id" element={<AdminEditProduct />} />
           <Route path="category/add-category" element={<AddCategory />} />
           <Route path="category/edit-category/:id" element={<EditCategory />} />
           {/* <Route path="coupons/add-coupon" element={<AddCoupon />} />
