@@ -21,8 +21,8 @@ import OurStaff from './views/Admin/OurStaff/OurStaff';
 import Orders from './views/Admin/Orders/Orders';
 // import AdminAddProduct from './views/Admin/Products/AddProduct';
 // import AdminEditProduct from './views/Admin/Products/EditProduct';
-// import EditCategory from './views/Admin/Category/EditCategory';
-// import AddCategory from './views/Admin/Category/AddCategory';
+import EditCategory from './views/Admin/Category/EditCategory';
+import AddCategory from './views/Admin/Category/AddCategory';
 // import AddCoupon from './views/Admin/Coupons/AddCoupon';
 // import EditCoupon from './views/Admin/Coupons/EditCoupon';
 import { ToastContainer } from 'react-toastify'
@@ -61,7 +61,7 @@ const AdminLayout = () => {
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
-        {/* <Outlet /> */}
+        <Outlet />
       </div>
     </div>
   )
@@ -90,7 +90,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
-          <Route path="category" element={<Category />} />
+          <Route path="category" element={<Category></Category>} />
           <Route path="customers" element={<Customers />} />
           <Route path="coupons" element={<Coupons />} />
           <Route path="our-staff" element={<OurStaff />} />
@@ -98,8 +98,8 @@ function App() {
           <Route path="orders" element={<Orders />} />
           {/* <Route path="products/add-product" element={<AdminAddProduct />} /> */}
           {/* <Route path="products/edit-product/:id" element={<AdminEditProduct />} /> */}
-          {/* <Route path="category/add-category" element={<AddCategory />} /> */}
-          {/* <Route path="category/edit-category/:id" element={<EditCategory />} /> */}
+          <Route path="category/add-category" element={<AddCategory />} />
+          <Route path="category/edit-category/:id" element={<EditCategory />} />
           {/* <Route path="coupons/add-coupon" element={<AddCoupon />} />
           <Route path="coupons/edit-coupon/:id" element={<EditCoupon />} /> */}
         </Route>
