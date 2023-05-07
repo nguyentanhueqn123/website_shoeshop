@@ -62,19 +62,19 @@ export const STAFF_ROLE = {
 }
 
 export const ORDER_TYPE = {
-    ASC: 'ASC',
-    DESC: 'DESC',
+    ASC: 'asc',
+    DESC: 'desc',
 }
 
 export const SORT_PRODUCT_PRICE = {
     LOWEST_PRICE: {
-        label: 'Low to High 22',
+        label: 'Low to High',
         value: 'LOWEST_PRICE',
         field: 'price',
         type: ORDER_TYPE.ASC,
     },
     HIGHEST_PRICE: {
-        label: 'High to Low 22',
+        label: 'High to Low',
         value: 'HIGHEST_PRICE',
         field: 'price',
         type: ORDER_TYPE.DESC,
