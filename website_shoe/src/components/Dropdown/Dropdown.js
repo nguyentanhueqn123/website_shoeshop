@@ -16,7 +16,7 @@ export default function Dropdown({ titleDefault, reset, title, listDropdown, cla
     }, [titleDefault])
 
     return (
-        <div className={classnames("w-full text-md relative", className)}>
+        <div className={classnames("w-full text-md relative bg-white rounded-lg", className)}>
             <button
                 className={
                     classnames("z-10 px-2 py-3 border w-full flex items-center justify-between opacity-80 h-10",

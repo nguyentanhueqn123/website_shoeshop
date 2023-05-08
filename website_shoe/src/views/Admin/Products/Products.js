@@ -154,7 +154,7 @@ export default function Products() {
                 Products
             </p>
 
-            <div className="w-full grid grid-cols-4 gap-x-5 mb-5">
+            <div className="w-full p-5 rounded-lg bg-[#F2F2F2] grid grid-cols-4 gap-x-5 mb-5">
                 <Input
                     className="border border-black rounded-lg text-md text-black"
                     onChange={handleChangeInput}
