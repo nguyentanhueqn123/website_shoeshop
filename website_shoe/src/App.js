@@ -23,12 +23,13 @@ import AdminAddProduct from './views/Admin/Products/AddProduct';
 import AdminEditProduct from './views/Admin/Products/EditProduct';
 import EditCategory from './views/Admin/Category/EditCategory';
 import AddCategory from './views/Admin/Category/AddCategory';
-// import AddCoupon from './views/Admin/Coupons/AddCoupon';
-// import EditCoupon from './views/Admin/Coupons/EditCoupon';
+import AddCoupon from './views/Admin/Coupons/AddCoupon';
+import EditCoupon from './views/Admin/Coupons/EditCoupon';
 import { ToastContainer } from 'react-toastify'
 // import Intro from './views/Intro/Intro'
 // import DonHang from './views/DonHang/DonHang'
 // import MessengerCustomerChat from 'react-messenger-customer-chat'
+import Chatbot from "./chatbot";
 
 const UserLayout = () => {
   return (
@@ -100,8 +101,8 @@ function App() {
           <Route path="products/edit-product/:id" element={<AdminEditProduct />} />
           <Route path="category/add-category" element={<AddCategory />} />
           <Route path="category/edit-category/:id" element={<EditCategory />} />
-          {/* <Route path="coupons/add-coupon" element={<AddCoupon />} />
-          <Route path="coupons/edit-coupon/:id" element={<EditCoupon />} /> */}
+          <Route path="coupons/add-coupon" element={<AddCoupon />} />
+          <Route path="coupons/edit-coupon/:id" element={<EditCoupon />} />
         </Route>
       </Routes>
       {/* <ToastContainer newestOnTop />
@@ -110,6 +111,7 @@ function App() {
       appId="3317137035215894"
       /> */}
       <ToastContainer></ToastContainer>
+      <Chatbot></Chatbot>
     </BrowserRouter>
   );
 }
