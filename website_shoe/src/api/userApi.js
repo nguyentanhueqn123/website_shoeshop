@@ -30,11 +30,12 @@ const userApi = {
         return axiosClient.post(url, {...body})
     },
     getStaff: (params) => {
-        const url = '/user/isStaff'
+        const url = '/user/getStaff'
         return axiosClient.get(url, {params})
     },
+  
     getAllCustomers: () => {
-        const url = '/user/getall/customers'
+        const url = '/user/customers'
         return axiosClient.get(url)
     },
     addCart: (id, productId) => {
