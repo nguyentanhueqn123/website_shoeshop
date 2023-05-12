@@ -43,22 +43,22 @@ export const STAFF_ROLE = {
         label: 'Admin',
         value: 'Admin',
     },
-    ceo: {
-        label: 'CEO',
-        value: 'CEO',
+    customer: {
+        label: 'Customer',
+        value: 'Customer',
     },
     manager: {
         label: 'Manager',
         value: 'Manager',
     },
-    accountant: {
-        label: 'Accountant',
-        value: 'Accountant',
-    },
-    'delivery_person': {
-        label: 'Delivery person',
-        value: 'Delivery person',
-    },
+    // accountant: {
+    //     label: 'Accountant',
+    //     value: 'Accountant',
+    // },
+    // 'delivery_person': {
+    //     label: 'Delivery person',
+    //     value: 'Delivery person',
+    // },
 }
 
 export const ORDER_TYPE = {

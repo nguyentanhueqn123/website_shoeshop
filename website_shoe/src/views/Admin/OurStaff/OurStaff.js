@@ -8,9 +8,14 @@ import { useDispatch } from 'react-redux';
 import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../../store/search/hook'
 import { updateSearchData } from '../../../store/search/index'
 import { STAFF_ROLE } from '../../../constants/index'
-import { useFetchUsers, useUsers } from '../../../store/user/hook'
+import { useFetchUsers, useUsers} from '../../../store/user/hook'
 export default function OurStaff() {
-    useFetchUsers({ role: 'Admin,Seller,CEO,Manager,Account,Delivery' })
+
+    // useFetchUsers({ role1: 'Admin, CEO, Manager, Account' })
+    useFetchUsers()
+
+
+
     useUpdateSearch()
     useUpdateQuery()
     const searchData = useSearchData()
@@ -50,7 +55,7 @@ export default function OurStaff() {
         'CEO',
         'Manager',
         'Accountant',
-        'Delivery Person',
+        // 'Delivery Person',
     ]
 
     return (
@@ -77,6 +82,8 @@ export default function OurStaff() {
                             updateFieldSearch('role', role)
                         }}
                     />
+                  
+
                 </div>
 
                 <button className="bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] w-1/5 h-[42px] text-white">
