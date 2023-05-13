@@ -1,0 +1,22 @@
+.cart-icon {
+    transition: all 200ms ease-in-out;
+
+    &:after {
+        position: absolute;
+        bottom: 100%;
+        width: 14px;
+        height: 8px;
+        content: "";
+        border-top-left-radius: 9999px;
+        border-top-right-radius: 9999px;
+        border-bottom: 0px;
+        border: 2px solid var(--color-yellow-1);
+    }
+    &:hover {
+        background: var(--color-yellow-1);
+        color: #fff;
+        &:after{
+            height: 10px;
+        }
+    }
+}

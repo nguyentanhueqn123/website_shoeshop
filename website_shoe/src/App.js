@@ -1,14 +1,14 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
-// import Product from './views/Product/Product';
+import Product from './views/Product/Product';
 import Login from './views/RegisterLogin/Login';
 import Register from './views/RegisterLogin/Register';
 // import News from './views/News/News';
-// import Cart from './views/Cart/Cart'
+import Cart from './views/Cart/Cart'
 // import Buy from './views/Buy/Buy'
-// import ProductDetail from './views/ProductDetail/ProductDetail';
-// import Header from './components/Header/Header'
-// import Footer from './components/Footer/Footer'
+import ProductDetail from './views/ProductDetail/ProductDetail';
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import AdminSidebar from './components/AdminSidebar/AdminSidebar'
 import Dashboard from './views/Admin/Dashboard/Dashboard'
 import AdminHeader from './components/AdminHeader/AdminHeader'
@@ -34,11 +34,11 @@ import Chatbot from "./chatbot";
 const UserLayout = () => {
   return (
     <div className="font-baskerville flex flex-col min-h-screen overflow-hidden">
-      {/* <Header /> */}
+      <Header />
       <div className="flex-1">
         <Outlet />
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }
@@ -74,14 +74,14 @@ function App() {
       <Routes>
         <Route element={<UserLayout />}>
           <Route index element={<Home />} />
-          {/* <Route path="/danh-muc" element={<Product />} />
-          <Route path="/gioi-thieu" element={<Intro />} />
-          <Route path="/tin-tuc" element={<News />} />
+          <Route path="/danh-muc" element={<Product />} />
+          {/* <Route path="/gioi-thieu" element={<Intro />} /> */}
+          {/* <Route path="/tin-tuc" element={<News />} /> */}
           <Route path="/gio-hang" element={<Cart />} />
-          <Route path="/thanh-toan" element={<Buy />} />
-          <Route path="/don-hang" element={<DonHang />} />
+          {/* <Route path="/thanh-toan" element={<Buy />} /> */}
+          {/* <Route path="/don-hang" element={<DonHang />} /> */}
           <Route path="/san-pham/:id" element={<ProductDetail />} />
-          <Route path="/da" element={<News/>} /> */}
+          {/* <Route path="/da" element={<News/>} /> */}
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/register" element={<Register />} />
