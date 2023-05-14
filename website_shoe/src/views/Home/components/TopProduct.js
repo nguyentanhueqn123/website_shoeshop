@@ -28,7 +28,8 @@ export default function TopProduct() {
     };
 
     if(products === undefined) {
-        return <p>Loading...</p>
+        return <p className='h-full flex justify-center justify-items-center mt-4'>Loading...</p>
+
     }
 
     return (

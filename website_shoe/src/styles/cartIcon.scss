@@ -1,5 +1,6 @@
 .cart-icon {
     transition: all 200ms ease-in-out;
+    overflow: hidden;
 
     &:after {
         position: absolute;

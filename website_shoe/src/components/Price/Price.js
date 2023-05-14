@@ -12,7 +12,7 @@ export default function Price( {price, priceDel, color="text-white-1", className
                   </del>
               ) : null
           }
-          <span className={classnames("ml-2", color, className)}>
+          <span className={classnames("ml-2 text-red-400 font-bold text-lg", color, className)}>
               {formatPrice(price)} <span className="underline">đ</span>
           </span>
       </p>
