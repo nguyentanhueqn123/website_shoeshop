@@ -67,7 +67,7 @@ export default function Header() {
       link: ''
     },
     {
-      displayName: 'Danh mục',
+      displayName: 'Sản phẩm',
       link: 'danh-muc'
     },
   ]

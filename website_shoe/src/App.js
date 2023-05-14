@@ -26,6 +26,7 @@ import AddCategory from './views/Admin/Category/AddCategory';
 import AddCoupon from './views/Admin/Coupons/AddCoupon';
 import EditCoupon from './views/Admin/Coupons/EditCoupon';
 import { ToastContainer } from 'react-toastify'
+import EditProfile from "./views/Admin/EditProfile/EditProfile"
 // import Intro from './views/Intro/Intro'
 // import DonHang from './views/DonHang/DonHang'
 // import MessengerCustomerChat from 'react-messenger-customer-chat'
@@ -89,6 +90,7 @@ function App() {
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
+        <Route path="editProfile" element={<EditProfile />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
           <Route path="category" element={<Category></Category>} />

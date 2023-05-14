@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination'
 import ProductCard from '../../components/Card/ProductCard'
@@ -13,6 +13,8 @@ import { updateSearchData, resetSearchData } from '../../store/search/index'
 import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../store/search/hook'
 import { useDispatch } from 'react-redux'
 import OnTop from '../../components/OnTop/OnTop'
+import Input from '../../components/Input/Input';
+
 
 export default function Product() {
   useFetchProducts()
@@ -21,6 +23,22 @@ export default function Product() {
   useUpdateSearch()
 
   const searchData = useSearchData()
+  
+  /// Search Products
+  const [textSearch, setTextSearch] = useState()
+  const handleChangeInput = (e) => {
+    setTextSearch(e.target.value)
+  }
+  useEffect(() => {
+    if (textSearch !== undefined) {
+        updateFieldSearch('textSearch', textSearch)
+    }
+  }, [textSearch])
+
+  useEffect(() => {
+      setTextSearch(searchData?.textSearch)
+  }, [])
+  ////
 
   const products = useProducts()
 
@@ -100,6 +118,17 @@ export default function Product() {
               Xóa tất cả
             </button>
             <hr className="bg-gray-300 my-5 h-[1px]" />
+
+            {/* Search Products */}
+            <Input
+                    className="border border-black rounded-lg text-md text-black"
+                    onChange={handleChangeInput}
+                    dark={1}
+                    type="text"
+                    placeholder="Search by product name"
+            />
+            <hr className="bg-gray-300 my-5 h-[1px]" />
+
             {/* <div className="border border-gray-300 rounded p-2 mb-5">
               {
                 productTypes?.data?.map((item, index) => {
