@@ -11,7 +11,7 @@ import '../../styles/home.css';
 export default function Home() {
 
   return (
-    <div className="w-screen overflow-hidden relative">
+    <div className="w-screen overflow-hidden relative mt-[120px]">
       {/* <Banner /> */}
       {/* <Collect /> */}
       {/* <Product /> */}
