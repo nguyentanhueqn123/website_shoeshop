@@ -56,7 +56,7 @@ export default function Cart() {
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full mt-[130px]">
             {
                 cart?.length ? (
                     <div className="items-start max-w-screen-3xl mx-auto w-full flex">

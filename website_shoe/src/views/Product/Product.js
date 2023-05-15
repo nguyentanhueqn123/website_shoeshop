@@ -77,7 +77,7 @@ export default function Product() {
   }
 
   return (
-    <div className="w-full bg-white px-5 mt-[130px]">
+    <div className="w-full bg-white px-7 mt-[130px]">
       <div className="fixed bottom-10 right-10 z-9">
         <OnTop />
       </div>
@@ -91,7 +91,7 @@ export default function Product() {
         </div>
 
         <div className="flex mt-5">
-          <div className="w-1/5 flex flex-col mr-5">
+          <div className="w-1/5 flex flex-col mr-[40px]">
             <div className="flex items-center justify-between mb-5">
               <h1 className="text-xl text-black opacity-80">Filter & Sort</h1>
               <p className="opacity-80">
