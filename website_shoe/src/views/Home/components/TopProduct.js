@@ -33,9 +33,9 @@ export default function TopProduct() {
     }
 
     return (
-        <div className="w-full bg-green-3 py-20">
+        <div className="w-full bg-white py-20">
             <div className="mb-10">
-                <h1 className="uppercase text-4xl text-black-1 text-center font-medium">Sản phẩm mua nhiều</h1>
+                <h1 className="uppercase text-3xl text-black-1 px-[10%] font-medium">The most purchased</h1>
             </div>
    
             <div className="max-w-screen-xl w-full mx-auto">
