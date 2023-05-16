@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
                 color="black"
             />
             <div className="container-title ">
-                <p className='title-buy opacity-100 transition-opacity duration-800 ease-linear'>MUA NGAY</p>
+                <p className='title-buy opacity-100 transition-opacity duration-800 ease-linear'>BUY NOW</p>
             </div>
            
         </div>

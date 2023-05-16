@@ -27,7 +27,7 @@ export default function Login() {
         setIsValidEmail(true)
       }
       else {
-        setEmailValidate("Email không hợp lệ")
+        setEmailValidate("Email is not valid")
         setIsValidEmail(false)
       }
     }
@@ -36,17 +36,17 @@ export default function Login() {
   const Login = async (e) => {
     e.preventDefault()
     if (!email) {
-      showToastError("Email không được để trống")
+      showToastError("Email cannot be blank")
       return;
     }
     if (!password) {
-      showToastError("Mật khẩu không được để trống")
+      showToastError("Password cannot be blank")
       return;
     }
     try {
       await userApi.login({email, password}).then((response) => {
         USER_LOGIN.set(JSON.stringify(response?.data?.user))
-        showToastSuccess("Đăng nhập thành công")
+        showToastSuccess("Login successful")
         if(response?.data?.user?.role !== 'CUSTOMER') {
           navigate("/admin/dashboard")
         } else {
@@ -55,7 +55,7 @@ export default function Login() {
       })
     } catch (error) {
       console.log(error)
-      showToastError("Tài khoản hoặc mật khẩu không chính xác")
+      showToastError("Incorrect account or password")
     }
   }
 
@@ -63,7 +63,7 @@ export default function Login() {
     <div className="log-container w-screen h-screen bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
       <div className="w-full h-full">
         <div className="log-form w-[500px] mx-auto py-10 rounded-lg">
-          <h1 className="text-white text-3xl text-center mb-10 font-medium">ĐĂNG NHẬP</h1>
+          <h1 className="text-white text-3xl text-center mb-10 font-medium">LOG IN</h1>
           <form className="">
             <div className="relative  mb-8">
               <input
@@ -88,7 +88,7 @@ export default function Login() {
               <input
                 className="form-input w-full border px-3 py-3 rounded-lg"
                 type="password"
-                placeholder="Mật khẩu"
+                placeholder="Password"
                 onChange={(e) => {
                   setPassword(e.target.value)
                 }}
@@ -98,11 +98,11 @@ export default function Login() {
               onClick={(e) => { Login(e) }}
               className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]"
             >
-              Đăng nhập
+              LOG IN
             </button>
           </form>
           <div className="text-center text-white mt-5">
-            <Link to="/register" className="underline">Tạo tài khoản</Link>
+            <Link to="/register" className="underline">Create Account</Link>
           </div>
         </div>
       </div>

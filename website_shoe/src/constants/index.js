@@ -99,25 +99,25 @@ export const SORT_PRODUCT_COST = {
 
 export const SORT_PRODUCT_PAGE_PRODUCT = {
     LOWEST_PRICE: {
-        label: 'Giá: Thấp đến cao',
+        label: 'Price: Low to High',
         value: 'LOWEST_PRICE',
         field: 'priceSale',
         type: ORDER_TYPE.ASC,
     },
     HIGHEST_PRICE: {
-        label: 'Giá: Cao đến thấp',
+        label: 'Price: High to Low',
         value: 'HIGHEST_PRICE',
         field: 'priceSale',
         type: ORDER_TYPE.DESC,
     },
     NEWEST: {
-        label: 'Mới nhất',
+        label: 'Newest',
         value: 'NEWEST',
         field: 'createAt',
         type: ORDER_TYPE.DESC,
     },
     OLDEST: {
-        label: 'Cũ nhất',
+        label: 'Oldest',
         value: 'OLDEST',
         field: 'createAt',
         type: ORDER_TYPE.ASC,

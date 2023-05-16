@@ -50,7 +50,7 @@ export default function ProductDetail() {
 
   return (
 
-    <div className="w-full bg-white mt-[130px]">
+    <div className="w-full bg-white">
       <div className="max-w-screen-xl w-full mx-auto py-5">
         <div className="flex">
           <div className="w-3/5 grid grid-cols-2 gap-2">

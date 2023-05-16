@@ -29,7 +29,7 @@ export default function Register() {
         setIsValidEmail(true)
       }
       else {
-        setEmailValidate("Email không hợp lệ")
+        setEmailValidate("Email is not valid")
         setIsValidEmail(false)
       }
     }
@@ -38,23 +38,23 @@ export default function Register() {
   const handleRegis = async (e) => {
     e.preventDefault();
     if (!nameAccount) {
-      showToastError("Tên không được để trống")
+      showToastError("Name cannot be blank")
       return
     }
     if (!email) {
-      showToastError("Email không được để trống")
+      showToastError("Email cannot be blank")
       return
     }
     if (!phone) {
-      showToastError("Số điện thoại không được để trống")
+      showToastError("Phone Number cannot be blank")
       return
     }
     if (!password) {
-      showToastError("Mật khẩu không được để trống")
+      showToastError("Password cannot be blank")
       return
     }
     if(password !== confirmPassword) {
-      showToastError("Xác nhận mật khẩu không chính xác")
+      showToastError("Confirm password is incorrect")
       return
     }
     try {
@@ -65,12 +65,12 @@ export default function Register() {
           password,
           phone
         })
-        showToastSuccess("Đăng kí tài khoản thành công")
+        showToastSuccess("Sign up successful")
         navigate('/dang-nhap')
       }
     } catch (error) {
       console.log(error)
-      showToastError("Đăng kí tài khoản thất bại")
+      showToastError("Sign up failed")
     }
 
 
@@ -80,12 +80,12 @@ export default function Register() {
     <div className="log-container w-screen h-screen bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
       <div className="w-full h-full">
         <div className="log-form w-[500px] mx-auto py-10 rounded-lg">
-          <h1 className="text-white text-3xl text-center mb-10 font-medium">ĐĂNG KÍ</h1>
+          <h1 className="text-white text-3xl text-center mb-10 font-medium">SIGN UP</h1>
           <form className="">
             <input
               className="form-input w-full border px-4 py-3 mb-5 rounded-lg"
               type="text"
-              placeholder="Tên"
+              placeholder="Name"
               onChange={e => setNameAccount(e.target.value)}
             />
             <div className="relative mb-5">
@@ -107,27 +107,27 @@ export default function Register() {
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="text"
-              placeholder="Số điện thoại"
+              placeholder="Phone Number"
               onChange={e => setPhone(e.target.value)}
             />
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
-              placeholder="Mật khẩu"
+              placeholder="Password"
               onChange={e => setPassword(e.target.value)}
             />
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
-              placeholder="Xác nhận mật khẩu"
+              placeholder="Confirm Password"
               onChange={e => setConfirmPassword(e.target.value)}
             />
             <button 
               onClick={handleRegis}
-            className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]">Đăng kí</button>
+            className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]">SIGN UP</button>
           </form>
           <div className="text-center text-white mt-5">
-            <Link to="/login" className="underline">Đăng nhập</Link>
+            <Link to="/login" className="underline">Log in</Link>
           </div>
         </div>
       </div>

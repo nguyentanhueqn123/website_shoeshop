@@ -77,16 +77,16 @@ export default function Product() {
   }
 
   return (
-    <div className="w-full bg-white px-7 mt-[130px]">
+    <div className="w-full bg-white px-7">
       <div className="fixed bottom-10 right-10 z-9">
         <OnTop />
       </div>
       <div className="max-w-screen-3xl w-full mx-auto py-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center text-xl" id="top">
-            <Link to="/" className="opacity-50 hover:opacity-100">TRANG CHỦ</Link>
+            <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
             <span className="mx-3">/</span>
-            <p className="text-black font-medium">SẢN PHẨM</p>
+            <p className="text-black font-medium">PRODUCTS</p>
           </div>
         </div>
 
@@ -95,7 +95,7 @@ export default function Product() {
             <div className="flex items-center justify-between mb-5">
               <h1 className="text-xl text-black opacity-80">Filter & Sort</h1>
               <p className="opacity-80">
-                {products?.data?.length} sản phẩm
+                {products?.data?.length} Products
               </p>
             </div>
              {/* Search Products */}
@@ -105,7 +105,7 @@ export default function Product() {
                   onChange={handleChangeInput}
                   dark={1}
                   type="text"
-                  placeholder="Tìm kiếm tên sản phẩm"
+                  placeholder="Search by Product Name"
               />
               <span className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></span>
 
@@ -113,7 +113,7 @@ export default function Product() {
 
             <div className="container-sort">
               <Dropdown
-                title="Sắp xếp"
+                title="Sort"
                 listDropdown={Object.values(SORT_PRODUCT_PAGE_PRODUCT)}
                 label="label"
                 onSelect={(item) => {
@@ -148,7 +148,7 @@ export default function Product() {
             </div> */}
 
             <div className="">
-              <p className="text-lg">Loại sản phẩm</p>
+              <p className="text-lg">Category</p>
               <div className="px-5">
                 {
                   productTypes?.data?.map((item, index) => (
@@ -168,7 +168,7 @@ export default function Product() {
             <button className="text-white py-2.5 mt-2 uppercase rounded-lg bg-[#62B4FF] hover:bg-[#349eff]"
               onClick={e => handleClear(e)}
             >
-              Xóa bộ lọc
+              Clear Filter
             </button>
 
           

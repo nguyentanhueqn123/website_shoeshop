@@ -63,11 +63,11 @@ export default function Header() {
 
   const menu = [
     {
-      displayName: 'Trang chủ',
+      displayName: 'Home',
       link: ''
     },
     {
-      displayName: 'Sản phẩm',
+      displayName: 'Product',
       link: 'danh-muc'
     },
     {
@@ -75,7 +75,7 @@ export default function Header() {
       link: ''
     },
     {
-      displayName: 'Liên Hệ',
+      displayName: 'Contact',
       link: ''
     },
   ]
@@ -84,25 +84,19 @@ export default function Header() {
 
   return (
     <div>
-      <div className="w-full bg-[#62B4FF] fixed z-20">
+      <div className="w-full bg-[#62B4FF] z-20">
         <div className="flex items-center justify-between py-2 mx-auto max-w-screen-xl">
           <div className="flex items-center">
-            <div className="flex items-center text-black-1 px-2 border-r border-gray-600 text-sm-md font-medium">
+            <div className="flex items-center text-white px-2 border-r border-white text-sm-md font-medium">
               <FiMail className="mr-2" />
-              <span className="uppercase">
-                Contact
+              <span>
+                4HShoe@gmail.com
               </span>
             </div>
-            <div className="flex items-center text-black-1 px-2 border-r border-gray-600 text-sm-md font-medium">
-              <FiClock className="mr-2" />
-              <span className="uppercase">
-                08:00 - 23:00
-              </span>
-            </div>
-            <div className="flex items-center text-black-1 px-2 border-r border-gray-600 text-sm-md font-medium">
+            <div className="flex items-center text-white px-2 border-r border-white text-sm-md font-medium">
               <FiPhone className="mr-2" />
               <span className="uppercase">
-                0797 509 992
+                0962256789
               </span>
             </div>
           </div>
@@ -111,7 +105,7 @@ export default function Header() {
             userLogin ? (
               <button
                 
-                className="flex items-center text-black-1"
+                className="flex items-center text-white"
               >
                 <span onClick={handleAdmin} className="mr-2">
                   {
@@ -122,16 +116,16 @@ export default function Header() {
               </button>
             ) : (
               
-              <Link to="/login" className="text-white text-2xl cursor-pointer flex items-center justify-center">
+              <Link to="/login" className="text-white cursor-pointer flex items-center justify-center text-[24px]">
                 <FiUser />
-                <p className="text-[16px] ml-1 hover:underline">Đăng Nhập</p>
+                <p className="text-[13px] ml-2 py-1 px-4 bg-[#fff] rounded-lg text-[#62B4FF] hover:bg-[#eee]">LOG IN</p>
                 
               </Link>
             )
           }
         </div>
       </div>
-      <div className="w-full bg-white shadow-md mb-3 fixed z-20 mt-[40px]">
+      <div className="w-full bg-white shadow-md mb-3 z-20">
         <Container className="justify-between items-center py-5">
           <Link to="/">
             <img src="/logo1.png" alt="logo" className="image-logo1" />
@@ -141,11 +135,11 @@ export default function Header() {
             {
               menu.map((item, index) => {
                 return (
-                  <li className="mr-4 text-md text-black-1 font-medium uppercase" key={index}>
+                  <li className="mr-4 text-md text-black-1 font-medium uppercase tracking-widest" key={index}>
                     <NavLink
                       to={item.link}
                       className={({ isActive }) =>
-                        isActive ? "rounded px-3 py-2 text-black-2 border border-dashed border-black-2" : "transition-all duration-100 ease-linear rounded hover:p-3 hover:text-black-2 hover:bg-[#ccc] hover:rounded-lg hover:text-white"
+                        isActive ? "rounded px-3 py-2 text-black-2 font-bold" : "transition-all duration-100 ease-linear rounded hover:p-3 hover:text-black-2 hover:bg-[#ccc] hover:rounded-lg hover:text-white"
                       }
                     >
                       {item.displayName}
@@ -172,9 +166,9 @@ export default function Header() {
                 <div className="group-hover:flex absolute rounded-lg shadow-md bg-white top-full border px-3 hidden border-gray-300 min-w-[320px] right-[0px] overflow-hidden min-h-[200px] z-10">
                   {
                     !cart?.length ? (
-                      <div className="text-[#777] flex flex-col w-100 h-[260px] items-center justify-center">
+                      <div className="text-[#777] flex flex-col w-[320px] h-[260px] items-center justify-center">
                         <img className="flex w-[80px] h-[80px]" src="/images/icon/bags.png" alt="" />
-                        <p className="flex items-center justify-center mt-4">Chưa Có Sản Phẩm</p>  
+                        <p className="flex items-center justify-center mt-4">No Product !</p>  
                       </div>
                     ) : (
                       <div>
@@ -198,9 +192,9 @@ export default function Header() {
                         }
 
                         <div className="flex justify-between items-center text-center my-3">
-                          <p className="text-[14px] mr-2">{cart?.length || 0} Sản Phẩm Thêm Vào Giỏ</p>
-                          <a href="/gio-hang" className="text-[14px] px-4 py-2 rounded-lg bg-[#62B4FF] hover:bg-[#349eff] text-white">
-                            Xem Giỏ Hàng
+                          <p className="text-[14px] mr-2">{cart?.length || 0} Products Add to Cart</p>
+                          <a href="/gio-hang" className="text-[14px] px-5 py-2 rounded-lg bg-[#62B4FF] hover:bg-[#349eff] text-white">
+                            View Cart
                           </a>
                         </div>
                       </div>
