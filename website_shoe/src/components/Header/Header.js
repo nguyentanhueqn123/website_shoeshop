@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { FiMail, FiClock, FiPhone, FiSearch, FiUser, FiLogOut } from "react-icons/fi";
 import Container from '../Container/Container';
 import { NavLink, Link } from 'react-router-dom';
+import { Toast } from '../CustomToast/CustomToast';
+import { showToastSuccess} from '../CustomToast/CustomToast';
+
 import '../../styles/header.scss';
-import { fetchUser } from './../../store/user/index'
-import { fetchProduct, setTotalPriceRedux } from './../../store/product/index'
-import { useUser } from './../../store/user/hook'
+import { fetchUser } from '../../store/user/index'
+import { fetchProduct, setTotalPriceRedux } from '../../store/product/index'
+import { useUser } from '../../store/user/hook'
 import { useDispatch } from 'react-redux'
 import productApi from '../../api/productApi';
 import { useNavigate } from 'react-router-dom';
@@ -22,8 +25,11 @@ export default function Header() {
   const cart = useCart()
   
   const handleLogout = () => {
+    
     localStorage.removeItem("USER_LOGIN")
-    navigate('/login')
+    navigate('/')
+    showToastSuccess("Log Out successful");
+
   }
   const handleAdmin = () => {
     navigate('/admin/dashboard')

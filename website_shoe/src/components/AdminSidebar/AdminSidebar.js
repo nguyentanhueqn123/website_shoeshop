@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiUsers, FiUser, FiGift, FiList, FiShoppingBag, FiGrid, FiCheckCircle, FiMessageCircle } from "react-icons/fi";
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import "./Sidebar.scss"
 export default function AdminLeftMenu() {
 
@@ -50,7 +50,9 @@ export default function AdminLeftMenu() {
 
     return (
         <div className="sidebar h-full w-[230px] overflow-hidden fixed">
-        <img className="image-logo bg-cover bg-center bg-[url('/public/images/home/logo1.png')]" style={{ width: "150px", height: "150px", marginLeft: "40px" }} alt="" />
+            <Link to="/">
+                <img className="image-logo bg-cover bg-center bg-[url('/public/images/home/logo1.png')]" style={{ width: "150px", height: "150px", marginLeft: "40px" }} alt="" />
+            </Link>
             <ul className="py-10">
                 {
                     leftMenu.map((item, index) => {

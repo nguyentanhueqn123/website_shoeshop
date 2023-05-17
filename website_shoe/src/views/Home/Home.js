@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 // import Collect from './components/Collect'
 // import Product from './components/Product'
 import TopProduct from './components/TopProduct'
-// import Banner from './components/Banner'
+import Banner from './components/Banner'
 import '../../styles/home.css';
 
 export default function Home() {
 
   return (
     <div className="w-screen overflow-hidden relative">
-      {/* <Banner /> */}
+      <Banner />
       {/* <Collect /> */}
       {/* <Product /> */}
       <TopProduct />
