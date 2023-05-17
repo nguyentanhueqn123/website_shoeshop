@@ -9,10 +9,20 @@ export default function Banner() {
             items: 1,
             partialVisibilityGutter: 16,
         },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            partialVisibilityGutter: 16,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            partialVisibilityGutter: 16,
+        }
        
     };
     return (
-        <div className="mx-auto mt-6 rounded-lg max-w-screen-xl sm:h-[400px] h-[300px] bg-black bg-cover bg-center object-cover overflow-hidden">
+        <div className="mx-auto mt-6 rounded-lg max-w-screen-xl sm:h-[400px] max-h-[400px] bg-black bg-cover bg-center object-cover overflow-hidden">
             <Carousel
                         swipeable
                         autoPlay
@@ -32,7 +42,7 @@ export default function Banner() {
                     <div className="container-box">
                         <img className='absolute' src="https://www.johncraig.co.za/wp-content/uploads/Converse-Brand-Page-Banner.jpg" alt="" />
                         <Link to="/danh-muc">
-                            <button className="absolute ml-[10%] bottom-[25%] bg-[#62B4FF] rounded-lg px-7 py-3 hover:bg-[#349eff] text-white">
+                            <button className="absolute ml-[10%] bottom-[25%] bg-white rounded-lg px-7 py-3 hover:bg-[#eee] text-blak font-bold">
                                 <div className="text-center uppercase">
                                     Explore now
                                 </div>

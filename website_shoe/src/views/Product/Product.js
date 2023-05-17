@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import Pagination from '../../components/Pagination'
+import ReactPaginate from 'react-paginate';
+
 import ProductCard from '../../components/Card/ProductCard'
 import { useFetchProducts, useProducts, useFetchAllProductType, useAllProductType } from '../../store/product/hook'
 import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage'
@@ -72,6 +73,18 @@ export default function Product() {
     dispatch(updateSearchData({ [key]: _currentValue }))
   }
 
+  /// Handle Pagination func
+  const [pageNumber, setPageNumber] = useState(0);
+  const productsPerPage = 8;
+  const pagesVisited = pageNumber * productsPerPage;
+
+  const pageCount = Math.ceil(products?.data?.length / productsPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+  ////
+
   if (!productTypes || !products) {
     return <LoadingPage />
   }
@@ -131,21 +144,7 @@ export default function Product() {
             
             <hr className="bg-gray-300 my-5 h-[1px]" />
 
-           
 
-            {/* <div className="border border-gray-300 rounded p-2 mb-5">
-              {
-                productTypes?.data?.map((item, index) => {
-                  return (
-                    <div key={index} className="py-2 border-b border-dashed border-gray-300 opacity-80 hover:opacity-100 text-black">
-                      <Link to={`/danh-muc?typeProductId=${item?.typeId}`} className="w-full h-full" >
-                        {item?.nameType}
-                      </Link>
-                    </div>
-                  )
-                })
-              }
-            </div> */}
 
             <div className="">
               <p className="text-lg">Category</p>
@@ -170,27 +169,41 @@ export default function Product() {
             >
               Clear Filter
             </button>
-
           
           </div>
-        
 
           <div className="w-4/5 -mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
             {
-              products?.data?.map((product, index) => {
+              products?.data?.slice(pagesVisited, pagesVisited + productsPerPage).map((product, index) => {
                 return (
                     <ProductCard product={product} key={index} />
                 )
               })
             }
+            <div className="">
+            <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-start w-full my-3"
+            />
+            </div>
 
           </div>
-          {/* <Pagination 
-          data={products?.data}
-          itemsPerPage={1}
-            classNameContain="w-full -mx-2 grid grid-cols-4">
 
-          </Pagination> */}
+          
+          
+        
+      
         </div>
 
       </div>

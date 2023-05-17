@@ -10,6 +10,8 @@ import productApi from '../../../api/productApi'
 import { useDispatch } from 'react-redux'
 import { fetchAllProductType } from '../../../store/product'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
+
 
 export default function Category() {
     const navigate = useNavigate()
@@ -66,6 +68,17 @@ export default function Category() {
             }
         }
     ]
+     /// Handle Pagination func
+     const [pageNumber, setPageNumber] = useState(0);
+     const productsPerPage = 6;
+     const pagesVisited = pageNumber * productsPerPage;
+ 
+     const pageCount = Math.ceil(productTypes?.data?.length / productsPerPage);
+ 
+     const changePage = ({ selected }) => {
+     setPageNumber(selected);
+     };
+     ////
 
     return (
         <AdminContainer>
@@ -90,9 +103,24 @@ export default function Category() {
             {
                 productTypes && <Table
                     columnsTable={columnsTable}
-                    data={productTypes?.data}
+                    data={productTypes?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
                 />
             }
+            <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-end w-full  my-3"
+            />
         </AdminContainer>
     )
 }

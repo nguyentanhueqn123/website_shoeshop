@@ -197,7 +197,7 @@ export default function Header() {
                           })
                         }
 
-                        <div className="flex justify-between items-center text-center my-3">
+                        <div className="w-100 flex justify-between items-center text-center my-3">
                           <p className="text-[14px] mr-2">{cart?.length || 0} Products Add to Cart</p>
                           <a href="/gio-hang" className="text-[14px] px-5 py-2 rounded-lg bg-[#62B4FF] hover:bg-[#349eff] text-white">
                             View Cart

@@ -66,7 +66,7 @@ export default function Register() {
           phone
         })
         showToastSuccess("Sign up successful")
-        navigate('/dang-nhap')
+        navigate('/login')
       }
     } catch (error) {
       console.log(error)

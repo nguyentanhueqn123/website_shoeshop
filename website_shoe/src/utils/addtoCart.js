@@ -6,19 +6,19 @@ import { showToastError, showToastSuccess } from '../components/CustomToast/Cust
 export const addToCart = async (id, productId) => {
   try {
     await userApi.addCart(id, productId)
-    showToastSuccess("Thêm sản phẩm vào giỏ hàng thành công")
+    showToastSuccess("Product added to cart successfully")
   } catch (err) {
     console.log(err)
-    showToastError("Thêm sản phẩm vào giỏ hàng thất bại")
+    showToastError("Add product to cart failed")
   }
 }
 
 export const deleteCart = async (id, productId) => {
   try {
     await userApi.deleteCart(id, productId)
-    showToastSuccess("Xóa sản phẩm khỏi giỏ hàng thành công")
+    showToastSuccess("Delete product successfully")
   } catch (err) {
     console.log(err)
-    showToastError("Xóa sản phẩm khỏi giỏ hàng thất bại")
+    showToastError("Delete failed products")
   }
 }

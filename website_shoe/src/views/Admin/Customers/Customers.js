@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux';
 import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
 import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../../store/search/hook'
 import { updateSearchData } from '../../../store/search/index'
+import ReactPaginate from 'react-paginate';
+
 export default function Customers() {
     useFetchAllCustomers()
     useUpdateSearch()
@@ -94,6 +96,17 @@ export default function Customers() {
             }
         },
     ]
+    /// Handle Pagination func
+    const [pageNumber, setPageNumber] = useState(0);
+    const productsPerPage = 6;
+    const pagesVisited = pageNumber * productsPerPage;
+
+    const pageCount = Math.ceil(customers?.data?.length / productsPerPage);
+
+    const changePage = ({ selected }) => {
+    setPageNumber(selected);
+    };
+    ////
 
     return (
         <AdminContainer>
@@ -114,11 +127,26 @@ export default function Customers() {
            {
                customers && (
                     <Table
-                        data={customers?.data}
+                        data={customers?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
                         columnsTable={columnsTable}
                     />
                )
            }
+           <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-end w-full  my-3"
+            />
         </AdminContainer>
     )
 }

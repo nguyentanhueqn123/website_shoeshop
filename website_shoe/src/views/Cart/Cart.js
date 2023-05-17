@@ -140,7 +140,12 @@ export default function Cart() {
                         </div>
                     </div>
                 ) : (
-                    <p className='text-2xl text-center mt-10'>Không có sản phẩm trong giỏ hàng</p>
+                    <div className=" text-[#777] flex flex-col w-full items-center justify-center">
+                        <img className="flex w-[80px] h-[80px] mt-8" src="/images/icon/bags.png" alt="" />
+                        <Link to="/danh-muc">
+                            <p className="text-2xl text-center mt-2">No product in the cart! Shopping now</p>
+                        </Link>
+                    </div>
                 )
             }
         </div>

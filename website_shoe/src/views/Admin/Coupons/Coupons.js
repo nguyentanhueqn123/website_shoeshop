@@ -16,6 +16,7 @@ import { updateSearchData } from '../../../store/search/index'
 import { useNavigate } from 'react-router-dom'
 import Dropdown from '../../../components/Dropdown/Dropdown'
 import { showToastError, showToastSuccess } from '../../../components/CustomToast/CustomToast';
+import ReactPaginate from 'react-paginate';
 
 export default function Coupons() {
 
@@ -132,6 +133,17 @@ export default function Coupons() {
             }
         },
     ]
+    /// Handle Pagination func
+    const [pageNumber, setPageNumber] = useState(0);
+    const productsPerPage = 6;
+    const pagesVisited = pageNumber * productsPerPage;
+
+    const pageCount = Math.ceil(listCoupon?.data?.length / productsPerPage);
+
+    const changePage = ({ selected }) => {
+    setPageNumber(selected);
+    };
+    ////
 
     return (
         <AdminContainer>
@@ -174,10 +186,25 @@ export default function Coupons() {
                 listCoupon && (
                     <Table
                         columnsTable={columnsTable}
-                        data={listCoupon?.data}
+                        data={listCoupon?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
                     />
                 )
             }
+            <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-end w-full  my-3"
+            />
         </AdminContainer>
     )
 }

@@ -9,6 +9,9 @@ import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../../store/s
 import { updateSearchData } from '../../../store/search/index'
 import { STAFF_ROLE } from '../../../constants/index'
 import { useFetchUsers, useUsers} from '../../../store/user/hook'
+import ReactPaginate from 'react-paginate';
+
+
 export default function OurStaff() {
 
     // useFetchUsers({ role1: 'Admin, CEO, Manager, Account' })
@@ -57,6 +60,17 @@ export default function OurStaff() {
         'Accountant',
         // 'Delivery Person',
     ]
+     /// Handle Pagination func
+     const [pageNumber, setPageNumber] = useState(0);
+     const productsPerPage = 4;
+     const pagesVisited = pageNumber * productsPerPage;
+ 
+     const pageCount = Math.ceil(allStaff?.data?.length / productsPerPage);
+ 
+     const changePage = ({ selected }) => {
+     setPageNumber(selected);
+     };
+     ////
 
     return (
         <AdminContainer>
@@ -96,11 +110,26 @@ export default function OurStaff() {
 
            <div className="grid grid-cols-4 gap-x-4">
                {
-                    allStaff?.data?.map((staff, index) => {
+                    allStaff?.data?.slice(pagesVisited, pagesVisited + productsPerPage).map((staff, index) => {
                         return <StaffCard user={staff} key={index} />
                     })
                }
            </div>
+           <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-end w-full  my-3"
+            />
         </AdminContainer>
     )
 }
