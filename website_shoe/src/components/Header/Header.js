@@ -72,11 +72,11 @@ export default function Header() {
     },
     {
       displayName: 'Blog',
-      link: ''
+      link: 'blog'
     },
     {
       displayName: 'Contact',
-      link: ''
+      link: 'lien-he'
     },
   ]
 
