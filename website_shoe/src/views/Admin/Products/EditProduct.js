@@ -7,8 +7,11 @@ import productApi from '../../../api/productApi'
 import Button from '../../../components/Button/Button'
 import { useParams } from 'react-router-dom';
 import { showToastSuccess, showToastError } from '../../../components/CustomToast/CustomToast';
+import { useNavigate  } from 'react-router-dom';
+
 
 export default function AdminEditProduct() {
+  const navigate = useNavigate()
   useFetchAllProductType()
   useFetchProduct()
   const product = useProduct()
@@ -60,6 +63,7 @@ export default function AdminEditProduct() {
       })
       setPending(false)
       showToastSuccess("Cập nhật thành công")
+      navigate("/admin/products")
     } catch (error) {
       console.log(error)
       showToastError("Cập nhật thất bại")
@@ -164,9 +168,10 @@ export default function AdminEditProduct() {
           value={sale}
         />
         <Button
-          onClick={(e) => handleEditProduct(e)}
+          onClick={(e) => handleEditProduct(e) }
           pending={pending}
           isLoading={pending}
+          
         >
           Update
         </Button>

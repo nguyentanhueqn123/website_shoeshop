@@ -6,8 +6,9 @@ import productApi from '../../../api/productApi'
 import Button from '../../../components/Button/Button'
 import { useParams } from 'react-router-dom';
 import { showToastError, showToastSuccess } from './../../../components/CustomToast/CustomToast';
-
+import { useNavigate } from 'react-router-dom';
 export default function EditCategory() {
+  const navigate = useNavigate()
   useFetchProductType()
   const productType = useProductType()
   const { id } = useParams()
@@ -33,6 +34,8 @@ export default function EditCategory() {
       })
       setPending(false)
       showToastSuccess("Cập nhật thành công")
+      navigate("/admin/category")
+
     } catch (error) {
       console.log(error)
       showToastError("Cập nhật thất bại")

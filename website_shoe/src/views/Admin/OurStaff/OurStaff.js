@@ -65,15 +65,15 @@ export default function OurStaff() {
     const filteredStaff = allStaff?.data?.filter(staff => staff.role === 'ADMIN' || staff.role === 'MANAGER');
 
      /// Handle Pagination func
-     const [pageNumber, setPageNumber] = useState(0);
-     const productsPerPage = 2;
-     const pagesVisited = pageNumber * productsPerPage;
+    //  const [pageNumber, setPageNumber] = useState(0);
+    //  const productsPerPage = 2;
+    //  const pagesVisited = pageNumber * productsPerPage;
  
-     const pageCount = Math.ceil(filteredStaff.length / productsPerPage)
+    //  const pageCount = (Math).ceil(filteredStaff.length / productsPerPage)
  
-     const changePage = ({ selected }) => {
-     setPageNumber(selected);
-     };
+    //  const changePage = ({ selected }) => {
+    //  setPageNumber(selected);
+    //  };
      ////
 
     return (
@@ -114,13 +114,14 @@ export default function OurStaff() {
 
            <div className="grid grid-cols-4 gap-x-4">
                {
+                filteredStaff?.map((staff, index) => {
                 
-                filteredStaff?.slice(pagesVisited, pagesVisited + productsPerPage).map((staff, index) => {
+                {/* filteredStaff?.slice(pagesVisited, pagesVisited + productsPerPage).map((staff, index) => { */}
                     return <StaffCard user={staff} key={index} />
                     })
                }
            </div>
-           <ReactPaginate
+           {/* <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
               nextLabel={"Next"}
@@ -134,7 +135,7 @@ export default function OurStaff() {
               disabledClassName={"paginationDisabled"}
               activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
               className="flex justify-end w-full  my-3"
-            />
+            /> */}
         </AdminContainer>
     )
 }

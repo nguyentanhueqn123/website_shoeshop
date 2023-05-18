@@ -9,7 +9,10 @@ import { useFetchCoupon, useCoupon } from '../../../store/coupon/hook'
 import { useParams } from 'react-router-dom'
 import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
 import { showToastError, showToastSuccess } from './../../../components/CustomToast/CustomToast';
+import { useNavigate } from 'react-router-dom'
+
 export default function EditCoupon() {
+  const navigate = useNavigate()
   useFetchCoupon()
   const coupon = useCoupon()
 
@@ -49,6 +52,7 @@ export default function EditCoupon() {
       })
       setPending(false)
       showToastSuccess("Cập nhật thành công")
+      navigate("/admin/coupons")
     } catch (error) {
       console.log(error)
       showToastError("Cập nhật thất bại")

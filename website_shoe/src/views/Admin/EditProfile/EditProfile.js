@@ -3,9 +3,18 @@ import AdminContainer from '../../../components/AdminContainer/AdminContainer'
 import { showToastSuccess, showToastError } from '../../../components/CustomToast/CustomToast';
 import { Link, useNavigate  } from 'react-router-dom';
 import "./EditProfile.scss"
+import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../../store/search/hook'
+import { useFetchUsers, useUsers} from '../../../store/user/hook'
 
-export default function Category({ user }) {
+export default function EditProfile() {
+    const allStaff = useUsers()
+    const filteredUser = allStaff?.data?.filter(staff => staff.role === 'ADMIN')[0];
+    console.log(filteredUser)
     const navigate = useNavigate()
+    useFetchUsers()
+    useUpdateSearch()
+    useUpdateQuery()
+    
    
     return (
       <AdminContainer>
@@ -15,7 +24,6 @@ export default function Category({ user }) {
             <Link
               to={{
                 pathname: "./changePassWord",
-              //   state: { user: user },
               }}
             >
               <button className="userChangePassWord">Change Password</button>
@@ -24,7 +32,7 @@ export default function Category({ user }) {
             <button
               onClick={() => {
                 localStorage.removeItem("USER_LOGIN")
-                navigate('/login')
+                navigate('/')
                 showToastSuccess("Đăng xuất thành công")
                 
                 // window.location.reload();
@@ -42,10 +50,9 @@ export default function Category({ user }) {
               <img src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt="" className="userShowImg" />
 
               <div className="userShowTopTitle">
-                {/* <span className="userShowUsername">{user.fullname}</span> */}
-                {/* <span className="userShowUserTitle">{user.position}</span> */}
+                
                 <span className="userShowUsername">
-                  Hue Nguyen
+                    {filteredUser?.nameAccount}
                 </span>
                 <span className="userShowUserTitle">Admin</span>
                 
@@ -54,24 +61,23 @@ export default function Category({ user }) {
             <div className="userShowBottom">
               <span className="userShowTitle">Account</span>
               <div className="userShowInfo">
-                {/* <span className="userShowInfoTitle">{user.username}</span> */}
-                <span className="userShowInfoTitle">Hue Nguyen</span>
+                <span className="userShowInfoTitle">
+                {filteredUser?.nameAccount}
+                </span>
+
+              </div>
+              
+              <span className="userShowTitle">Contact</span>
+              <div className="userShowInfo">
+                <span className="userShowInfoTitle">
+                {filteredUser?.phone}
+                </span>
 
               </div>
               <div className="userShowInfo">
                 <span className="userShowInfoTitle">
-                  {/* {formatDate(user.birthday)} */}
+                {filteredUser?.email}
                 </span>
-              </div>
-              <span className="userShowTitle">Contact</span>
-              <div className="userShowInfo">
-                {/* <span className="userShowInfoTitle">{user.phone}</span> */}
-                <span className="userShowInfoTitle">0962267888</span>
-
-              </div>
-              <div className="userShowInfo">
-                {/* <span className="userShowInfoTitle">{user.email}</span> */}
-                <span className="userShowInfoTitle">nguyentanhue@gmail.com</span>
 
               </div>
               
@@ -86,11 +92,8 @@ export default function Category({ user }) {
                   <input
                     type="text"
                     name="fullname"
-                  //   value={userUpdate.fullname}
-                  //   onChange={handleUpdateUser}
-                  //   placeholder={user.fullname}
-                  placeholder={"Hue Nguyen"}
-
+                    //   value={userUpdate.fullname}
+                    placeholder={filteredUser?.nameAccount}
                     className="userUpdateInput"
                   />
                 </div>
@@ -100,20 +103,19 @@ export default function Category({ user }) {
                     name="phone"
                     type="phone"
                   //   value={userUpdate.phone}
-                  //   placeholder={user.phone}
-                    placeholder={"0962267888"}
+                    placeholder={filteredUser?.phone}
 
-                    onChange={(e) => {
-                      const re = /^[0-9\b]+$/;
+                    // onChange={(e) => {
+                    //   const re = /^[0-9\b]+$/;
 
-                      // if value is not blank, then test the regex
+                    //   // if value is not blank, then test the regex
 
-                      // if (e.target.value === "" || re.test(e.target.value)) {
-                      //   setUserUpdate((prev) => {
-                      //     return { ...prev, phone: e.target.value };
-                      //   });
-                      // }
-                    }}
+                    //   // if (e.target.value === "" || re.test(e.target.value)) {
+                    //   //   setUserUpdate((prev) => {
+                    //   //     return { ...prev, phone: e.target.value };
+                    //   //   });
+                    //   // }
+                    // }}
                     className="userUpdateInput"
                   />
                 </div>
@@ -123,7 +125,7 @@ export default function Category({ user }) {
                   <input
                     name="email"
                     type="text"
-                    placeholder={"nguyentanhue@gmail.com"}
+                    placeholder={filteredUser?.email}
                     className="userUpdateInput"
                   />
                 </div>
@@ -131,31 +133,22 @@ export default function Category({ user }) {
               </div>
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
-                  {/* <img
-                    onClick={() => {
-                      inputAvatarRef.current.click();
-                    }}
-                    className="userUpdateImg"
-                    src={avatar ? URL.createObjectURL(avatar) : user.imageUrl}
-                    alt=""
-                  /> */}
+                  
                   <img  src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt="" className='userUpdateImg'/>
 
                   <label htmlFor="file"></label>
                   <input
-                  //   onChange={onImageChange}
                     accept="image/png, image/gif, image/jpeg"
                   //   ref={inputAvatarRef}
                     type="file"
                     style={{ display: "none" }}
                   />
                 </div>
-                <button
-                  // onClick={handleSubmitFormUpdate}
+                {/* <button
                   className="userUpdateButton"
                 >
                   Update
-                </button>
+                </button> */}
               </div>
             </form>
           </div>
