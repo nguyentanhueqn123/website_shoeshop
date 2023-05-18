@@ -95,7 +95,7 @@ function App() {
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
-        <Route path="editProfile" element={<EditProfile />} />
+          <Route path="editProfile" element={<EditProfile />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
           <Route path="category" element={<Category></Category>} />
