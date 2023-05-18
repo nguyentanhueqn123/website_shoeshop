@@ -16,6 +16,7 @@ export default function OurStaff() {
 
     // useFetchUsers({ role1: 'Admin, CEO, Manager, Account' })
     useFetchUsers()
+    
 
 
 
@@ -60,12 +61,15 @@ export default function OurStaff() {
         'Accountant',
         // 'Delivery Person',
     ]
+
+    const filteredStaff = allStaff?.data?.filter(staff => staff.role === 'ADMIN' || staff.role === 'MANAGER');
+
      /// Handle Pagination func
      const [pageNumber, setPageNumber] = useState(0);
-     const productsPerPage = 4;
+     const productsPerPage = 2;
      const pagesVisited = pageNumber * productsPerPage;
  
-     const pageCount = Math.ceil(allStaff?.data?.length / productsPerPage);
+     const pageCount = Math.ceil(filteredStaff.length / productsPerPage)
  
      const changePage = ({ selected }) => {
      setPageNumber(selected);
@@ -110,8 +114,9 @@ export default function OurStaff() {
 
            <div className="grid grid-cols-4 gap-x-4">
                {
-                    allStaff?.data?.slice(pagesVisited, pagesVisited + productsPerPage).map((staff, index) => {
-                        return <StaffCard user={staff} key={index} />
+                
+                filteredStaff?.slice(pagesVisited, pagesVisited + productsPerPage).map((staff, index) => {
+                    return <StaffCard user={staff} key={index} />
                     })
                }
            </div>

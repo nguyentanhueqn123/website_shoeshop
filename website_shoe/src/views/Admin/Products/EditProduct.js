@@ -15,6 +15,7 @@ export default function AdminEditProduct() {
 
   const productTypes = useAllProductType()
   const { id } = useParams()
+  const [image, setImageProduct] = useState()
   const [nameProduct, setNameProduct] = useState()
   const [price, setPrice] = useState()
   const [sale, setSale] = useState()
@@ -39,6 +40,7 @@ export default function AdminEditProduct() {
           setNameType(type?.nameType)
         }
       })
+      setImageProduct(product?.data?.image)
     }
   }, [product])
 
@@ -52,6 +54,7 @@ export default function AdminEditProduct() {
         description,
         price,
         sale,
+        image,
         metal,
         size,
       })
@@ -67,13 +70,23 @@ export default function AdminEditProduct() {
     <AdminContainer>
       <form>
         <Input
+            className="border border-gray-400 rounded-lg text-md text-black mb-5"
+            label="Link Image"
+            name="product-name"
+            dark={1}
+            type="text"
+            value={image}
+            placeholder="Link Image"
+            onChange={(e) => setImageProduct(e.target.value)}
+        />
+        <Input
           className="border border-gray-400 rounded-lg text-md text-black"
           label="Product Name"
           name="product-name"
           dark={1}
           type="text"
           value={nameProduct}
-          placeholder="Search by product name"
+          placeholder="Product Name"
           onChange={(e) => setNameProduct(e.target.value)}
         />
         <div className="mt-5">

@@ -19,11 +19,11 @@ export default function Customers() {
     const searchData = useSearchData()
     const customers = useAllCustomers()
     const dispatch = useDispatch()
-    const [textSearch, setTextSearch] = useState()
 
+    const [searchQuery, setSearchQuery] = useState('');
     const handleChangeInput = (e) => {
-        setTextSearch(e.target.value)
-    }
+        setSearchQuery(e.target.value);
+    };
 
     const updateFieldSearch = (field, value) => {
         dispatch(updateSearchData({ [field]: value }))
@@ -37,16 +37,6 @@ export default function Customers() {
             console.log(error)
         }
     }
-
-    useEffect(() => {
-        if (textSearch !== undefined) {
-            updateFieldSearch('textSearch', textSearch)
-        }
-    }, [textSearch])
-
-    useEffect(() => {
-        setTextSearch(searchData?.textSearch)
-    }, [])
 
     const handleDeleteCustomer = async (id) => {
         try {
@@ -120,15 +110,21 @@ export default function Customers() {
                     onChange={handleChangeInput}
                     dark={1}
                     type="text"
-                    placeholder="Search by name"
+                    placeholder="Search by name, email, phone number"
                 />
             </div>
 
            {
                customers && (
-                    <Table
-                        data={customers?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
-                        columnsTable={columnsTable}
+                <Table
+                    data={customers?.data
+                        .filter((customer) =>
+                        customer.nameAccount.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        customer.phone.toLowerCase().includes(searchQuery.toLowerCase())
+                        )
+                        .slice(pagesVisited, pagesVisited + productsPerPage)}
+                    columnsTable={columnsTable}
                     />
                )
            }

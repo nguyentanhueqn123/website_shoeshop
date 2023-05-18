@@ -43,9 +43,9 @@ export const STAFF_ROLE = {
         label: 'Admin',
         value: 'Admin',
     },
-    customer: {
-        label: 'Customer',
-        value: 'Customer',
+    staff: {
+        label: 'Staff',
+        value: 'Staff',
     },
     manager: {
         label: 'Manager',
