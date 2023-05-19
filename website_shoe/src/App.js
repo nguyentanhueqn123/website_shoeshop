@@ -7,7 +7,7 @@ import Login from './views/RegisterLogin/Login';
 import Register from './views/RegisterLogin/Register';
 // import News from './views/News/News';
 import Cart from './views/Cart/Cart'
-// import Buy from './views/Buy/Buy'
+import Buy from './views/Buy/Buy'
 import ProductDetail from './views/ProductDetail/ProductDetail';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -81,7 +81,7 @@ function App() {
           {/* <Route path="/gioi-thieu" element={<Intro />} /> */}
           {/* <Route path="/tin-tuc" element={<News />} /> */}
           <Route path="/gio-hang" element={<Cart />} />
-          {/* <Route path="/thanh-toan" element={<Buy />} /> */}
+          <Route path="/thanh-toan" element={<Buy />} />
           {/* <Route path="/don-hang" element={<DonHang />} /> */}
           <Route path="/san-pham/:id" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
