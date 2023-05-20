@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 // import Product from './components/Product'
 import TopProduct from './components/TopProduct'
 import Banner from './components/Banner'
+import Coupon from './components/Coupon'
 import '../../styles/home.css';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       {/* <Collect /> */}
       {/* <Product /> */}
       <TopProduct />
+      <Coupon />
       {/* <News /> */}
       {/* <h1 className="h1 items-center text-center">Huenguyenpichu1</h1>
       <div className="text-center">
