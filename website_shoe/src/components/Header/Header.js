@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FiMail, FiClock, FiPhone, FiShoppingBag, FiUser, FiLogOut, FiSettings } from "react-icons/fi";
+import { FiMail, FiClock, FiPhone, FiShoppingBag, FiUser, FiLogOut, FiSettings, FiShoppingCart } from "react-icons/fi";
 import Container from '../Container/Container';
 import { NavLink, Link } from 'react-router-dom';
 import { Toast } from '../CustomToast/CustomToast';
@@ -113,17 +113,24 @@ export default function Header() {
                 className="flex flex-col relative items-center text-white"
               >
                 {/* <span onClick={handleAdmin} className="mr-2"> */}
-                <span className="mr-2" onClick={()=>{setOpen(!open)}}>
-
-                  {
-                    userLogin?.nameAccount
-                  }
-                </span>
+                <div className="mr-2 flex flex-row items-center" onClick={()=>{setOpen(!open)}}>
+                  <FiUser className="text-[24px] mr-1" />
+                  <span>
+                    {
+                      userLogin?.nameAccount
+                    }
+                  </span>
+                  
+                </div>
                 
                 <ul className={`dropdown-menu text-left text-black shadow-md border absolute ${open ? 'active' : 'inactive'}`}>
                   <Link to="/gio-hang" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
-                    <FiShoppingBag width={15} className="mx-3"/>
+                    <FiShoppingCart width={15} className="mx-3"/>
                     <li>My Cart</li>
+                  </Link>
+                  <Link to="/order" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
+                    <FiShoppingBag width={15} className="mx-3"/>
+                    <li>My Order</li>
                   </Link>
                   <Link to="/setting" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
                     <FiSettings width={15} className="mx-3"/>

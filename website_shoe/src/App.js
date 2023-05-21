@@ -3,6 +3,7 @@ import Home from './views/Home/Home';
 import Product from './views/Product/Product';
 import Contact from './views/Contact/Contact';
 import Setting from './views/Setting/Setting';
+import Order from './views/Order/Order';
 import Blog from './views/Blog/Blog';
 import Login from './views/RegisterLogin/Login';
 import Register from './views/RegisterLogin/Register';
@@ -88,6 +89,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/lien-he" element={<Contact />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path="/order" element={<Order />} />
+
 
 
 
