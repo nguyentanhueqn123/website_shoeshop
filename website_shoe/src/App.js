@@ -2,6 +2,7 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Home from './views/Home/Home';
 import Product from './views/Product/Product';
 import Contact from './views/Contact/Contact';
+import Setting from './views/Setting/Setting';
 import Blog from './views/Blog/Blog';
 import Login from './views/RegisterLogin/Login';
 import Register from './views/RegisterLogin/Register';
@@ -86,6 +87,9 @@ function App() {
           <Route path="/san-pham/:id" element={<ProductDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/lien-he" element={<Contact />} />
+          <Route path="/setting" element={<Setting />} />
+
+
 
           {/* <Route path="/da" element={<News/>} /> */}
         </Route>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FiMail, FiClock, FiPhone, FiSearch, FiUser, FiLogOut } from "react-icons/fi";
+import { FiMail, FiClock, FiPhone, FiShoppingBag, FiUser, FiLogOut, FiSettings } from "react-icons/fi";
 import Container from '../Container/Container';
 import { NavLink, Link } from 'react-router-dom';
 import { Toast } from '../CustomToast/CustomToast';
@@ -85,7 +85,7 @@ export default function Header() {
       link: 'lien-he'
     },
   ]
-
+  const [ open, setOpen] = useState(false);
 
 
   return (
@@ -110,15 +110,32 @@ export default function Header() {
           {
             userLogin ? (
               <button
-                
-                className="flex items-center text-white"
+                className="flex flex-col relative items-center text-white"
               >
-                <span onClick={handleAdmin} className="mr-2">
+                {/* <span onClick={handleAdmin} className="mr-2"> */}
+                <span className="mr-2" onClick={()=>{setOpen(!open)}}>
+
                   {
                     userLogin?.nameAccount
                   }
                 </span>
-                <FiLogOut onClick={handleLogout} width={15} />
+                
+                <ul className={`dropdown-menu text-left text-black shadow-md border absolute ${open ? 'active' : 'inactive'}`}>
+                  <Link to="/gio-hang" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
+                    <FiShoppingBag width={15} className="mx-3"/>
+                    <li>My Cart</li>
+                  </Link>
+                  <Link to="/setting" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
+                    <FiSettings width={15} className="mx-3"/>
+                    <li>Setting</li>
+                  </Link>
+                  <Link to="/" onClick={handleLogout} className="flex items-center li-option">
+                    <FiLogOut width={15} className="mx-3"/>
+                    <li>Log out</li>
+                  </Link>
+                </ul>
+                
+                {/* <FiLogOut onClick={handleLogout} width={15} /> */}
               </button>
             ) : (
               

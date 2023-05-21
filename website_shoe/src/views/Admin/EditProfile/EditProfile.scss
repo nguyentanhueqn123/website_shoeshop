@@ -41,8 +41,9 @@
   .userShow {
     flex: 1;
     padding: 20px;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 2px, rgba(17, 17, 26, 0.05) 0px 12px 22px;
     background-color: #fff;
     animation: opacity 2s;
   }
@@ -50,8 +51,9 @@
   .userUpdate {
     flex: 2;
     padding: 20px;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 2px, rgba(17, 17, 26, 0.05) 0px 12px 22px;
     margin-left: 20px;
     background-color: #fff;
     animation: trans 2s;
@@ -178,7 +180,7 @@
     border: none;
     padding: 10px;
     cursor: pointer;
-    background-color: darkblue;
+    background-color: var(--color-main);
     color: white;
     font-weight: 600;
   }
