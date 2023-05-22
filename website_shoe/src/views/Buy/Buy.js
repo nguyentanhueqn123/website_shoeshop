@@ -5,6 +5,7 @@ import Input from '../../components/Input/Input'
 import { formatPrice } from '../../utils/formatPrice'
 import { useTotalPrice, useCart } from './../../store/product/hook';
 import invoiceApi from './../../api/invoiceApi';
+import ProductRow from "./ProductRow"
 import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast';
 import { useDispatch } from 'react-redux'
 
@@ -22,12 +23,12 @@ export default function Buy() {
   const handleOrder = async () => {
     setDisabled(true)
     if(!address){
-      showToastError("Vui lòng điền thông tin địa chỉ")
+      showToastError("Please fill in your address information")
       setDisabled(false)
       return;
     }
     if(!phone){
-      showToastError("Vui lòng điền thông tin số điện thoại")
+      showToastError("Please fill in your phone number")
       setDisabled(false)
       return;
     }
@@ -41,12 +42,12 @@ export default function Buy() {
         paymemtMethod: paymentMethod
       })
       
-      showToastSuccess("Đặt hàng thành công")
+      showToastSuccess("Order successfully")
       setDisabled(false)
     } catch (err) {
       console.log(err)
       setDisabled(false)
-      showToastError("Đặt hàng thất bại")
+      showToastError("Order failed !")
     }
   }
 
@@ -54,80 +55,83 @@ export default function Buy() {
 
   return (
     <div className="bg-white w-full">
-      <Container className="py-20 flex justify-center">
-        <div className="border-2 border-yellow-1 p-5 w-4/5 flex">
+      <Container className="py-6 mb-10 flex justify-center">
+        <div className="border rounded-lg shadow-lg p-5 w-4/5 flex">
           <div className="w-1/2 px-10">
-            <p className="uppercase text-black text-md font-medium">Đơn hàng của bạn</p>
+            <p className="uppercase text-black text-lg font-medium">About your order</p>
 
-            <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b border-gray-300">
-              <p>Tổng</p>
-              <Price
-                price={formatPrice(totalPrice)}
-                color="black"
-              />
+            <div className="flex items-center justify-between text-black text-md font-medium py-3 border-b-2 border-gray-300">
+              <p>Total Product:</p>
+              <p>{cart?.length || 0} Products</p>
             </div>
-
-            <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b border-gray-300">
-              <p>Giao hàng</p>
-              <p className="opacity-50">Giao hàng miễn phí</p>
-            </div>
-
-            <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b-2 border-gray-300">
-              <p>Tổng Sản Phẩm</p>
-              <p className="text-[14px] mr-2">{cart?.length || 0} Sản Phẩm</p>
-            </div>
+            {
+              cart?.map((product, index) => {
+                return (
+                    <ProductRow key={index} product={product} />
+                )
+              })
+            }
             
-            <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b-2 border-gray-300">
-              <p>Tổng</p>
+            <div className="flex items-center justify-between text-black text-md font-medium py-3">
+              <p>Total Price:</p>
               <Price
                 price={formatPrice(totalPrice)}
                 color="black"
               />
+            </div>
+            <div className="flex items-center justify-between text-black text-md font-medium">
+              <p>Delivery:</p>
+              <p className="opacity-50">Free Shipping</p>
             </div>
           </div>
-          <div className="w-1/2 px-10">
+          <div className="w-1/2 px-10 mt-10">
             <Input
-              className="border border-gray-400 rounded-lg text-md  bg-white text-black"
+              className="border border-gray-400 rounded-lg text-md bg-white text-black"
               id="tien1"
-              label="Địa chỉ nhận hàng"
+              label="Delivery Address"
               name="shipping-address"
               dark={1}
               type="tel"
               pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-              placeholder="Địa chỉ"
+              placeholder="Your address"
               onChange={(e) => setAddress(e.target.value)}
             />
 
             <Input
               className="border border-gray-400 rounded-lg text-md  bg-white text-black"
               id="tien2"
-              label="Số điện thoại"
+              label="Phone Number"
               name="phone"
               dark={1}
               type="phone"
               classNameContainer="mt-5"
-              placeholder="Số điện thoại"
+              placeholder="Your phone number"
               onChange={e => setPhone(e.target.value)}
             />
             <ul>
+              <li className="mt-5 uppercase font-bold text-gray-500">Payment Method</li>
               <li className="py-2 border-b border-gray-300">
                 <input id="payment_method_cod" type="radio" name="payment_method" checked="checked" value="COD" onChange={e => setPaymentMethod(e.target.value)}/>
-                <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_cod">Trả tiền khi nhận hàng</label>
-                <p className="mt-2 text-sm-md">Trả tiền mặt khi giao hàng</p>
+                <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_cod">COD</label>
+                <p className="mt-2 text-sm-md">Cash On Delivery</p>
 
               </li>
               <li className="py-2 ">
                 <input id="payment_method_card" type="radio" name="payment_method" value="CARD" onChange={e => setPaymentMethod(e.target.value)} />
-                <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_card">Chuyển khoản ngân hàng</label>
-                <p className="mt-2 text-sm-md">Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi. Vui lòng ghi rõ Mã sản phẩm + Số điện thoại của bạn trong phần Nội dung thanh toán. Đơn hàng sẽ đươc giao sau khi tiền đã chuyển.</p>
+                <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_card">With CARD</label>
+                <p className="flex mt-2">
+                  <img className="w-[100px] h-[40px] object-cover" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/363_Visa_Credit_Card_logo-512.png" alt="" />
+                  <img className="w-[100px] h-[40px] object-cover" src="https://static.vecteezy.com/system/resources/previews/009/469/637/original/paypal-payment-icon-editorial-logo-free-vector.jpg" alt="" />
+                  <img className="w-[100px] h-[40px] object-cover ml-2 scale-110" src="https://developers.momo.vn/v3/vi/assets/images/logo-custom2-57d6118fe524633b89befe8cb63a3956.png" alt="" />
+                </p>
               </li>
             </ul>
 
             <button
               onClick={handleOrder}
               disabled={disabled}
-              className="mt-4 px-8 py-2 font-medium uppercase text-white bg-[#d26e4b] hover:bg-[#a8583c]">
-              Đặt hàng
+              className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
+              Order Now
             </button>
           </div>
         </div>
