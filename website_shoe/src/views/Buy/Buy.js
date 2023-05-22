@@ -36,6 +36,7 @@ export default function Buy() {
         userId: userLogin?._id,
         phone,
         address,
+        amount: cart?.length,
         cost: totalPrice,
         paymemtMethod: paymentMethod
       })
@@ -70,6 +71,12 @@ export default function Buy() {
               <p>Giao hàng</p>
               <p className="opacity-50">Giao hàng miễn phí</p>
             </div>
+
+            <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b-2 border-gray-300">
+              <p>Tổng Sản Phẩm</p>
+              <p className="text-[14px] mr-2">{cart?.length || 0} Sản Phẩm</p>
+            </div>
+            
             <div className="flex items-center justify-between text-black text-sm-md font-medium py-3 border-b-2 border-gray-300">
               <p>Tổng</p>
               <Price

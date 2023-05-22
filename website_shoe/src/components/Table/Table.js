@@ -16,7 +16,7 @@ export default function Table({ data, columnsTable, bgNone=false }) {
         <table className={classnames("w-full text-sm-md", {"bg-white border": !bgNone})} {...getTableProps()}>
             <thead className="text-left bg-[#62B4FF]">
                 {headerGroups.map((headerGroup, i) => (
-                    <tr {...headerGroup.getHeaderGroupProps()} key={i} className="">
+                    <tr {...headerGroup.getHeaderGroupProps()} key={i} className="tr-line">
                         {headerGroup.headers.map((column, index) => {
                             return (
                                 <th
@@ -39,7 +39,7 @@ export default function Table({ data, columnsTable, bgNone=false }) {
                         return (
                             <tr {...row.getRowProps()}
                                 key={row?.original?._id || index}
-                                className="text-md text-left"
+                                className="text-md text-left tr-line"
                             >
                                 {
                                     row.cells.map((cell) => {

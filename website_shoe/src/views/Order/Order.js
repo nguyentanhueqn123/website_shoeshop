@@ -84,6 +84,15 @@ export default function Orders() {
             }
         },
         {
+          Header: 'AMOUNT',
+          accessor: 'Amount',
+          Cell: data => {
+              return <span>
+                  {data?.row?.original?.amount}
+              </span>
+          }
+        },
+        {
             Header: 'TOTAL PRICE',
             accessor: 'TotalPrice',
             Cell: data => {
@@ -105,13 +114,13 @@ export default function Orders() {
             accessor: 'paymentMethod',
         },
         
-        {
-            Header: 'STATUS',
-            accessor: 'status',
-            Cell: data => {
-                return <span className="w-32">{data?.row.original.status}</span>
-            }
-        },
+        // {
+        //     Header: 'STATUS',
+        //     accessor: 'status',
+        //     Cell: data => {
+        //         return <span className="w-32">{data?.row.original.status}</span>
+        //     }
+        // },
       
     ]
      /// Handle Pagination func

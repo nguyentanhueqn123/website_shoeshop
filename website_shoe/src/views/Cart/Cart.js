@@ -37,13 +37,13 @@ export default function Cart() {
                 const total = totalPrice - totalPrice * coupon?.data?.[0]?.value / 100
                 setTotalPrice(total)
                 dispatch(setTotalPriceRedux(total))
-                showToastSuccess("Sử dụng mã giảm giá thành công")
+                showToastSuccess("Use Coupon code Successfully")
                 setDisabled(true)
             } else {
                 if(code) {
-                    showToastError("Mã giảm giá đã hết hạn")
+                    showToastError("Expired Coupon code !")
                 } else {
-                    showToastError("Mã giảm giá không hợp lệ")
+                    showToastError("Invalid Coupon code !")
                 }
             }
         } catch (err) {
@@ -52,29 +52,23 @@ export default function Cart() {
     }
 
     if (cart === undefined) {
-        return <p>Loading...</p>
+        return <p className='h-full flex justify-center justify-items-center mt-4'>Loading...</p>
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full px-[12%]">
             {
                 cart?.length ? (
-                    <div className="items-start max-w-screen-3xl mx-auto w-full flex">
-                        <div className="my-5 w-3/5 px-5 flex-1">
+                    <div className="items-start max-w-screen-3xl mx-auto w-full flex my-6">
+                        <div className="w-2/3 p-6 mr-5 flex-1 border rounded-lg shadow-lg">
                             <table className="w-full">
                                 <thead className="border-b-2 border-gray-300">
                                     <tr className="mb-3">
-                                        <th className="text-left pb-3">
-                                            Sản phẩm
+                                        <th className="text-left pb-3 uppercase text-lg font-medium">
+                                            products in cart
                                         </th>
-                                        {/* <th className="text-center">
-                                            Giá
-                                        </th> */}
-                                        {/* <th className="text-center">
-                                            Số lượng
-                                        </th> */}
                                         <th className="text-right">
-                                            Giá
+                                            
                                         </th>
                                     </tr>
                                 </thead>
@@ -90,51 +84,58 @@ export default function Cart() {
                             </table>
 
                             <div className="mt-5">
-                                <Link to="/danh-muc" className="flex py-1 items-center border-2 border-yellow-1 text-yellow-1 uppercase font-medium w-64 justify-center">
+                                <Link to="/danh-muc" className="flex py-2 w-60 justify-center items-center text-[#62B4FF] border-[#62B4FF] border-2 rounded-lg uppercase font-medium hover:bg-[#62B4FF] hover:text-white">
                                     <ArrowLeft width={20} className="mr-1" />
-                                    Tiếp tục xem sản phẩm
+                                    continue shopping
                                 </Link>
                             </div>
                         </div>
 
-                        <div className="w-2/5 px-10 mt-7 mb-5">
-                            <div className="border-b-2 border-gray-300 pb-1">
-                                <p className="uppercase font-medium text-black">Tổng số lượng</p>
-                            </div>
+                        <div className="w-1/3 p-6 border rounded-lg shadow-lg">
                             <div className="flex items-center justify-between py-2 border-b border-gray-300">
-                                <p>Giao hàng</p>
+                                <p>Total Amount:</p>
                                 <div className="flex items-end flex-col">
                                     <p className="text-sm-md opacity-80 mb-2">
-                                        Giao hàng miễn phí
+                                        {cart?.length || 0} Product
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div className="flex items-center justify-between py-2 border-b border-gray-300">
+                                <p>Delivery:</p>
+                                <div className="flex items-end flex-col">
+                                    <p className="text-sm-md opacity-80 mb-2">
+                                        Free shipping
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex items-center justify-between py-2 border-b-2 border-gray-300">
-                                <p>Tổng</p>
+                                <p>Total Price:</p>
                                 <Price
                                     price={totalPrice}
                                     color="black"
                                 />
                             </div>
 
-                            <div className="text-black font-medium flex items-center py-3 border-b-2 border-gray-300">
+                            <div className="text-black font-medium flex items-center py-3 border-gray-300">
                                 <Tag width={20} className="mr-2" />
-                                Phiếu ưu đãi
+                                DISCOUNT COUPONS
                             </div>
 
-                            <input disabled={disabled} placeholder="Mã ưu đãi" className="p-2 my-3 border border-gray-300 w-full" onChange={(e) => setCode(e.target.value)} />
-
-                            <button
-                                disabled={disabled}
-                                onClick={handleUseCoupon}
-                                className="bg-[#f9f9f9] w-full py-2 border border-gray-300 hover:bg-[#c7c7c7]"
-                            >
-                                Áp dụng
-                            </button>
+                            <div className="flex w-full">
+                                <input disabled={disabled} placeholder="Enter ID code" className="w-4/5 rounded-lg p-2 border border-gray-300 mr-2" onChange={(e) => setCode(e.target.value)} />
+                                <button
+                                    disabled={disabled}
+                                    onClick={handleUseCoupon}
+                                    className="w-1/5 bg-[#f9f9f9] rounded-lg border border-gray-300 uppercase hover:bg-[#62B4FF] hover:text-white"
+                                >
+                                    Apply
+                                </button>
+                            </div>
                             <Link to="/thanh-toan">
-                                <div className="text-center w-full py-2 text-white font-medium uppercase bg-[#d26e4b] hover:bg-[#a8583c] my-3">
-                                    Tiến hành thanh toán
+                                <div className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
+                                    Buy Now
                                 </div>
                             </Link>
                         </div>

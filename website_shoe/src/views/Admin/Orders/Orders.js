@@ -104,6 +104,15 @@ export default function Orders() {
             }
         },
         {
+            Header: 'AMOUNT',
+            accessor: 'Amount',
+            Cell: data => {
+                return <span>
+                    {data?.row?.original?.amount}
+                </span>
+            }
+        },
+        {
             Header: 'SHIPPING ADDRESS',
             accessor: 'address',
         },
