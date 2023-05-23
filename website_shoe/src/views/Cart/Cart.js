@@ -56,7 +56,7 @@ export default function Cart() {
     }
 
     return (
-        <div className="w-full px-[12%]">
+        <div className="max-w-screen-xl mx-auto">
             {
                 cart?.length ? (
                     <div className="items-start max-w-screen-3xl mx-auto w-full flex my-6">
@@ -92,7 +92,7 @@ export default function Cart() {
                         </div>
 
                         <div className="w-1/3 p-6 border rounded-lg shadow-lg">
-                            <div className="flex items-center justify-between py-2 border-b border-gray-300">
+                            <div className="flex items-center justify-between py-2">
                                 <p>Total Amount:</p>
                                 <div className="flex items-end flex-col">
                                     <p className="text-sm-md opacity-80 mb-2">
@@ -101,7 +101,7 @@ export default function Cart() {
                                 </div>
 
                             </div>
-                            <div className="flex items-center justify-between py-2 border-b border-gray-300">
+                            <div className="flex items-center justify-between py-2">
                                 <p>Delivery:</p>
                                 <div className="flex items-end flex-col">
                                     <p className="text-sm-md opacity-80 mb-2">
@@ -128,7 +128,7 @@ export default function Cart() {
                                 <button
                                     disabled={disabled}
                                     onClick={handleUseCoupon}
-                                    className="w-1/5 bg-[#f9f9f9] rounded-lg border border-gray-300 uppercase hover:bg-[#62B4FF] hover:text-white"
+                                    className="w-1/5 bg-[#f9f9f9] rounded-lg border border-gray-300 hover:bg-[#62B4FF] hover:text-white"
                                 >
                                     Apply
                                 </button>

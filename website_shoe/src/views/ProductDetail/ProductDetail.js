@@ -7,12 +7,16 @@ import ProductCardV2 from '../../components/Card/ProductCardV2';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useFetchProduct, useProduct, useFetchProducts, useProducts } from '../../store/product/hook'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { addToCart } from './../../utils/addtoCart';
 import { useDispatch } from 'react-redux'
 import { fetchUser } from '../../store/user'
 import { setCart } from '../../store/product'
 import { showToastError } from '../../components/CustomToast/CustomToast'
+import Dropdown from '../../components/Dropdown/Dropdown'
+import { SIZE } from '../../constants/index'
+
+
 export default function ProductDetail() {
 
   useFetchProduct()
@@ -48,44 +52,125 @@ export default function ProductDetail() {
     }
   };
 
+
+/////
+  const [inputValue, setInputValue] = useState(1)
+  // const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
+  // const dispatch = useDispatch()
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value)
+  }
+
+  const handleIncrease = async (e) => {
+      e.preventDefault()
+      setInputValue(inputValue + 1)
+      try {
+          // await userApi.addCart(userLogin?._id, product?.data?._id)
+          dispatch(fetchUser(userLogin?._id))
+      } catch (err) {
+          console.log(err)
+      }
+  }
+  const handleDecrease = async (e) => {
+      e.preventDefault()
+      if (inputValue === 1) {
+          return
+      }
+      setInputValue(inputValue - 1)
+
+      try {
+          // await userApi.deleteCart(userLogin?._id, product?.data?._id)
+          dispatch(fetchUser(userLogin?._id))
+      } catch (err) {
+          console.log(err)
+      }
+  }
+  ////
+  const updateFieldSearch = (field, value) => {
+    // dispatch(updateSearchData({ [field]: value }))
+}
+
   return (
 
-    <div className="w-full bg-white">
-      <div className="max-w-screen-xl w-full mx-auto py-5">
-        <div className="flex">
-          <div className="w-3/5 grid grid-cols-2 gap-2">
+    <div className="w-full bg-white mt-6">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="flex items-center justify-between">
+          {/* display path on Product */}
+          <div className="flex items-center text-xl" id="top">
+            <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
+            <span className="mx-3">/</span>
+            <Link to="/danh-muc" className="opacity-50 hover:opacity-100">PRODUCTS</Link>
+            <span className="mx-3">/</span>
+            <p className="font-medium text-[#62B4FF]">
+              {product?.data?.nameProduct}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex mt-6 p-6 border rounded-lg">
+          <div className="w-2/5">
             {
-              product?.data?.image?.map((image, index) => {
-                return (
-                  <img key={index} className="max-w-full" src={image} alt="product-detail" />
-                )
-              })
+              <img src={product?.data?.image?.[0]} alt="product" className="w-full h-full object-cover" />
             }
           </div>
 
-          <div className="w-2/5 pl-5 text-center">
-            <p className="text-black font-medium text-2xl opacity-80 mb-3 text-center">
+          <div className="w-3/5 ml-10">
+            <p className="text-black font-medium text-2xl opacity-80 mb-3">
               {product?.data?.nameProduct}
             </p>
-            <div className="mb-5 flex items-center justify-center">
+            <div className="mb-5 flex">
               <Star
                 numberStar={product?.star}
                 size="xl"
-                className="px-2"
               />
-              <a href="#product-review" className="px-2 border-l border-gray-300 underline">
-                Xem {product?.comment?.data?.length || 0} đánh giá
+              <a href="#product-review" className="ml-2 px-2 border-l border-gray-300">
+                View {product?.comment?.data?.length || 0} comment
               </a>
             </div>
-            <Price
-              price={product?.data?.priceSale}
-              priceDel={product?.data?.price}
-              color="black"
-              className="text-lg mb-5 text-center"
-            />
+            <div className="flex items-center">
+              <Price
+                price={product?.data?.priceSale}
+                priceDel={product?.data?.price}
+                color="black"
+                className="text-[2rem]"
+              />
+              <span className=" rounded-lg text-[14px] px-2 ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
+            </div>
+            <div className="container-box w-full flex mb-4">
+              <div className="flex w-[108px] bg-[#f9f9f9] rounded-l-lg items-center justify-between">
+                <span className="pl-3">Size</span>
+                <div className="">
+                  <Dropdown
+                      title="42"
+                      listDropdown={Object.values(SIZE)}
+                      label="label"
+                      onSelect={(status) => {
+                        updateFieldSearch('status', status)
+                      }}
+                  />
+                </div>
+              </div>
+              <div className="flex w-4/5 items-center ml-5">
+                <p className="mr-3">Quantity:</p>
+                <form className="flex items-center">
+                  <button className="bg-[#f9f9f9] px-4 py-2 border border-gray-300 rounded-l-lg"
+                      onClick={e => handleDecrease(e)}
+                  >
+                    -
+                  </button>
+                  <input value={inputValue} className="w-8 py-2 text-center border border-gray-300" onChange={handleInputChange} />
+                  <button
+                    className="bg-[#f9f9f9] px-4 py-2 border border-gray-300 rounded-r-lg"
+                    onClick={(e) => handleIncrease(e)}
+                  >
+                    +
+                  </button>
+                </form>
+              </div>
+            </div>
 
-            <a href="#des-detail" className="text-primary underline">
-              Mô tả & Chi tiết
+            <a href="#des-detail" className="text-gray-500 hover:text-[#62B4FF] underline">
+              Description and Details
             </a>
 
             <div className="flex items-center w-full mt-5 pb-10 border-b border-gray-300">
@@ -95,50 +180,52 @@ export default function ProductDetail() {
                     await addToCart(userLogin?._id, id)
                     await dispatch(fetchUser(userLogin?._id))
                   } else {
-                    showToastError("Bạn cần đăng nhập vào hệ thống")
+                    showToastError("You need to Login")
                   }
                 }}
-                className="bg-black text-white font-medium text-lg py-4 px-5 hover:opacity-80 w-full uppercase">
-                Thêm vào giỏ hàng
+                className=" text-white font-medium text-lg py-3 px-6 rounded-lg hover:opacity-80 uppercase bg-[#62B4FF] hover:bg-[#62B4FF]">
+                <i className="fa-solid fa-cart-shopping text-white mr-2"></i>
+                Add to Cart
               </button>
+              
             </div>
 
             <div className="py-5 pl-3">
               <div className="flex items-center py-1">
                 <i className='bx bxs-truck text-2xl opacity-80'></i>
                 <p className="opacity-80 text-sm-md ml-5">
-                  Miễn phí giao hàng
+                  Free Shipping
                 </p>
               </div>
               <div className="flex items-center py-1">
-                <i class='bx bx-revision text-2xl opacity-80'></i>
+                <i className='bx bx-revision text-2xl opacity-80'></i>
                 <p className="opacity-80 text-sm-md ml-5">
-                  Đổi trả trong 60 ngày
+                  7 Days Free Return
                 </p>
               </div>
               <div className="flex items-center py-1">
                 <i className='bx bx-check-shield text-2xl opacity-80'></i>
                 <p className="opacity-80 text-sm-md ml-5">
-                  Bảo hành 2 năm
+                  2 Years Warranty
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full bg-gray-2 p-10 mt-20" id="des-detail" >
-          <div className="flex items-center mb-4">
+        <div className="w-full mt-20" id="des-detail" >
+          <div className="flex items-center mb-4 border-t-4 border-[#F7F8F9]">
             <div
-              className={classnames("uppercase text-black mr-4 px-2 pb-1 cursor-pointer", { "border-b-4 border-primary": tab === 1 })}
+              className={classnames("uppercase mr-4 px-12 py-5 cursor-pointer", { "border-b-4 border-[#62B4FF] text-[#62B4FF]": tab === 1 })}
               onClick={() => handleChangeTab(1)}
             >
-              Mô tả
+              Description
             </div>
             <div
-              className={classnames("uppercase text-black px-2 pb-1 cursor-pointer", { "border-b-4 border-primary": tab === 2 })}
+              className={classnames("uppercase px-12 py-5 cursor-pointer", { "border-b-4 border-[#62B4FF] text-[#62B4FF]": tab === 2 })}
               onClick={() => handleChangeTab(2)}
             >
-              Chi tiết
+              Details Product
             </div>
 
           </div>
@@ -194,7 +281,7 @@ export default function ProductDetail() {
         {
           products && (
             <>
-              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Gợi ý cho bạn</p>
+              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable
@@ -234,7 +321,7 @@ export default function ProductDetail() {
         {
           products && (
             <>
-              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Xem gần đây</p>
+              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Recently Viewed</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable

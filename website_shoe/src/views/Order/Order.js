@@ -136,7 +136,7 @@ export default function Orders() {
      ////
 
     return (
-        <div className="w-full px-[12%] py-6 mb-10">
+        <div className="max-w-screen-xl mx-auto py-6 mb-10">
             <p className="text-lg font-medium mb-6 uppercase">
                 My Orders
             </p>

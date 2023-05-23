@@ -37,6 +37,43 @@ export const COUPON_STATUS = {
         color: '#00BDD9'
     }
 }
+export const SIZE = {
+    37: {
+        label: '37',
+        value: '37',
+        color: '#9b1c1c',
+    },
+    38: {
+        label: '38',
+        value: '38',
+        color: '#9b1c1c',
+    },
+    39: {
+        label: '39',
+        value: '39',
+        color: '#9b1c1c',
+    },
+    40: {
+        label: '40',
+        value: '40',
+        color: '#9b1c1c',
+    },
+    41: {
+        label: '41',
+        value: '41',
+        color: '#9b1c1c',
+    },
+    42: {
+        label: '42',
+        value: '42',
+        color: '#9b1c1c',
+    },
+    43: {
+        label: '43',
+        value: '43',
+        color: '#9b1c1c',
+    },
+}
 
 export const STAFF_ROLE = {
     admin: {
