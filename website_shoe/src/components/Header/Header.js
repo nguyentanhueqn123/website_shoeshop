@@ -43,7 +43,9 @@ export default function Header() {
         console.log(err)
       }
     }
+
   }, [])
+  // lỗi từ thèn này ra
 
   useEffect(() => {
     if (user) {
@@ -181,7 +183,7 @@ export default function Header() {
 
             
           </ul>
-          <Link to="/gio-hang">
+          <div>
               <div className="group relative cart-item text-black-2 cursor-pointer flex items-center transition-all duration-100 ease-linear rounded hover:p-3 hover:bg-[#ccc] hover:rounded-lg">
                 <span className=" text-md font-medium mr-3">
                   {totalPrice || 0} <span className="underline">đ</span>
@@ -232,7 +234,7 @@ export default function Header() {
                   }
                 </div>
               </div>
-            </Link>
+          </div>
         </Container>
       </div>
     </div>
