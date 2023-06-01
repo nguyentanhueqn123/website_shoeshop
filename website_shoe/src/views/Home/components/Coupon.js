@@ -7,7 +7,7 @@ import { useFetchListCoupon, useListCoupon } from '../../../store/coupon/hook';
 //
 export default function TopProduct() {
     //
-    // useFetchListCoupon() // fix bug
+    useFetchListCoupon()
     const listCoupon = useListCoupon();
     // console.log("====> Discount: ", listCoupon);
 

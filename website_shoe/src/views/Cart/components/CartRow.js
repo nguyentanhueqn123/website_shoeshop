@@ -5,9 +5,9 @@ import { deleteCart } from '../../../utils/addtoCart'
 import { fetchUser } from '../../../store/user'
 import { useDispatch } from 'react-redux'
 import userApi from '../../../api/userApi'
-export default function CartRow({ product }) {
+export default function CartRow({ product, quantity}) {
 
-    const [inputValue, setInputValue] = useState(1)
+    const [inputValue, setInputValue] = useState(quantity)
  
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
     const dispatch = useDispatch()
@@ -29,17 +29,18 @@ export default function CartRow({ product }) {
     }
     const handleDecrease = async (e) => {
         e.preventDefault()
-        if (inputValue === 1) {
+        if (inputValue <= 1) {
             return
         }
         setInputValue(inputValue - 1)
 
-        try {
-            await userApi.deleteCart(userLogin?._id, product?.data?._id)
-            dispatch(fetchUser(userLogin?._id))
-        } catch (err) {
-            console.log(err)
-        }
+        // try {
+        //     await userApi.updateProductQuantity(userLogin?._id, product?.data?._id, inputValue - 1)
+        //     dispatch(fetchUser(userLogin?._id))
+        // } catch (err) {
+        //     console.log(err)
+        // }
+        
     }
     
     return (
@@ -70,8 +71,11 @@ export default function CartRow({ product }) {
                     color="black"
                 />
             </td> */}
+            <td>
+                <p>Quantity: {quantity}</p>
+            </td>
 
-            {/* <td>
+            <td>
                 <form className="flex items-center">
                     <button className="bg-[#f9f9f9] px-2 py-2 border border-gray-300"
                         onClick={e => handleDecrease(e)}
@@ -86,11 +90,11 @@ export default function CartRow({ product }) {
                         +
                     </button>
                 </form>
-            </td> */}
+            </td>
             <td className="text-right">
                 <Price
-                    price={inputValue * product?.data?.priceSale}
-                    priceDel={inputValue * product?.data?.price}
+                    price={product?.data?.priceSale}
+                    priceDel={product?.data?.price}
                     color="black"
                 />
             </td>

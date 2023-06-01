@@ -14,6 +14,7 @@ import couponApi from './../../api/couponApi';
 import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast';
 
 export default function Cart() {
+ 
     const dispatch = useDispatch()
 
     const [totalPrice, setTotalPrice] = useState()
@@ -50,6 +51,21 @@ export default function Cart() {
             console.log(err)
         }
     }
+    // lọc id trùng theo sp
+    const getUniqueProducts = (products) => {
+        const uniqueProducts = products.reduce((accumulator, currentProduct) => {
+            if (!accumulator.find(product => product.data._id === currentProduct.data._id)) {
+                accumulator.push(currentProduct);
+            }
+            return accumulator;
+        }, []);
+        return uniqueProducts;
+    }
+
+    const getProductQuantity = (productId) => {
+        const productCount = cart.filter(product => product.data._id === productId).length;
+        return productCount;
+    }
 
     if (cart === undefined) {
         return <p className='h-full flex justify-center justify-items-center mt-4'>Loading...</p>
@@ -74,9 +90,9 @@ export default function Cart() {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart?.map((product, index) => {
+                                        getUniqueProducts(cart)?.map((product, index) => {
                                             return (
-                                                <CartRow key={index} product={product} />
+                                                <CartRow key={index} product={product} quantity={getProductQuantity(product.data._id)} />
                                             )
                                         })
                                     }
