@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import productApi from '../../api/productApi'
-// import commentApi from '../../api/commentApi'
-// import questionApi from '../../api/questionApi'
+import commentApi from '../../api/commentApi'
+import questionApi from '../../api/questionApi'
 
 const initialState = {
     products: undefined,
@@ -48,7 +48,7 @@ export const fetchProducts = (params = {}) => async (dispatch) => {
 
 export const fetchProduct = (id) => async (dispatch) => {
     try {
-        const promise = [productApi.getProduct(id), /*commentApi.getCommentByProductId(id), questionApi.getQuestionByProductId(id)*/]
+        const promise = [productApi.getProduct(id), commentApi.getCommentByProductId(id), questionApi.getQuestionByProductId(id)]
         const data = await Promise.all(promise)
         dispatch(setProduct({
             ...data?.[0],

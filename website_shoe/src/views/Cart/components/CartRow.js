@@ -75,7 +75,7 @@ export default function CartRow({ product, quantity}) {
                 <p>Quantity: {quantity}</p>
             </td>
 
-            <td>
+            {/* <td>
                 <form className="flex items-center">
                     <button className="bg-[#f9f9f9] px-2 py-2 border border-gray-300"
                         onClick={e => handleDecrease(e)}
@@ -90,7 +90,7 @@ export default function CartRow({ product, quantity}) {
                         +
                     </button>
                 </form>
-            </td>
+            </td> */}
             <td className="text-right">
                 <Price
                     price={product?.data?.priceSale}

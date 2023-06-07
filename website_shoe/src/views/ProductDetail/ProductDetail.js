@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Price from '../../components/Price/Price'
 import classnames from 'classnames'
 import Star from '../../components/Star/Star'
-// import Comment from '../../components/Comment'
+import Comment from '../../components/Comment'
 import ProductCardV2 from '../../components/Card/ProductCardV2';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -53,7 +53,7 @@ export default function ProductDetail() {
   };
 
 
-/////
+  /////
   const [inputValue, setInputValue] = useState(1)
   // const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
   // const dispatch = useDispatch()
@@ -88,8 +88,9 @@ export default function ProductDetail() {
   ////
   const updateFieldSearch = (field, value) => {
     // dispatch(updateSearchData({ [field]: value }))
-}
+  }
 
+  console.log("===> Comment: ", product?.comment?.data)
   return (
 
     <div className="w-full bg-white mt-6">
@@ -136,7 +137,7 @@ export default function ProductDetail() {
               />
               <span className=" rounded-lg text-[14px] px-2 ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
             </div>
-            <div className="container-box w-full flex mb-4">
+            <div className="container-box w-full flex my-4">
               <div className="flex w-[108px] bg-[#f9f9f9] rounded-l-lg items-center justify-between">
                 <span className="pl-3">Size</span>
                 <div className="">
@@ -277,6 +278,8 @@ export default function ProductDetail() {
             )
           }
         </div>
+        <Comment comment={product?.comment?.data} question={product?.question?.data} productId={id} />
+
 
         {
           products && (
@@ -355,7 +358,6 @@ export default function ProductDetail() {
 
           )
         }
-        {/* <Comment comment={product?.comment?.data} question={product?.question?.data} productId={id} /> */}
 
         <div className="w-full border-t border-gray-300 py-10">
           <p className="font-medium text-lg text-center mb-5">
