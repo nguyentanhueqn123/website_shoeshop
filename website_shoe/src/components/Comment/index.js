@@ -48,10 +48,14 @@ export default function Comment({ comment, question, productId }) {
     const dispatch = useDispatch()
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
 
+
     useEffect(() => {
         let oneStarTemp = 0, twoStarTemp = 0, threeStarTemp = 0, fourStarTemp = 0, fiveStarTemp = 0
         let count = 0
-        comment?.map(item => {
+        // Sort the comments, questions in descending order by their creation date
+        comment?.sort((a, b) => new Date(b.createAt) - new Date(a.createAt));
+        question?.sort((a, b) => new Date(b.questionDate) - new Date(a.questionDate));
+        comment?.map((item) => {
             if (item?.star === 1) {
                 oneStarTemp++
                 count++
@@ -89,7 +93,8 @@ export default function Comment({ comment, question, productId }) {
         setFiveStar(fiveStarTemp)
         setStar(Math.round((count / (comment?.length || 1)) / 0.5) * 0.5)
 
-    }, [comment])
+    }, [comment, question])
+    
 
     const handleChangeTab = (tab) => {
         setTab(tab)

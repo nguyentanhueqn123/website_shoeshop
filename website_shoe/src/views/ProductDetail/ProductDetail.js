@@ -15,6 +15,7 @@ import { setCart } from '../../store/product'
 import { showToastError } from '../../components/CustomToast/CustomToast'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { SIZE } from '../../constants/index'
+import ReactPaginate from 'react-paginate';
 
 
 export default function ProductDetail() {
@@ -90,7 +91,18 @@ export default function ProductDetail() {
     // dispatch(updateSearchData({ [field]: value }))
   }
 
-  console.log("===> Comment: ", product?.comment?.data)
+  // console.log("===> Comment: ", product?.comment?.data)
+  /// Handle Pagination func
+  const [pageNumber, setPageNumber] = useState(0);
+  const commentsPerPage = 5;
+  const pagesVisited = pageNumber * commentsPerPage;
+
+  const pageCount = Math.ceil(product?.comment.data?.length / commentsPerPage);
+  // const pageCount1 = Math.ceil(product?.question.data?.length / productsPerPage);
+  const changePage = ({ selected }) => {
+  setPageNumber(selected);
+  };
+  ////
   return (
 
     <div className="w-full bg-white mt-6">
@@ -278,8 +290,24 @@ export default function ProductDetail() {
             )
           }
         </div>
-        <Comment comment={product?.comment?.data} question={product?.question?.data} productId={id} />
-
+        
+        <Comment comment={product?.comment?.data.slice(pagesVisited, pagesVisited + commentsPerPage)} question={product?.question?.data.slice(pagesVisited, pagesVisited + commentsPerPage)} productId={id} />
+        <ReactPaginate
+              previousLabel={"Previous"}
+              previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              nextLabel={"Next"}
+              nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+              pageCount={pageCount}
+              pageClassName="px-3 py-1"
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+              className="flex justify-end w-full  my-3"
+        />
+       
 
         {
           products && (

@@ -29,10 +29,22 @@ export default function UserQuestion({ question, productId }) {
     }
 
     const onDelete = async () => {
+        // try {
+        //     await questionApi.deleteQuestion(question?._id)
+        //     dispatch(fetchProduct(productId))
+        //     showToastSuccess("Delete successful answer")
+        // } catch (err) {
+        //     console.log(err)
+        //     showToastError("Delete failed answer")
+        // }
         try {
-            await questionApi.deleteQuestion(question?._id)
-            dispatch(fetchProduct(productId))
-            showToastSuccess("Delete successful answer")
+            if ((userLogin?._id === question?.userId?._id) || (userLogin?.role === 'ADMIN') ) {
+                await questionApi.deleteQuestion(question?._id)
+                dispatch(fetchProduct(productId))
+                showToastSuccess("Delete successful answer")
+            } else {
+                showToastError("You can only delete your own questions")
+            }
         } catch (err) {
             console.log(err)
             showToastError("Delete failed answer")
@@ -63,7 +75,7 @@ export default function UserQuestion({ question, productId }) {
                                 <div className="flex">
                                     <img  className="userShowImg" src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt=""/>
                                     <div className="ml-2">
-                                        <div className="text-yellow-2 text-md">Admin</div>
+                                        <div className="text-yellow-2 text-md">4HShoe Store</div>
                                         <p className="">
                                             {question?.answer}
                                         </p>
