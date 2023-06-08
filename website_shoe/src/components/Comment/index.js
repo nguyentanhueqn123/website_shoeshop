@@ -11,6 +11,7 @@ import commentApi from '../../api/commentApi'
 import questionApi from '../../api/questionApi'
 import { useDispatch } from 'react-redux'
 import { fetchProduct } from '../../store/product'
+import ReactPaginate from 'react-paginate'
 
 const labels = {
     0.5: 'Useless',
@@ -47,14 +48,12 @@ export default function Comment({ comment, question, productId }) {
     const [contentReview, setContentReview] = useState()
     const dispatch = useDispatch()
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
+    const [currentPage, setCurrentPage] = useState(1);
 
 
     useEffect(() => {
         let oneStarTemp = 0, twoStarTemp = 0, threeStarTemp = 0, fourStarTemp = 0, fiveStarTemp = 0
         let count = 0
-        // Sort the comments, questions in descending order by their creation date
-        comment?.sort((a, b) => new Date(b.createAt) - new Date(a.createAt));
-        question?.sort((a, b) => new Date(b.questionDate) - new Date(a.questionDate));
         comment?.map((item) => {
             if (item?.star === 1) {
                 oneStarTemp++
@@ -142,8 +141,16 @@ export default function Comment({ comment, question, productId }) {
         showToastError("Submit a failed review")
         }
     }
+    // phân trang
+    const commentsPerPage = 4;
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+    const currentComments = comment?.slice(indexOfFirstComment, indexOfLastComment);
+    const currentQuestions = question?.slice(indexOfFirstComment, indexOfLastComment);
 
-return (
+
+
+  return (
     <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-6 rounded-lg">
       <div className="mb-6">
         <h1 className="text-2xl font-medium uppercase">product reviews</h1>
@@ -152,13 +159,17 @@ return (
       <div className="flex justify-between p-5 items-center bg-white rounded-lg">
         <div className="flex">
           <div className="flex items-center border-r border-gray-300 pr-5">
-            <div className="flex mr-2">
+            <div className="flex flex-col mr-2 justify-center items-center">
+              <div className="flex justify-center items-center text-[#EF4444]">
+                <span className="text-2xl">{star}</span>
+                <p>/5</p>
+              </div>
               <Star
                 numberStar={star || 0}
                 size="2xl"
               />
             </div>
-            <span className="opacity-70 text-md">{comment?.length} reviews</span>
+            <span className="opacity-70 text-md mt-10">{comment?.length} reviews</span>
           </div>
 
           <div className="pl-5">
@@ -339,18 +350,53 @@ return (
       </div>
       {
         tab === 1 ? (
-          comment?.map((item, index) => {
+          currentComments?.map((item, index) => {
             return <UserComment createdAt={item?.createAt} key={index} comment={item?.content} name={item?.userId?.nameAccount} numOfStar={item?.star} />
           })
         ) : null
       }
       {
         tab === 2 ? (
-          question?.map((item, index) => {
+          currentQuestions?.map((item, index) => {
             return <UserQuestion question={item} productId={productId} />
           })
         ) : null
       }
+      {tab !== 1 && (
+        <ReactPaginate
+          previousLabel={"Previous"}
+          previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+          nextLabel={"Next"}
+          nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+          pageCount={Math.ceil(question?.length / commentsPerPage)}
+          pageClassName="px-3 py-1"
+          onPageChange={page => setCurrentPage(page.selected + 1)}
+          containerClassName={"paginationBttns"}
+          previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+          className="flex justify-end w-full  my-3"
+        />
+      )}
+      {tab !== 2 && (
+        <ReactPaginate
+          previousLabel={"Previous"}
+          previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+          nextLabel={"Next"}
+          nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
+          pageCount={Math.ceil(comment?.length / commentsPerPage)}
+          pageClassName="px-3 py-1"
+          onPageChange={page => setCurrentPage(page.selected + 1)}
+          containerClassName={"paginationBttns"}
+          previousLinkClassName={"previousBttn"}
+          nextLinkClassName={"nextBttn"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
+          className="flex justify-end w-full  my-3"
+        />
+      )}
+     
     </div>
   )
 }
