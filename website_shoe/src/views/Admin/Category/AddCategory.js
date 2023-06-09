@@ -25,11 +25,11 @@ export default function AddCategory() {
             })
             setPending(false)
             resetInput()
-            showToastSuccess("Thêm loại sản phẩm thành công")
+            showToastSuccess("Add successful product categories")
         } catch (error) {
             console.log(error)
             setPending(false)
-            showToastError("Thêm loại sản phẩm thất bại")
+            showToastError("Add failed product categories")
         }
     }
 

@@ -58,7 +58,7 @@ export default function Orders() {
             );
           }
           console.log("Filtered invoices:", filteredInvoices);
-          return filteredInvoices;
+          return filteredInvoices.sort((a, b) => new Date(b.time) - new Date(a.time));
         } catch (err) {
           console.log("Error filtering invoices:", err);
         }
@@ -221,7 +221,7 @@ export default function Orders() {
                 listInvoice &&
                 <Table
                 columnsTable={columnsTable}
-                data={handleInvoice()?.slice(pagesVisited, pagesVisited + productsPerPage)}
+                data={handleInvoice()}
                 />
             }
             <ReactPaginate

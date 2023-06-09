@@ -123,7 +123,9 @@ export default function Customers() {
                         customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
                         customer.phone.toLowerCase().includes(searchQuery.toLowerCase())
                         )
-                        .slice(pagesVisited, pagesVisited + productsPerPage)}
+                        .slice(pagesVisited, pagesVisited + productsPerPage)
+                        .sort((a, b) => new Date(b.createAt) - new Date(a.createAt))}
+                         // pagination rồi mới sort nên lỗi logic tí ^^
                     columnsTable={columnsTable}
                     />
                )

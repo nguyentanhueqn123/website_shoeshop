@@ -41,10 +41,10 @@ export default function AddCoupon() {
             })
             setPending(false)
             resetInput()
-            showToastSuccess("Thêm mã giảm giá thành công")
+            showToastSuccess("Added discount code successfully")
         } catch (error) {
             console.log(error)
-            showToastError("Thêm mã giảm giá thất bại")
+            showToastError("Failed to add discount code")
         }
     }
 

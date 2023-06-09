@@ -48,10 +48,10 @@ export default function AdminAddProduct() {
       })
       setPending(false)
       resetInput()
-      showToastSuccess("Thêm sản phẩm thành công")
+      showToastSuccess("Add successful product")
     } catch (error) {
       console.log(error)
-      showToastError("Thêm sản phẩm thất bại")
+      showToastError("Add failed product")
     }
   }
 

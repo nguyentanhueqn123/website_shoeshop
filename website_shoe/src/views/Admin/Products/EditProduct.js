@@ -62,11 +62,11 @@ export default function AdminEditProduct() {
         size,
       })
       setPending(false)
-      showToastSuccess("Cập nhật thành công")
+      showToastSuccess("Update successful")
       navigate("/admin/products")
     } catch (error) {
       console.log(error)
-      showToastError("Cập nhật thất bại")
+      showToastError("Update failed")
     }
   }
 

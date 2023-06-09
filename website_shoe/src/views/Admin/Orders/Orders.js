@@ -72,10 +72,10 @@ export default function Orders() {
         try {
             await invoiceApi.deleteInvoice(id)
             updateInvoice()
-            showToastSuccess("Xóa hóa đơn thành công")
+            showToastSuccess("Delete invoice successfully")
         } catch (error) {
             console.log(error)
-            showToastError("Xóa hóa đơn thất bại")
+            showToastError("Delete failed invoice")
         }
     }
 

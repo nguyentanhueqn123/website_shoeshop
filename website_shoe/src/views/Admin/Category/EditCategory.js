@@ -33,12 +33,12 @@ export default function EditCategory() {
         note: note,
       })
       setPending(false)
-      showToastSuccess("Cập nhật thành công")
+      showToastSuccess("Update successful")
       navigate("/admin/category")
 
     } catch (error) {
       console.log(error)
-      showToastError("Cập nhật thất bại")
+      showToastError("Update failed")
     }
   }
 

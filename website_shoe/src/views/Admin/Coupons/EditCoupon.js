@@ -51,11 +51,11 @@ export default function EditCoupon() {
         endDate: new Date(endDate).toISOString()
       })
       setPending(false)
-      showToastSuccess("Cập nhật thành công")
+      showToastSuccess("Update successful")
       navigate("/admin/coupons")
     } catch (error) {
       console.log(error)
-      showToastError("Cập nhật thất bại")
+      showToastError("Update failed")
     }
   }
 

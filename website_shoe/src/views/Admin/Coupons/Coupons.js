@@ -59,10 +59,10 @@ export default function Coupons() {
         try {
             await couponApi.deleteCoupon(id)
             updateListCoupon()
-            showToastSuccess("Xoá mã giảm giá thành công")
+            showToastSuccess("Delete discount code successfully")
         } catch (err) {
             console.log(err)
-            showToastError("Xóa mã giảm giá thất bại")
+            showToastError("Delete failed discount code")
         }
     }
 
@@ -186,7 +186,8 @@ export default function Coupons() {
                 listCoupon && (
                     <Table
                         columnsTable={columnsTable}
-                        data={listCoupon?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
+                        data={listCoupon?.data.slice(pagesVisited, pagesVisited + productsPerPage).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))}
+                        // pagination rồi mới sort nên lỗi logic tí ^^
                     />
                 )
             }
