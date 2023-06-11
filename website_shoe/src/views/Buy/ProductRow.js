@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Price from '../../components/Price/Price'
-export default function ProductRow({ product }) {
+export default function ProductRow({ product, quantity }) {
 
     
     return (
@@ -11,8 +11,11 @@ export default function ProductRow({ product }) {
                     <p className="">{product?.data?.nameProduct}</p>
                 </div>
             </td>
+            <td className="w-0/5 flex items-center py-5">
+                <p>x{quantity}</p>
+            </td>
 
-            <td className="w-1/5 text-right">
+            <td className="w-2/5 text-right">
                 <Price
                     price={product?.data?.priceSale}
                     color="black"

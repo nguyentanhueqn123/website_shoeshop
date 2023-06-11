@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from '../../components/Container/Container'
 import Price from '../../components/Price/Price'
 import Input from '../../components/Input/Input'
@@ -50,14 +50,30 @@ export default function Buy() {
       showToastError("Order failed !")
     }
   }
+ 
 
+   // lọc id trùng theo sp
+   const getUniqueProducts = (products) => {
+    let uniqueProducts = products?.reduce((accumulator, currentProduct) => {
+        if (!accumulator.find(product => product.data._id === currentProduct.data._id)) {
+            accumulator.push(currentProduct);
+        }
+        return accumulator;
+    }, []);
+    return uniqueProducts;
+  }
+
+  const getProductQuantity = (productId) => {
+      const productCount = cart.filter(product => product.data._id === productId).length;
+      return productCount;
+  }
 
 
   return (
     <div className="bg-white w-full">
       <Container className="py-6 mb-10 flex justify-center">
-        <div className="border rounded-lg shadow-lg p-5 w-4/5 flex">
-          <div className="w-1/2 px-10">
+        <div className="border rounded-lg shadow-lg py-5 w-4/5 flex">
+          <div className="w-1/2 pl-10">
             <p className="uppercase text-black text-lg font-medium">About your order</p>
 
             <div className="flex items-center justify-between text-black text-md font-medium py-3 border-b-2 border-gray-300">
@@ -65,9 +81,9 @@ export default function Buy() {
               <p>{cart?.length || 0} Products</p>
             </div>
             {
-              cart?.map((product, index) => {
+              getUniqueProducts(cart)?.map((product, index) => {
                 return (
-                    <ProductRow key={index} product={product} />
+                    <ProductRow key={index} product={product} quantity={getProductQuantity(product.data._id)} />
                 )
               })
             }
