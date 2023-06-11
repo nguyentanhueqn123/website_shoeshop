@@ -91,6 +91,15 @@ export default function ProductDetail() {
   }
 
   // console.log("===> Comment: ", product?.comment?.data)
+  // show quality rating
+  // console.log(product?.comment?.data.map(comment => comment.star))
+  const commentData = product?.comment?.data;
+  let starAvg = 0;
+  if (commentData && commentData.length > 0) {
+    const starSum = commentData.reduce((acc, comment) => acc + comment.star, 0);
+    starAvg = starSum / commentData.length;
+  }
+  // console.log(starAvg.toFixed(1));
 
   return (
 
@@ -121,8 +130,15 @@ export default function ProductDetail() {
               {product?.data?.nameProduct}
             </p>
             <div className="mb-5 flex">
+            <div className="flex justify-center items-center text-[#EF4444]">
+                <span className="mr-1">
+                {
+                  starAvg.toFixed(1)
+                }
+                </span>
+              </div>
               <Star
-                numberStar={product?.star}
+                numberStar={starAvg}
                 size="xl"
               />
               <a href="#product-review" className="ml-2 px-2 border-l border-gray-300">

@@ -90,7 +90,7 @@ export default function Comment({ comment, question, productId }) {
         setThreeStar(threeStarTemp)
         setFourStar(fourStarTemp)
         setFiveStar(fiveStarTemp)
-        setStar(Math.round((count / (comment?.length || 1)) / 0.5) * 0.5)
+        setStar((((count / (comment?.length || 1)) / 0.5) * 0.5))
 
     }, [comment, question])
     
@@ -161,7 +161,7 @@ export default function Comment({ comment, question, productId }) {
           <div className="flex items-center border-r border-gray-300 pr-5">
             <div className="flex flex-col mr-2 justify-center items-center">
               <div className="flex justify-center items-center text-[#EF4444]">
-                <span className="text-2xl">{star}</span>
+                <span className="text-2xl">{star.toFixed(1)}</span>
                 <p>/5</p>
               </div>
               <Star
