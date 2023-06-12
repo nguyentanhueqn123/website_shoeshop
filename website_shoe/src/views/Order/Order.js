@@ -9,9 +9,22 @@ import { updateSearchData } from '../../store/search/index'
 import { useNavigate } from 'react-router-dom'
 import { formatPrice } from '../../utils/formatPrice'
 import ReactPaginate from 'react-paginate';
+import { useFetchProducts, useProducts, useFetchAllProductType} from '../../store/product/hook'
+
+
 
 
 export default function Orders() {
+  const products = useProducts()
+  // products?.data.forEach(product => {
+  //   console.log(product._id)
+  // })
+  // console.log("===== sp: ", products?.data[0].nameProduct);
+
+  useFetchProducts()
+  useFetchAllProductType()
+  useUpdateQuery()
+
 
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
     // console.log("====> User infor: ", userLogin) 
@@ -90,6 +103,26 @@ export default function Orders() {
               return <span>
                   {data?.row?.original?.amount}
               </span>
+          }
+        },
+        {
+          Header: 'ID PRODUCT',
+          accessor: 'IdProduct',
+          Cell: data => {
+              return (
+                <ul>
+                   {/* {data?.row?.original?.product.map((product, index) => (
+                    <li key={index}>{product}</li>
+                    
+                  ))} */}
+                  {data?.row?.original?.product.map((productId, index) => {
+                    const product = products?.data.find(p => p._id === productId);
+                    if (product) {
+                      return <li key={index}>{product.nameProduct}</li>;
+                    }
+                  })}
+                </ul>
+              )
           }
         },
         {

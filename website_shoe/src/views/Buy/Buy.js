@@ -21,35 +21,39 @@ export default function Buy() {
   const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
   
   const handleOrder = async () => {
-    setDisabled(true)
-    if(!address){
-      showToastError("Please fill in your address information")
-      setDisabled(false)
+    setDisabled(true);
+    if (!address) {
+      showToastError("Please fill in your address information");
+      setDisabled(false);
       return;
     }
-    if(!phone){
-      showToastError("Please fill in your phone number")
-      setDisabled(false)
+    if (!phone) {
+      showToastError("Please fill in your phone number");
+      setDisabled(false);
       return;
     }
     try {
+      const productIds = cart?.map((product) => product.data._id);
       await invoiceApi.postInvoice({
         userId: userLogin?._id,
         phone,
         address,
         amount: cart?.length,
         cost: totalPrice,
-        paymemtMethod: paymentMethod
-      })
-      
-      showToastSuccess("Order successfully")
-      setDisabled(false)
+        paymentMethod: paymentMethod,
+        product: productIds, // add productIds here
+      });
+  
+      showToastSuccess("Order successfully");
+      setDisabled(false);
     } catch (err) {
-      console.log(err)
-      setDisabled(false)
-      showToastError("Order failed !")
+      console.log(err);
+      setDisabled(false);
+      showToastError("Order failed !");
     }
-  }
+  };
+  const productIds = cart?.map((product) => product.data._id);
+  console.log("========>",productIds);
  
 
    // lọc id trùng theo sp

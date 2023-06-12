@@ -43,6 +43,7 @@ export default function Product() {
   ////
 
   const products = useProducts()
+  // console.log("===== sp: ", products?.data);
 
   const productTypes = useAllProductType()
   const [reset, setReset] = useState(false)
