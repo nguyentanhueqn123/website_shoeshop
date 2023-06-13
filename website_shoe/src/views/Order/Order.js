@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import Input from '../../components/Input/Input'
-import Table from '../../components/Table/Table'
 import { useDispatch } from 'react-redux';
 import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
-import { formatDDMMYYYYHHmm } from '../../utils/formatDatetime'
 import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../store/search/hook'
 import { updateSearchData } from '../../store/search/index'
-import { useNavigate } from 'react-router-dom'
-import { formatPrice } from '../../utils/formatPrice'
+import { Link, useNavigate } from 'react-router-dom'
 import ReactPaginate from 'react-paginate';
 import { useFetchProducts, useProducts, useFetchAllProductType} from '../../store/product/hook'
-
+import OrderBox from "./OrderBox"
 
 
 
 export default function Orders() {
-  const products = useProducts()
-  // products?.data.forEach(product => {
-  //   console.log(product._id)
-  // })
-  // console.log("===== sp: ", products?.data[0].nameProduct);
-
-  useFetchProducts()
-  useFetchAllProductType()
-  useUpdateQuery()
-
+    const products = useProducts()
+    // products?.data.forEach(product => {
+    //   console.log(product._id)
+    // })
+    // console.log("===== sp: ", products?.data[0].nameProduct);
+    useFetchProducts()
+    useFetchAllProductType()
+    useUpdateQuery()
 
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
     // console.log("====> User infor: ", userLogin) 
    
-
     useFetchListInvoice()
     useUpdateSearch()
     useUpdateQuery()
@@ -58,115 +52,30 @@ export default function Orders() {
         setTextSearch(searchData?.textSearch)
     }, [])
 
-    const handleInvoice = () => {
-        try {
-          let filteredInvoices = listInvoice?.data;
-          if (selectedStatus !== 'all') {
-            filteredInvoices = filteredInvoices.filter(
-              (invoice) => invoice.status === selectedStatus && invoice.userId === userLogin?._id
-            );
-          } else {
-            filteredInvoices = filteredInvoices.filter(
-              (invoice) => invoice.userId === userLogin?._id
-            );
-          }
-          console.log("Filtered invoices:", filteredInvoices);
-          return filteredInvoices.sort((a, b) => new Date(b.time) - new Date(a.time));
-        } catch (err) {
-          console.log("Error filtering invoices:", err);
-        }
-      };
+    
+    
+    let filteredInvoices = listInvoice?.data;
+    if (selectedStatus !== 'all') {
+      filteredInvoices = filteredInvoices?.filter(
+        (invoice) => invoice.status === selectedStatus && invoice.userId === userLogin?._id
+      );
+    } else {
+      filteredInvoices = filteredInvoices?.filter(
+        (invoice) => invoice.userId === userLogin?._id
+      );
+    }
+    // sort time
+    const sortedInvoices = filteredInvoices?.sort((a, b) => new Date(b.time) - new Date(a.time));
 
-    const columnsTable = [
-        {
-            Header: 'ID',
-            accessor: '_id',
-            Cell: data => {
-                return <span>
-                    {data?.row?.original?._id?.slice(0, 4)}...{data?.row?.original?._id?.slice(data?.row?.original?._id?.length - 4, data?.row?.original?._id?.length)}
-                </span>
-            }
-        },
-        {
-            Header: 'TIME ORDER',
-            accessor: 'TimeOrder',
-            Cell: data => {
-                return <span>
-                    {formatDDMMYYYYHHmm(data?.row.original.time)}
-                </span>
-            }
-        },
-        {
-          Header: 'AMOUNT',
-          accessor: 'Amount',
-          Cell: data => {
-              return <span>
-                  {data?.row?.original?.amount}
-              </span>
-          }
-        },
-        {
-          Header: 'ID PRODUCT',
-          accessor: 'IdProduct',
-          Cell: data => {
-              return (
-                <ul>
-                   {/* {data?.row?.original?.product.map((product, index) => (
-                    <li key={index}>{product}</li>
-                    
-                  ))} */}
-                  {data?.row?.original?.product.map((productId, index) => {
-                    const product = products?.data.find(p => p._id === productId);
-                    if (product) {
-                      return <li key={index}>{product.nameProduct}</li>;
-                    }
-                  })}
-                </ul>
-              )
-          }
-        },
-        {
-            Header: 'TOTAL PRICE',
-            accessor: 'TotalPrice',
-            Cell: data => {
-                return <span>
-                    {formatPrice(data?.row?.original?.cost)} VND
-                </span>
-            }
-        },
-        {
-            Header: 'SHIPPING ADDRESS',
-            accessor: 'address',
-        },
-        {
-            Header: 'PHONE',
-            accessor: 'phone',
-        },
-        {
-            Header: 'METHOD',
-            accessor: 'paymentMethod',
-        },
-        
-        // {
-        //     Header: 'STATUS',
-        //     accessor: 'status',
-        //     Cell: data => {
-        //         return <span className="w-32">{data?.row.original.status}</span>
-        //     }
-        // },
-      
-    ]
-     /// Handle Pagination func
-     const [pageNumber, setPageNumber] = useState(0);
-     const productsPerPage = 6;
-     const pagesVisited = pageNumber * productsPerPage;
- 
-     const pageCount = Math.ceil(listInvoice?.data?.length / productsPerPage);
- 
-     const changePage = ({ selected }) => {
-     setPageNumber(selected);
-     };
-     ////
+    /// Handle Pagination func
+    const [pageNumber, setPageNumber] = useState(0);
+    const productsPerPage = 3;
+    const pagesVisited = pageNumber * productsPerPage;
+    const paginatedInvoices = sortedInvoices?.slice(pagesVisited, pagesVisited + productsPerPage);
+    const pageCount = Math.ceil(sortedInvoices?.length / productsPerPage);
+    const changePage = ({ selected }) => {
+      setPageNumber(selected);
+    };
 
     return (
         <div className="max-w-screen-xl mx-auto py-6 mb-10">
@@ -249,14 +158,18 @@ export default function Orders() {
               </button>
             </div>
             
-
-            {
-                listInvoice &&
-                <Table
-                columnsTable={columnsTable}
-                data={handleInvoice()}
-                />
-            }
+            <div className="bg-[#F5F5F5] p-6 rounded-lg">
+              <h1 className="mb-2 uppercase">Total Product: {filteredInvoices?.length}</h1>
+              {
+                paginatedInvoices?.map((invoice, index) => {
+                    return (
+                        <OrderBox key={index} invoice={invoice} />
+                    )
+                  })
+                  
+              }
+            </div>
+            
             <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"

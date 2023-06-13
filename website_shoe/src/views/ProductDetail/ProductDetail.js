@@ -15,9 +15,17 @@ import { setCart } from '../../store/product'
 import { showToastError } from '../../components/CustomToast/CustomToast'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { SIZE } from '../../constants/index'
+import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
+
 
 
 export default function ProductDetail() {
+  const listInvoice = useListInvoice()
+  useFetchListInvoice()
+  console.log("===== list Invoice:", listInvoice?.data);
+  
+  
+
 
   useFetchProduct()
   useFetchProducts()
