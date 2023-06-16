@@ -12,11 +12,31 @@ import classnames from 'classnames'
 import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
 import arrayToObject from '../../../utils/arrayToObject'
 import { formatPrice } from './../../../utils/formatPrice';
+import { useFetchProducts, useProducts, useFetchAllProductType} from '../../../store/product/hook'
+import {Chart} from 'chart.js';
+
 
 export default function Dashboard() {
   useFetchListInvoice()
   useFetchReport()
   const listInvoice = useListInvoice()
+
+  //
+  // listInvoice?.data.forEach(list => {
+  //     console.log(list.product)
+  // })
+  
+  const products = useProducts()
+    // products?.data.forEach(product => {
+    //   console.log(product._id)
+    // })
+    // console.log("===== sp: ", products?.data[0].nameProduct);
+  useFetchProducts()
+  useFetchAllProductType()
+  //
+
+
+
   const total = useTotal()
   const cost = useCost()
   const [reportCost, setReportCost] = useState()
@@ -24,14 +44,43 @@ export default function Dashboard() {
   // const labels = ['Đô Inox', 'Đồ gỗ', 'Đồ sứ', 'Đồ thủy tinh', 'Đồ điện']
   const labels = ['Nike', 'Converse', 'Ananas']
 
-  const dataDoughnutChart = [15, 15, 20, 25, 25]
+  // const dataDoughnutChart = [15, 15, 20, 25, 25]
 
   useEffect(() => {
     setReportCost(arrayToObject(cost?.data, "_id", "total"))
     setReportTotal(arrayToObject(total?.data, "_id", "count"))
   }, [total, cost])
 
+  // useEffect(() => {
+  //   if (listInvoice?.data) {
+  //     const productsByDay = listInvoice.data.reduce((acc, curr) => {
+  //       const date = new Date(curr.time).toLocaleDateString();
+  //       const productQuantities = curr.product.reduce((acc, productId) => {
+  //         acc[productId] = (acc[productId] || 0) + 1;
+  //         return acc;
+  //       }, {});
+  //       const totalProducts = Object.values(productQuantities).reduce((acc, curr) => acc + curr, 0);
+  //       if (!acc[date]) {
+  //         acc[date] = 0;
+  //       }
+  //       acc[date] += totalProducts;
+  //       return acc;
+  //     }, {});
+  //     console.log(productsByDay);
+  //   }
+  // }, [listInvoice]);
+  
+
   const columnsTable = [
+    {
+      Header: 'Id',
+      accessor: '_id',
+      Cell: data => {
+          return <span>
+              {data?.row?.original?._id?.slice(0, 2)}{data?.row?.original?._id?.slice(data?.row?.original?._id?.length - 2, data?.row?.original?._id?.length)}
+          </span>
+      }
+    },
     {
       Header: 'ORDER TIME',
       accessor: 'time',
@@ -42,21 +91,14 @@ export default function Dashboard() {
       }
     },
     {
-      Header: 'DELIVERY ADDRESS',
-      accessor: 'address',
-    },
-    {
       Header: 'PHONE',
       accessor: 'phone',
     },
     {
-      Header: 'PAYMENT METHOD',
-      accessor: 'paymentMethod',
+      Header: 'DELIVERY ADDRESS',
+      accessor: 'address',
     },
-    {
-      Header: 'ORDER AMOUNT',
-      accessor: 'cost',
-    },
+   
     {
       Header: 'STATUS',
       accessor: 'status',
@@ -69,14 +111,209 @@ export default function Dashboard() {
       }
     },
   ]
+  
+  // BarChart hiện thị doanh thu sản phẩm bán trong tuần
+  const [costByDay, setCostByDay] = useState({});
+  useEffect(() => {
+    if (listInvoice?.data) {
+      const costByDay = daysOfWeek.reduce((acc, dayOfWeek) => {
+        acc[dayOfWeek] = 0;
+        return acc;
+      }, {});
+      listInvoice.data.forEach((invoice) => {
+        const dayOfWeek = new Date(invoice.time).toLocaleDateString('en-US', { weekday: 'long' });
+        const totalCost = invoice.product.reduce((acc, productId) => {
+          const product = products?.data.find((p) => p._id === productId);
+          return acc + product?.price || 0;
+        }, 0);
+        costByDay[dayOfWeek] += totalCost;
+      });
+      setCostByDay(costByDay);
+    }
+  }, [listInvoice, products]);
+  useEffect(() => {
+    const chartData = {
+      labels: Object.keys(costByDay),
+      datasets: [
+        {
+          label: 'Cost of Products Sold',
+          data: Object.values(costByDay),
+          backgroundColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+          ],
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+        },
+      ],
+    };
+  
+    const chartOptions = {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    };
+    let chartStatus = Chart.getChart("productChart1"); // <canvas> id
+    if (chartStatus != undefined) {
+      chartStatus.destroy();
+    }
+    const ctx = document.getElementById('productChart1').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: chartOptions,
+    });
+  }, [costByDay]);
 
+
+  // BarChart hiện thị số lượng sản phẩm bán trong tuần
+  const [productsByDay, setProductsByDay] = useState({});
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  useEffect(() => {
+    if (listInvoice?.data) {
+      const productsByDay = daysOfWeek.reduce((acc, dayOfWeek) => {
+        acc[dayOfWeek] = 0;
+        return acc;
+      }, {});
+      listInvoice.data.forEach((invoice) => {
+        const dayOfWeek = new Date(invoice.time).toLocaleDateString('en-US', { weekday: 'long' });
+        const productQuantities = invoice.product.reduce((acc, productId) => {
+          acc[productId] = (acc[productId] || 0) + 1;
+          return acc;
+        }, {});
+        const totalProducts = Object.values(productQuantities).reduce((acc, curr) => acc + curr, 0);
+        productsByDay[dayOfWeek] += totalProducts;
+      });
+      setProductsByDay(productsByDay);
+    }
+  }, [listInvoice]);
+
+  useEffect(() => {
+    const chartData = {
+      labels: Object.keys(productsByDay),
+      datasets: [
+        {
+          label: 'Number of Products Sold',
+          data: Object.values(productsByDay),
+          backgroundColor: [
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    const chartOptions = {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    };
+    let chartStatus = Chart.getChart("productChart"); // <canvas> id
+    if (chartStatus != undefined) {
+      chartStatus.destroy();
+    }
+    const ctx = document.getElementById('productChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+      options: chartOptions,
+    });
+  }, [productsByDay]);
+
+// BarChart hiện thị doanh thu sản phẩm bán trong tháng
+const [costByMonth, setCostByMonth] = useState({});
+useEffect(() => {
+  if (listInvoice?.data) {
+    const costByMonth = Array.from({ length: 12 }, () => 0);
+    listInvoice.data.forEach((invoice) => {
+      const month = new Date(invoice.time).getMonth();
+      const totalCost = invoice.product.reduce((acc, productId) => {
+        const product = products?.data.find((p) => p._id === productId);
+        return acc + product?.price || 0;
+      }, 0);
+      costByMonth[month] += totalCost;
+    });
+    setCostByMonth(costByMonth);
+  }
+}, [listInvoice, products]);
+
+// Modify this useEffect hook to use the costByMonth state variable
+useEffect(() => {
+  const chartData = {
+    labels: [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ],
+    datasets: [
+      {
+        label: 'Cost of Products Sold',
+        data: costByMonth,
+        backgroundColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 205, 86, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 205, 86, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+  let chartStatus = Chart.getChart("productChart2");
+  if (chartStatus != undefined) {
+    chartStatus.destroy();
+  }
+  const ctx = document.getElementById('productChart2').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: chartOptions,
+  });
+}, [costByMonth]);
 
   return (
     <AdminContainer>
       <p className="text-lg font-medium mb-6">
         Dashboard Overview
       </p>
-
+      
       <div className="grid grid-cols-3 gap-x-5">
         <div className="bg-green-2 rounded-lg flex flex-col items-center justify-center py-5 shadow-lg">
           <i className='bx bx-layer text-4xl text-white'></i>
@@ -152,24 +389,34 @@ export default function Dashboard() {
         </div>
 
       </div>
-
-      <div className="grid grid-cols-2 my-8 gap-x-5">
-        <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
-          <p className="opacity-80 font-medium text-lg mb-5">Conversions This Year</p>
-          <div className="h-[400px] flex flex-cols items-end">
-            <BarChart />
-          </div>
-        </div>
-        <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
-          <p className="opacity-80 font-medium text-lg mb-5">Top Revenue Product</p>
-          <div className="h-[400px] flex flex-cols items-end">
-            <DoughnutChart
-              labels={labels}
-              dataChart={dataDoughnutChart}
-            />
+      <div className="p-4 mb-8 rounded-lg shadow-xs bg-white border shadow-lg">
+        <p className="uppercase font-bold">Products sold this week</p>
+        <div className="flex w-full justify-center">
+          <div className="flex justify-center items-center h-auto w-[780px]">
+            <canvas id="productChart" className="w-full h-full"></canvas>
           </div>
         </div>
       </div>
+      {/* <div className="px-16 py-8 mb-12 rounded-lg shadow-xs bg-white border shadow-lg">
+        <p className="uppercase font-bold">product revenue for this week</p>
+        <canvas id="productChart1"></canvas>
+      </div> */}
+    
+      <div className="grid grid-cols-2 my-8 gap-x-5">
+        <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
+          <p className="opacity-80 font-medium text-lg mb-5">Product revenue this week</p>
+          <div className="flex flex-cols items-end">
+            <canvas id="productChart1"></canvas>
+          </div>
+        </div>
+        <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
+          <p className="opacity-80 font-medium text-lg mb-5">Revenue this month</p>
+          <div className="flex flex-cols items-end">
+            <canvas id="productChart2"></canvas>
+          </div>
+        </div>
+      </div>
+
       {
         listInvoice?.data && <Table columnsTable={columnsTable} data={listInvoice?.data} />
       }
