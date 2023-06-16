@@ -18,9 +18,19 @@ import { SORT_PRODUCT_COST } from '../../../constants/index'
 import { formatPrice } from '../../../utils/formatPrice'
 import { showToastError, showToastSuccess } from './../../../components/CustomToast/CustomToast';
 import ReactPaginate from 'react-paginate';
+import { useFetchProducts, useProducts, useFetchAllProductType} from '../../../store/product/hook'
 
 
 export default function Orders() {
+    const products = useProducts()
+    // products?.data.forEach(product => {
+    //   console.log(product._id)
+    // })
+    // console.log("===== sp: ", products?.data[0].nameProduct);
+
+    useFetchProducts()
+    useFetchAllProductType()
+
 
     useFetchListInvoice()
     useUpdateSearch()
@@ -86,25 +96,62 @@ export default function Orders() {
 
     const columnsTable = [
         {
-            Header: 'No',
+            Header: 'Id',
             accessor: '_id',
             Cell: data => {
                 return <span>
-                    {data?.row?.original?._id?.slice(0, 4)}...{data?.row?.original?._id?.slice(data?.row?.original?._id?.length - 4, data?.row?.original?._id?.length)}
+                    {data?.row?.original?._id?.slice(0, 2)}{data?.row?.original?._id?.slice(data?.row?.original?._id?.length - 2, data?.row?.original?._id?.length)}
                 </span>
             }
         },
         {
-            Header: 'TIME',
-            accessor: 'time',
+            Header: 'Name',
+            accessor: 'IdProduct',
             Cell: data => {
-                return <span>
-                    {formatDDMMYYYYHHmm(data?.row.original.time)}
-                </span>
+                return (
+                  <ul>
+                     {/* {data?.row?.original?.product.map((product, index) => (
+                      <li key={index}>{product}</li>
+                      
+                    ))} */}
+                    {/* {data?.row?.original?.product.map((productId, index) => {
+                      const product = products?.data.find(p => p._id === productId);
+                      if (product) {
+                        return <li key={index}>{product.nameProduct}</li>;
+                      }
+                    })} */}
+                    {data?.row?.original?.product.map((productId, index) => {
+                        const product = products?.data.find((p) => p._id === productId);
+                        if (product) {
+                            // Check if the current product ID is the same as the previous one
+                            if (index > 0 && productId === data?.row?.original?.product[index - 1]) {
+                            return null; // If so, return null to skip rendering this product
+                            }
+                            // Get the quantity of this product
+                            const quantity = data?.row?.original?.product.filter((id) => id === productId).length;
+
+                            return (
+                            <a href={`/san-pham/${product._id}`} className="w-[200px] flex items-center mb-3" key={index}>
+                                <div className="w-full flex justify-between items-center container-box">
+                                    <div className="flex">
+                                        <img className="w-[40px] h-[40px] border object-cover rounded-md shadow-sm" src={product.image} alt="imageProduct" />
+                                        <div className="ml-2">
+                                            <p className="mt-[-2px] text-[12px]">{product.nameProduct}</p>
+                                            {/* <Price price={product?.priceSale} priceDel={product?.price} color="black" className="text-[1rem]" /> */}
+                                            <span className="ml-1 text-gray-500">x {quantity}</span> {/* Display the quantity */}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            );
+                        }
+                    })}
+                  </ul>
+                )
             }
         },
         {
-            Header: 'AMOUNT',
+            Header: 'Qty',
             accessor: 'Amount',
             Cell: data => {
                 return <span>
@@ -113,26 +160,37 @@ export default function Orders() {
             }
         },
         {
-            Header: 'SHIPPING ADDRESS',
-            accessor: 'address',
-        },
-        {
-            Header: 'PHONE',
-            accessor: 'phone',
-        },
-        {
-            Header: 'METHOD',
-            accessor: 'paymentMethod',
-        },
-        {
-            Header: 'Cost',
+            Header: 'Cost (VND)',
             accessor: 'cost',
             Cell: data => {
                 return <span>
-                    {formatPrice(data?.row?.original?.cost)} VND
+                    {formatPrice(data?.row?.original?.cost)}
                 </span>
             }
         },
+        {
+            Header: 'Time Order',
+            accessor: 'time',
+            Cell: data => {
+                return <span>
+                    {formatDDMMYYYYHHmm(data?.row.original.time)}
+                </span>
+            }
+        },
+        
+        {
+            Header: 'Address',
+            accessor: 'address',
+        },
+        {
+            Header: 'Phone',
+            accessor: 'phone',
+        },
+        {
+            Header: 'Method',
+            accessor: 'paymentMethod',
+        },
+        
         {
             Header: 'Status',
             accessor: 'status',

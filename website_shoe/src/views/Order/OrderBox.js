@@ -58,15 +58,15 @@ export default function OrderBox({invoice}) {
                     <div className="">
                         <p className="mt-4">
                             <span className="text-gray-500 mr-1">ID order:</span>
-                            {invoice?._id.slice(0, 4)}...{invoice?._id?.slice(invoice._id?.length - 4, invoice?._id?.length)}
+                            {invoice?._id.slice(0, 2)}{invoice?._id?.slice(invoice._id?.length - 2, invoice?._id?.length)}
                         </p>
                         <p className="mt-1">
                             <span className="text-gray-500">Total Quanlity:</span>
                             <span className="ml-1">{invoice?.amount}</span>
                         </p>
-                        <p className="mt-1 text-gray-500">
-                            <span className="">Amount due:</span>
-                            <span className="ml-1 font-bold">{invoice?.cost} đ</span>
+                        <p className="mt-1 ">
+                            <span className="text-gray-500">Amount due:</span>
+                            <span className="ml-1 font-bold text-red-500">{invoice?.cost} đ</span>
                         </p>
                         <p className="mt-4">
                             <i className="fa-solid fa-calendar-days mr-2 text-[#62B4FF]"></i>
