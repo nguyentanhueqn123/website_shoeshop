@@ -22,7 +22,24 @@ import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
 export default function ProductDetail() {
   const listInvoice = useListInvoice()
   useFetchListInvoice()
-  console.log("===== list Invoice:", listInvoice?.data);
+  // console.log("===== list Invoice:", listInvoice?.data);
+
+  const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
+
+  
+  const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
+  console.log("List Order Delivered: ",deliveredInvoices);
+  
+  //id sản phẩm đã giao
+  // deliveredInvoices?.forEach(invoice => {
+  //   console.log(invoice.product?.map(productId =>
+  //     productId
+  //   ));
+  // });
+
+  
+
+
   
   
 
@@ -35,11 +52,22 @@ export default function ProductDetail() {
   const { id } = useParams()
   const dispatch = useDispatch()
   
-  const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
 
   const handleChangeTab = (tab) => {
     setTab(tab)
   }
+
+  // console.log(product?.data?._id)
+  deliveredInvoices?.forEach(invoice => {
+    invoice.product?.map(productId => {
+      // console.log(productId);
+      if (product?.data?._id === productId) {
+        console.log("Sản phẩm này có thể review được ^^");
+      }
+    });
+  });
+  
+
 
 
   const responsive = {
