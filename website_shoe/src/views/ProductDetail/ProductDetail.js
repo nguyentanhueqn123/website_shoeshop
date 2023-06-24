@@ -26,24 +26,6 @@ export default function ProductDetail() {
 
   const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
 
-  
-  const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
-  console.log("List Order Delivered: ",deliveredInvoices);
-  
-  //id sản phẩm đã giao
-  // deliveredInvoices?.forEach(invoice => {
-  //   console.log(invoice.product?.map(productId =>
-  //     productId
-  //   ));
-  // });
-
-  
-
-
-  
-  
-
-
   useFetchProduct()
   useFetchProducts()
   const product = useProduct()
@@ -57,15 +39,22 @@ export default function ProductDetail() {
     setTab(tab)
   }
 
+
+  const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
+  console.log("List Order Delivered: ",deliveredInvoices);
   // console.log(product?.data?._id)
-  deliveredInvoices?.forEach(invoice => {
-    invoice.product?.map(productId => {
-      // console.log(productId);
-      if (product?.data?._id === productId) {
-        console.log("Sản phẩm này có thể review được ^^");
-      }
-    });
-  });
+  // deliveredInvoices?.forEach((invoice, index) => {
+  //   console.log("đơn hàng thứ :", index+1)
+  //   invoice.product?.map((productId , index1)=> {
+  //     console.log("id: ",productId, ", SP thứ: ", index1+1);
+  //     if (product?.data?._id === productId) {
+  //       console.log("có thể review ^^");
+  //     }else{
+  //       console.log("ko thể review được!");
+
+  //     }
+  //   });
+  // });
   
 
 
@@ -332,7 +321,20 @@ export default function ProductDetail() {
           }
         </div>
         
-        <Comment comment={product?.comment?.data} question={product?.question?.data} productId={id} />
+        {/* <div className="w-full">
+          {
+            listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)?.map((invoice, index) => (
+              invoice.product?.map((productId)=> {
+                if (product?.data?._id === productId) {
+                 return (<Comment comment={product?.comment?.data} question={product?.question?.data} productId={id}/>)
+                 
+                }
+              })
+            ))
+          }
+          
+        </div> */}
+        <Comment comment={product?.comment?.data} question={product?.question?.data} productId={id}/>
        
         {
           products && (
@@ -400,7 +402,7 @@ export default function ProductDetail() {
                   {
                     products?.data?.map((product, index) => {
                       return (
-                        <ProductCardV2 product={product} />
+                        <ProductCardV2 product={product} key={index} />
                       )
                     })
                   }

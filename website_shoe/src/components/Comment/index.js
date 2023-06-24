@@ -12,6 +12,9 @@ import questionApi from '../../api/questionApi'
 import { useDispatch } from 'react-redux'
 import { fetchProduct } from '../../store/product'
 import ReactPaginate from 'react-paginate'
+import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
+import { useFetchProduct, useProduct, useFetchProducts} from '../../store/product/hook'
+
 
 const labels = {
     0.5: 'Useless',
@@ -32,6 +35,9 @@ function getLabelText(value) {
 
 
 export default function Comment({ comment, question, productId }) {
+  useFetchProduct()
+  useFetchProducts()
+  const product = useProduct()
 
     const [tab, setTab] = useState(1)
     const [oneStar, setOneStar] = useState(0)
@@ -50,6 +56,10 @@ export default function Comment({ comment, question, productId }) {
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
     const [currentPage, setCurrentPage] = useState(1);
 
+    //////
+    const listInvoice = useListInvoice()
+    useFetchListInvoice()
+    //////
 
     useEffect(() => {
         let oneStarTemp = 0, twoStarTemp = 0, threeStarTemp = 0, fourStarTemp = 0, fiveStarTemp = 0
@@ -248,15 +258,29 @@ export default function Comment({ comment, question, productId }) {
             className="px-4 py-2 text-[#62B4FF] border-[#62B4FF] border-2 rounded-lg uppercase">
             Make a question
           </button>
+          {
+            
+            listInvoice?.data?.some(invoice => invoice.status === 'DELIVERED' && invoice.userId === userLogin?._id && invoice.product?.includes(product?.data?._id)) && (
+              <button 
+                onClick={() => {
+                  setShowQuestionForm(false)
+                  setShowReviewForm(true)
+                }}
+                className="mt-3 px-4 py-2 text-white font-medium rounded-lg hover:opacity-80 uppercase bg-[#62B4FF] hover:bg-[#62B4FF]">
+                Write a review
+              </button>
+            )
+          }
+          
 
-          <button 
+          {/* <button 
             onClick={() => {
               setShowQuestionForm(false)
               setShowReviewForm(true)
             }}
           className="mt-3 px-4 py-2 text-white font-medium rounded-lg hover:opacity-80 uppercase bg-[#62B4FF] hover:bg-[#62B4FF]">
             Write a review
-          </button>
+          </button> */}
         </div>
       </div>
 

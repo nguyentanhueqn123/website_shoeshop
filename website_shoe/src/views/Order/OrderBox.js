@@ -44,7 +44,13 @@ export default function OrderBox({invoice}) {
                                             <span className="ml-1 text-gray-500">x {quantity}</span> {/* Display the quantity */}
                                         </div>
                                     </div>
-                                    <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white opacity-0 hover:bg-[#349eff] btn-buy">Buy Again</button>
+                                    {invoice.status === 'DELIVERED' && (
+                                        <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white hover:bg-[#349eff] btn-buy">
+                                            Review
+                                        </button>
+                                    )}
+
+                                    {/* <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white opacity-100 hover:bg-[#349eff] btn-buy">Review</button> */}
                                 </div>
                             </a>
                             );
