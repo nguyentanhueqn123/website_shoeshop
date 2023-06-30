@@ -5,7 +5,7 @@ function KommunicateChat() {
   
     (function (d, m) {
       var kommunicateSettings = {
-        appId: "d6af1953f96aea46cd3d04b04d521b54",
+        appId: "1754e90f5158613b391bd3e1604fc3254",
         popupWidget: true,
         automaticChatOpenOnNavigation: true,
       };
