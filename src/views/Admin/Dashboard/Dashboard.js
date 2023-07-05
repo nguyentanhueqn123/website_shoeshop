@@ -232,7 +232,7 @@ export default function Dashboard() {
     }
     const ctx = document.getElementById('productChart').getContext('2d');
     new Chart(ctx, {
-      type: "line",
+      type: "bar",
       data: chartData,
       options: chartOptions,
     });
