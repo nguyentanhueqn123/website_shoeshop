@@ -13,10 +13,11 @@ import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
 import arrayToObject from '../../../utils/arrayToObject'
 import { formatPrice } from './../../../utils/formatPrice';
 import { useFetchProducts, useProducts, useFetchAllProductType} from '../../../store/product/hook'
-import {Chart} from 'chart.js';
+import {Chart, registerables} from 'chart.js';
 
 
 export default function Dashboard() {
+  Chart.register(...registerables);
   useFetchListInvoice()
   useFetchReport()
   const listInvoice = useListInvoice()
