@@ -154,13 +154,13 @@ export default function Dashboard() {
   
     const chartOptions = {
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
+        // yAxes: [
+        //   {
+        //     ticks: {
+        //       beginAtZero: true,
+        //     },
+        //   },
+        // ],
       },
     };
     let chartStatus = Chart.getChart("productChart1"); // <canvas> id
@@ -216,13 +216,13 @@ export default function Dashboard() {
 
     const chartOptions = {
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
+        // yAxes: [
+        //   {
+        //     ticks: {
+        //       beginAtZero: true,
+        //     },
+        //   },
+        // ],
       },
     };
     let chartStatus = Chart.getChart("productChart"); // <canvas> id
@@ -287,13 +287,13 @@ useEffect(() => {
 
   const chartOptions = {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      // yAxes: [
+      //   {
+      //     ticks: {
+      //       beginAtZero: true,
+      //     },
+      //   },
+      // ],
     },
   };
   let chartStatus = Chart.getChart("productChart2");
