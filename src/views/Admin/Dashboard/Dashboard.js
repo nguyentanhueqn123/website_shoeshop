@@ -170,7 +170,7 @@ export default function Dashboard() {
     }
     const ctx = document.getElementById('productChart1').getContext('2d');
     new Chart(ctx, {
-      type: 'bar',
+      type: "line",
       data: chartData,
       options: chartOptions,
     });
@@ -232,7 +232,7 @@ export default function Dashboard() {
     }
     const ctx = document.getElementById('productChart').getContext('2d');
     new Chart(ctx, {
-      type: 'bar',
+      type: "line",
       data: chartData,
       options: chartOptions,
     });
@@ -303,7 +303,7 @@ useEffect(() => {
   }
   const ctx = document.getElementById('productChart2').getContext('2d');
   new Chart(ctx, {
-    type: 'bar',
+    type: "line",
     data: chartData,
     options: chartOptions,
   });
