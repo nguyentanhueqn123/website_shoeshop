@@ -78,10 +78,10 @@ export default function Header() {
       displayName: 'Product',
       link: 'danh-muc'
     },
-    {
-      displayName: 'Blog',
-      link: 'blog'
-    },
+    // {
+    //   displayName: 'Blog',
+    //   link: 'blog'
+    // },
     {
       displayName: 'Contact',
       link: 'lien-he'

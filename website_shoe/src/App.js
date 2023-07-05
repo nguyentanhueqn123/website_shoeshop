@@ -86,7 +86,7 @@ function App() {
           <Route path="/thanh-toan" element={<Buy />} />
           {/* <Route path="/don-hang" element={<DonHang />} /> */}
           <Route path="/san-pham/:id" element={<ProductDetail />} />
-          <Route path="/blog" element={<Blog />} />
+          {/* <Route path="/blog" element={<Blog />} /> */}
           <Route path="/lien-he" element={<Contact />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/order" element={<Order />} />
