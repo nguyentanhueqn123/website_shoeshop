@@ -8,6 +8,8 @@ import invoiceApi from './../../api/invoiceApi';
 import ProductRow from "./ProductRow"
 import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast';
 import { useDispatch } from 'react-redux'
+import ModalQR from '../../components/ModalQR/ModalQR';
+
 
 export default function Buy() {
   const totalPrice = useTotalPrice()
@@ -18,6 +20,8 @@ export default function Buy() {
   const [address, setAddress] = useState()
   const [phone, setPhone] = useState()
   const [paymentMethod, setPaymentMethod] = useState()
+  const [showModal, setShowModal] = useState(false)
+
   const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
   
   const handleOrder = async () => {
@@ -72,6 +76,14 @@ export default function Buy() {
       return productCount;
   }
 
+
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  }
+  const handleCloseModal = () => {
+    setShowModal(false);
+  }
 
   return (
     <div className="bg-white w-full">
@@ -137,13 +149,17 @@ export default function Buy() {
 
               </li>
               <li className="py-2 ">
-                <input id="payment_method_card" type="radio" name="payment_method" value="CARD" onChange={e => setPaymentMethod(e.target.value)} />
-                <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_card">With CARD</label>
-                <p className="flex mt-2">
-                  <img className="w-[100px] h-[40px] object-cover" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/363_Visa_Credit_Card_logo-512.png" alt="" />
-                  <img className="w-[100px] h-[40px] object-cover" src="https://static.vecteezy.com/system/resources/previews/009/469/637/original/paypal-payment-icon-editorial-logo-free-vector.jpg" alt="" />
-                  <img className="w-[100px] h-[40px] object-cover ml-2 scale-110" src="https://developers.momo.vn/v3/vi/assets/images/logo-custom2-57d6118fe524633b89befe8cb63a3956.png" alt="" />
-                </p>
+                <div onClick={handleOpenModal}>
+                  <input id="payment_method_card" type="radio" name="payment_method" value="CARD" onChange={e => setPaymentMethod(e.target.value)} />
+                  <label className="ml-2 text-black font-medium text-sm-md" htmlFor="payment_method_card">With QR CODE</label>
+                  <p className="flex mt-2">
+                    <img className="w-[100px] h-[100px] object-cover" src="https://t3.ftcdn.net/jpg/02/23/88/58/360_F_223885881_Zotk7yyvWJDvq6iWq2A9XU60iVJEnrzC.jpg" alt="" />
+                    {/* <img className="w-[100px] h-[40px] object-cover" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/363_Visa_Credit_Card_logo-512.png" alt="" /> */}
+                    {/* <img className="w-[100px] h-[40px] object-cover" src="https://static.vecteezy.com/system/resources/previews/009/469/637/original/paypal-payment-icon-editorial-logo-free-vector.jpg" alt="" /> */}
+                    {/* <img className="w-[100px] h-[40px] object-cover ml-2 scale-110" src="https://developers.momo.vn/v3/vi/assets/images/logo-custom2-57d6118fe524633b89befe8cb63a3956.png" alt="" /> */}
+                  </p>
+                </div>
+                <ModalQR show={showModal} handleClose={handleCloseModal}></ModalQR>
               </li>
             </ul>
 
