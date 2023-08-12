@@ -79,10 +79,10 @@ export default function Orders() {
 
     return (
         <div className="max-w-screen-xl mx-auto py-6 mb-10">
-            <p className="text-lg font-medium mb-6 uppercase">
+            <p className="text-lg font-medium mx-7 md:mx-0 mb-3 md:mb-6 uppercase">
                 My Orders
             </p>
-            <div className="relative p-5 w-full rounded-lg bg-[#F2F2F2] mb-5">
+            <div className="relative mx-7 md:mx-0 md:p-5 rounded-lg bg-[#F2F2F2] mb-5">
                 <Input
                     className="border border-gray-400 rounded-lg text-md text-black pl-9"
                     onChange={handleChangeInput}
@@ -90,11 +90,11 @@ export default function Orders() {
                     type="text"
                     placeholder="Search by shipping address"
                 />
-              <span className="absolute ml-3 top-[30px]"><i className="fa-solid fa-magnifying-glass"></i></span>
+              <span className="absolute ml-3 top-[10px] md:top-[30px]"><i className="fa-solid fa-magnifying-glass"></i></span>
 
             </div>
 
-            <div className="flex justify-between mb-6 bg-white border rounded-lg">
+            <div className="flex justify-between mb-6 bg-white border md:rounded-lg overflow-x-scroll md:overflow-hidden">
               <button
                 className={`${
                   selectedStatus === "all"
@@ -153,12 +153,12 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("RETURN")}
               >
-              RETURN / REFUND
+              RETURN
 
               </button>
             </div>
             
-            <div className="bg-[#F5F5F5] p-6 rounded-lg">
+            <div className="bg-[#F5F5F5] p-6 md:rounded-lg">
               <h1 className="mb-2 uppercase">Total Product: {filteredInvoices?.length}</h1>
               {
                 paginatedInvoices?.map((invoice, index) => {
@@ -183,7 +183,7 @@ export default function Orders() {
               nextLinkClassName={"nextBttn"}
               disabledClassName={"paginationDisabled"}
               activeClassName={"paginationActive border px-3 py-1 rounded-lg bg-[#62B4FF] text-white"}
-              className="flex justify-end w-full  my-3"
+              className="flex justify-end w-full my-3 pr-7 md:pr-0"
             />
         </div>
     )

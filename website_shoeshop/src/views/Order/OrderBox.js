@@ -17,49 +17,51 @@ export default function OrderBox({invoice}) {
 
   useFetchProducts()
   useFetchAllProductType()
+  const displayedProducts = {}
 
     return (
-        <div className="flex border bg-white rounded-lg p-6 mb-4">
-            <div className="w-2/5">
+        <div className="flex flex-col md:flex-row border bg-white rounded-lg p-6 mb-4">
+            <div className="w-full md:w-2/5">
                 <p>
-                    {invoice.product.map((productId, index) => {
-                        const product = products?.data.find((p) => p._id === productId);
-                        if (product) {
-                            // Check if the current product ID is the same as the previous one
-                            if (index > 0 && productId === invoice.product[index - 1]) {
-                            return null; // If so, return null to skip rendering this product
-                            }
-
-                            // Get the quantity of this product
-                            const quantity = invoice.product.filter((id) => id === productId).length;
-
-                            return (
-                            <a href={`/san-pham/${product._id}`} className="flex items-center mb-3" key={index}>
-                                <div className="w-full flex justify-between items-center container-box">
-                                    <div className="flex">
-                                        <img className="w-[70px] h-[70px] border object-cover rounded-md shadow-sm" src={product.image} alt="imageProduct" />
-                                        <div className="ml-2">
-                                            <p className="mt-[-2px]">{product.nameProduct}</p>
-                                            <Price price={product?.priceSale} priceDel={product?.price} color="black" className="text-[1rem]" />
-                                            <span className="ml-1 text-gray-500">x {quantity}</span> {/* Display the quantity */}
-                                        </div>
-                                    </div>
-                                    {invoice.status === 'DELIVERED' && (
-                                        <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white hover:bg-[#349eff] btn-buy">
-                                            Review
-                                        </button>
-                                    )}
-
-                                    {/* <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white opacity-100 hover:bg-[#349eff] btn-buy">Review</button> */}
-                                </div>
-                            </a>
-                            );
+                {invoice.product.map((productId, index) => {
+                    const product = products?.data.find((p) => p._id === productId);
+                    if (product) {
+                        // Check if the product name has already been displayed
+                        if (displayedProducts[product.nameProduct]) {
+                          return null; // If so, return null to skip rendering this product
                         }
-                    })}
+
+                        // Mark this product name as displayed
+                        displayedProducts[product.nameProduct] = true;
+
+                        // Get the quantity of this product
+                        const quantity = invoice.product.filter((id) => id === productId).length;
+
+                        return (
+                        <a href={`/san-pham/${product._id}`} className="flex items-center mb-3" key={index}>
+                            <div className="w-full flex justify-between items-center container-box">
+                                <div className="flex">
+                                    <img className="w-[70px] h-[70px] border object-cover rounded-md shadow-sm" src={product.image} alt="imageProduct" />
+                                    <div className="ml-2">
+                                        <p className="mt-[-2px]">{product.nameProduct}</p>
+                                        <Price price={product?.priceSale} priceDel={product?.price} color="black" className="text-[1rem]" />
+                                        <span className="ml-1 text-gray-500">x {quantity}</span> {/* Display the quantity */}
+                                    </div>
+                                </div>
+                                {invoice.status === 'DELIVERED' && (
+                                    <button className="bg-[#62B4FF] h-10 rounded-lg px-3 text-white hover:bg-[#349eff] btn-buy">
+                                        Review
+                                    </button>
+                                )}
+                            </div>
+                        </a>
+                        );
+                    }
+                })}
                 </p>
             </div>
-            <div className="w-3/5 ml-3 flex px-6 py-2 rounded-lg border shadow-md overflow-hidden">
-                <div className="w-1/2">
+            <div className="w-full md:w-3/5 md:ml-3 flex flex-col md:flex-row md:px-6 py-2 md:rounded-lg md:border md:shadow-md overflow-hidden">
+                <div className="w-full md:w-1/2">
                     <p className="w-full py-3 border-b-2 uppercase text-[#62B4FF] font-bold">Desciption</p>
                     <div className="">
                         <p className="mt-4">
@@ -86,10 +88,10 @@ export default function OrderBox({invoice}) {
                         </p>
                     </div>
                 </div>
-                <div className="w-1/2 ml-3">
-                    <p className="w-full px-6 py-3 border-b-2 uppercase text-[#62B4FF] font-bold">Delivery Address</p>
+                <div className="w-full md:w-1/2 md:ml-3">
+                    <p className="w-full md:px-6 py-3 border-b-2 uppercase text-[#62B4FF] font-bold">Delivery Address</p>
 
-                    <div className="px-6 py-5">
+                    <div className="md:px-6 pt-5 md:py-5">
                         {
                             userLogin?.nameAccount
                         }

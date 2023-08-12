@@ -128,9 +128,9 @@ export default function ProductDetail() {
 
   return (
 
-    <div className="w-full bg-white mt-6">
+    <div className="w-full bg-white md:mt-6">
       <div className="max-w-screen-xl mx-auto">
-        <div className="flex items-center justify-between">
+        <div className="hidden md:block flex items-center justify-between">
           {/* display path on Product */}
           <div className="flex items-center text-xl" id="top">
             <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
@@ -143,14 +143,14 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="flex mt-6 p-6 border rounded-lg">
-          <div className="w-2/5">
+        <div className="flex flex-col md:flex-row md:mt-6 p-6 md:border rounded-lg">
+          <div className="w-full md:w-2/5">
             {
               <img src={product?.data?.image?.[0]} alt="product" className="w-full h-full object-cover" />
             }
           </div>
 
-          <div className="w-3/5 ml-10">
+          <div className="w-full md:w-3/5 mt-2 md:mt-0 md:ml-10">
             <p className="text-black font-medium text-2xl opacity-80 mb-3">
               {product?.data?.nameProduct}
             </p>
@@ -179,7 +179,7 @@ export default function ProductDetail() {
               />
               <span className=" rounded-lg text-[14px] px-2 ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
             </div>
-            <div className="container-box w-full flex my-4">
+            <div className="container-box w-full flex justify-between my-4">
               <div className="flex w-[108px] bg-[#f9f9f9] rounded-l-lg items-center justify-between">
                 <span className="pl-3">Size</span>
                 <div className="">
@@ -193,7 +193,7 @@ export default function ProductDetail() {
                   />
                 </div>
               </div>
-              <div className="flex w-4/5 items-center ml-5">
+              <div className="flex md:w-4/5 items-center ml-5">
                 <p className="mr-3">Quantity:</p>
                 <form className="flex items-center">
                   <button className="bg-[#f9f9f9] px-4 py-2 border border-gray-300 rounded-l-lg"
@@ -256,7 +256,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="w-full mt-20" id="des-detail" >
+        <div className="w-full md:mt-20" id="des-detail" >
           <div className="flex items-center mb-4 border-t-4 border-[#F7F8F9]">
             <div
               className={classnames("uppercase mr-4 px-12 py-5 cursor-pointer", { "border-b-4 border-[#62B4FF] text-[#62B4FF]": tab === 1 })}
@@ -276,7 +276,7 @@ export default function ProductDetail() {
           {
             tab === 1 && (
               <div>
-                <p className="opacity-70">
+                <p className="opacity-70 px-5">
                   {
                     product?.data?.description
                   }
@@ -286,7 +286,7 @@ export default function ProductDetail() {
           }
           {
             tab === 2 && (
-              <div className="px-2 opacity-80">
+              <div className="px-5 opacity-80">
                 {
                   product?.data?.metal && (
                     <>
@@ -338,8 +338,8 @@ export default function ProductDetail() {
        
         {
           products && (
-            <>
-              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
+            <div className="mx-7 md:mx-auto">
+              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable
@@ -372,14 +372,14 @@ export default function ProductDetail() {
 
                 </Carousel>
               </div>
-            </>
+            </div>
           )
         }
 
         {
           products && (
-            <>
-              <p className="text-black font-medium text-2xl py-5 my-10 border-b border-gray-300">Recently Viewed</p>
+            <div className="mx-7 md:mx-auto">
+              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Recently Viewed</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable
@@ -409,29 +409,29 @@ export default function ProductDetail() {
 
                 </Carousel>
               </div>
-            </>
+            </div>
 
           )
         }
 
-        <div className="w-full border-t border-gray-300 py-10">
+        <div className="w-full border-gray-300 py-10">
           <p className="font-medium text-lg text-center mb-5">
             - AS SEEN IN -
           </p>
-          <div className="w-full flex items-center justify-center" >
-            <div className="px-20">
+          <div className="w-full flex flex-col md:flex-row items-center md:justify-around" >
+            <div className="mt-6 md:mt-0">
               <img src="https://res.cloudinary.com/mejuri-com/image/upload/v1572878527/brand-story/Elle.svg" alt="icon" />
             </div>
-            <div className="px-20">
+            <div className="mt-6 md:mt-0">
               <img src="https://res.cloudinary.com/mejuri-com/image/upload/v1572878532/brand-story/Business_Insider.svg" alt="icon" />
             </div>
-            <div className="px-20">
+            <div className="mt-6 md:mt-0">
               <img src="https://res.cloudinary.com/mejuri-com/image/upload/v1572885812/brand-story/fast-company.svg" alt="icon" />
             </div>
-            <div className="px-20">
+            <div className="mt-6 md:mt-0">
               <img src="https://res.cloudinary.com/mejuri-com/image/upload/v1572878522/brand-story/WWD.svg" alt="icon" />
             </div>
-            <div className="px-20">
+            <div className="mt-6 md:mt-0">
               <img src="https://res.cloudinary.com/mejuri-com/image/upload/v1572878529/brand-story/Coveteur.svg" alt="icon" />
             </div>
           </div>

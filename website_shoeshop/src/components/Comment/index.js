@@ -161,12 +161,12 @@ export default function Comment({ comment, question, productId }) {
 
 
   return (
-    <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-6 rounded-lg">
+    <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-6 md:rounded-lg">
       <div className="mb-6">
-        <h1 className="text-2xl font-medium uppercase">product reviews</h1>
+        <h1 className="text-lg md:text-2xl font-medium uppercase">product reviews</h1>
       </div>
 
-      <div className="flex justify-between p-5 items-center bg-white rounded-lg">
+      <div className="flex flex-col md:flex-row justify-between p-5 items-center bg-white rounded-lg">
         <div className="flex">
           <div className="flex items-center border-r border-gray-300 pr-5">
             <div className="flex flex-col mr-2 justify-center items-center">
@@ -248,7 +248,7 @@ export default function Comment({ comment, question, productId }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col mt-5 md:mt-0 justify-center">
           <button
             onClick={() => {
               setShowQuestionForm(true)
