@@ -95,8 +95,8 @@ export default function Product() {
       <div className="fixed bottom-10 right-10 z-9">
         <OnTop />
       </div>
-      <div className="max-w-screen-3xl w-full mx-auto py-5">
-        <div className="flex items-center justify-between">
+      <div className="max-w-screen-3xl w-full mx-auto md:py-5">
+        <div className="hidden md:block items-center justify-between">
           <div className="flex items-center text-xl" id="top">
             <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
             <span className="mx-3">/</span>
@@ -104,9 +104,9 @@ export default function Product() {
           </div>
         </div>
 
-        <div className="flex mt-5">
-          <div className="w-1/5 flex flex-col mr-[40px]">
-            <div className="flex items-center justify-between mb-5">
+        <div className="flex flex-col md:flex-row mt-5">
+          <div className="w-full h-auto inline md:block md:w-1/5 flex-col md:mr-[40px]">
+            <div className="flex items-center justify-between mb-3 md:mb-5">
               <h1 className="text-xl text-black opacity-80">Filter & Sort</h1>
               <p className="opacity-80">
                 {products?.data?.length} Products
@@ -149,7 +149,7 @@ export default function Product() {
 
             <div className="">
               <p className="text-lg">Category</p>
-              <div className="px-5">
+              <div className="md:px-5 flex justify-between md:block">
                 {
                   productTypes?.data?.map((item, index) => (
                     <CheckBox
@@ -165,7 +165,7 @@ export default function Product() {
             </div>
             
             <hr className="bg-gray-300 my-5 h-[1px]" />
-            <button className="text-white py-2.5 mt-2 uppercase rounded-lg bg-[#62B4FF] hover:bg-[#349eff]"
+            <button className="w-full text-white py-2.5 mb-5 md:mt-2 uppercase rounded-lg bg-[#62B4FF] hover:bg-[#349eff]"
               onClick={e => handleClear(e)}
             >
               Clear Filter
@@ -173,7 +173,7 @@ export default function Product() {
           
           </div>
 
-          <div className="w-4/5 -mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
+          <div className="w-full md:w-4/5 md:-mx-2 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-5">
             {
               products?.data?.slice(pagesVisited, pagesVisited + productsPerPage).map((product, index) => {
                 return (

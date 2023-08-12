@@ -42,7 +42,7 @@ export default function Banner() {
                     <div className="container-box">
                         <img className='absolute' src="https://www.johncraig.co.za/wp-content/uploads/Converse-Brand-Page-Banner.jpg" alt="" />
                         <Link to="/danh-muc">
-                            <button className="absolute ml-[10%] bottom-[25%] bg-white rounded-lg px-7 py-3 hover:bg-[#eee] text-blak font-bold">
+                            <button className="hidden md:block absolute ml-[10%] bottom-[25%] bg-white rounded-lg px-7 py-3 hover:bg-[#eee] text-blak font-bold">
                                 <div className="text-center uppercase">
                                     Explore now
                                 </div>

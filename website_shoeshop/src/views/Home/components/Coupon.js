@@ -9,9 +9,14 @@ export default function TopProduct() {
     //
     useFetchListCoupon()
     const listCoupon = useListCoupon();
-    // console.log("====> Discount: ", listCoupon);
+    console.log("====> Discount: ", listCoupon);
 
     //
+    function isCouponValid(coupon) {
+        const currentDate = new Date();
+        const expiryDate = new Date(coupon.endDate);
+        return currentDate <= expiryDate;
+    }
 
     const responsive = {
         desktop: {
@@ -38,8 +43,8 @@ export default function TopProduct() {
 
     return (
         <div className="w-full bg-white pb-16">
-            <div className="mb-10">
-                <h1 className="uppercase text-2xl text-black-1 px-[12%] font-medium">Best Discount Coupons</h1>
+            <div className="mb-5 md:mb-10">
+                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">Best Discount Coupons</h1>
             </div>
    
             <div className="max-w-screen-xl w-full mx-auto">
@@ -63,7 +68,7 @@ export default function TopProduct() {
                     >
 
                         {
-                            listCoupon?.data?.map((coupon, index) => {
+                            listCoupon?.data?.filter(isCouponValid).map((coupon, index) => {
                                 return (
                                     <CouponCard coupon={coupon} key={coupon?._id} />
                                 )

@@ -77,9 +77,9 @@ export default function Register() {
   }
 
   return (
-    <div className="log-container w-screen h-screen bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
+    <div className="log-container w-full bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
       <div className="w-full h-full">
-        <div className="log-form w-[500px] mx-auto py-10 rounded-lg">
+        <div className="log-form w-[400px] md:w-[500px] mx-auto py-10 rounded-lg">
           <h1 className="text-white text-3xl text-center mb-10 font-medium">SIGN UP</h1>
           <form className="">
             <input
@@ -97,7 +97,7 @@ export default function Register() {
               />
               <Tooltip
                 className="absolute top-1/2 transform -translate-y-1/2 -right-10 text-red-500"
-                classNameTooltip="left-full bottom-1/2 transform translate-y-1/2 translate-x-2"
+                classNameTooltip="hidden md:block left-full bottom-1/2 transform translate-y-1/2 translate-x-2"
                 tooltip={<p>{emailValidate}</p>}
                 isShow={!isValidEmail}
               >
