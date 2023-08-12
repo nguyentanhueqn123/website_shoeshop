@@ -167,17 +167,17 @@ export default function ProductDetail() {
                 size="xl"
               />
               <a href="#product-review" className="ml-2 px-2 border-l border-gray-300">
-                View {product?.comment?.data?.length || 0} comment
+                View {product?.comment?.data?.length || 0} review
               </a>
             </div>
-            <div className="flex items-center">
+            <div className="flex justify-between md:justify-start items-center">
               <Price
                 price={product?.data?.priceSale}
                 priceDel={product?.data?.price}
                 color="black"
                 className="text-[2rem]"
               />
-              <span className=" rounded-lg text-[14px] px-2 ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
+              <span className="rounded-lg text-[14px] px-2 md:ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
             </div>
             <div className="container-box w-full flex justify-between my-4">
               <div className="flex w-[108px] bg-[#f9f9f9] rounded-l-lg items-center justify-between">

@@ -58,10 +58,11 @@ export default function CartRow({ product, quantity}) {
                 <img src={product?.data?.image[0]} alt="product" width={90} height={90} />
                 <div className="h-full ml-3">
                     <p className="">{product?.data?.nameProduct}</p>
-                    <div className="flex items-center mt-2 opacity-60">
+                    <div className="hidden md:flex items-center mt-2 opacity-60">
                         <Archive className="w-[1rem] h-[1rem] text-[#62B4FF]"/>
                         <p className="text-sm ml-1">7 days free return</p>
                     </div>
+                    <p className="md:hidden text-red-400">x {quantity}</p>
                 </div>
                 
             </td>
@@ -72,7 +73,8 @@ export default function CartRow({ product, quantity}) {
                 />
             </td> */}
             <td>
-                <p>Quantity: {quantity}</p>
+                <p className="hidden md:block">Quantity: {quantity}</p>
+                {/* <p className="md:hidden">x {quantity}</p> */}
             </td>
 
             {/* <td>
@@ -96,6 +98,7 @@ export default function CartRow({ product, quantity}) {
                     price={product?.data?.priceSale}
                     priceDel={product?.data?.price}
                     color="black"
+                    className="block md:inline-block"
                 />
             </td>
         </tr>
