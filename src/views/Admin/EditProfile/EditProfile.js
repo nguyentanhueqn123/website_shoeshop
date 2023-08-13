@@ -9,7 +9,7 @@ import { useFetchUsers, useUsers} from '../../../store/user/hook'
 export default function EditProfile() {
     const allStaff = useUsers()
     const filteredUser = allStaff?.data?.filter(staff => staff.role === 'ADMIN')[0];
-    console.log(filteredUser)
+    // console.log(filteredUser)
     const navigate = useNavigate()
     useFetchUsers()
     useUpdateSearch()
@@ -18,32 +18,32 @@ export default function EditProfile() {
    
     return (
       <AdminContainer>
-        <div className="userTitleContainer">
-          <h1 className="userTitle">Information User</h1>
-          <div>
+        <div className="userTitleContainer flex flex-col md:flex-row justify-between">
+          <h1 className="userTitle text-lg md:text-2xl">Information User</h1>
+          <div className="mt-4 md:mt-0 flex flex-row justify-between">
             <Link
               to={{
                 pathname: "./changePassWord",
               }}
             >
-              <button className="userChangePassWord">Change Password</button>
+              <button className="px-5 py-2 mr-4 font-bold text-white bg-primary-70 rounded-lg">Change Password</button>
             </Link>
 
             <button
               onClick={() => {
                 localStorage.removeItem("USER_LOGIN")
                 navigate('/')
-                showToastSuccess("Đăng xuất thành công")
+                showToastSuccess("Login Successfully")
                 
                 // window.location.reload();
               }}
-              className="userLogout"
+              className="px-10 w-1/2 py-2 font-bold text-white bg-[#62B4FF] rounded-lg"
             >
               Log out
             </button>
           </div>
         </div>
-        <div className="userContainer">
+        <div className="flex flex-col md:flex-row mt-3">
           <div className="userShow">
             <div className="userShowTop">
               {/* <img src={user.imageUrl} alt="" className="userShowImg" /> */}
@@ -83,9 +83,9 @@ export default function EditProfile() {
               
             </div>
           </div>
-          <div className="userUpdate">
+          <div className="userUpdate mt-5 md:mt-0 ml-0 md:ml-5">
             <span className="userUpdateTitle">Update</span>
-            <form className="userUpdateForm">
+            <form className="userUpdateForm1 flex flex-col md:flex-row md:justify-between">
               <div className="userUpdateLeft">
                 <div className="userUpdateItem">
                   <label>Full Name</label>
@@ -132,7 +132,7 @@ export default function EditProfile() {
                 
               </div>
               <div className="userUpdateRight">
-                <div className="userUpdateUpload">
+                <div className="userUpdateUpload mt-4 md:mt-0">
                   
                   <img  src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt="" className='userUpdateImg'/>
 
@@ -144,11 +144,11 @@ export default function EditProfile() {
                     style={{ display: "none" }}
                   />
                 </div>
-                {/* <button
-                  className="userUpdateButton"
+                <button
+                  className="userUpdateButton mt-4 md:mt-0"
                 >
                   Update
-                </button> */}
+                </button>
               </div>
             </form>
           </div>

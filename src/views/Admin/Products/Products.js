@@ -162,11 +162,11 @@ export default function Products() {
     ////
     return (
         <AdminContainer>
-            <p className="text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-3 md:mb-6">
                 Products
             </p>
 
-            <div className="w-full p-5 rounded-lg bg-[#F2F2F2] grid grid-cols-4 gap-x-5 mb-5">
+            <div className="w-full md:p-5 rounded-lg md:bg-[#F2F2F2] grid grid-cols-1 md:grid-cols-4 gap-x-5 gap-y-4 mb-5">
                 <Input
                     className="border border-black rounded-lg text-md text-black"
                     onChange={handleChangeInput}
@@ -193,7 +193,7 @@ export default function Products() {
                 />
 
                 <button
-                    className="bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] text-white"
+                    className="bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] text-white h-10"
                     onClick={() => navigate('/admin/products/add-product')}
                 >
                     <div className="flex items-center justify-center text-md">
@@ -202,6 +202,8 @@ export default function Products() {
                     </div>
                 </button>
             </div>
+            <p className="text-lg font-bold mb-4 mt-8 md:hidden">List Product</p>
+            <div className="overflow-x-scroll md:overflow-hidden">
             {
                 products && (
                     <Table
@@ -210,6 +212,9 @@ export default function Products() {
                     />
                 )
             }
+
+            </div>
+            
             <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"

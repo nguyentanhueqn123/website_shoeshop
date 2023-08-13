@@ -124,6 +124,7 @@ export default function EditCoupon() {
           locale="es"
         />
         <Button
+          className={"text-white w-full md:w-auto text-center flex justify-center"}
           onClick={(e) => handleUpdateCoupon(e)}
           pending={pending}
           isLoading={pending}

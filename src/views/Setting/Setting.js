@@ -6,9 +6,9 @@ export default function Setting() {
     // console.log("====> User infor: ", userLogin)    
    
     return (
-      <div className="px-7 md:px-[11%] mx-auto mb-[120px]">
+      <div className="px-4 md:px-[11%] mx-auto mb-[120px]">
         <div className="userTitleContainer">
-          <h1 className="userTitle text-lg md:text-2xl">Information User</h1>
+          <h1 className="userTitle text-lg md:text-2xl mt-4">Information User</h1>
         </div>
 
         <div className="flex flex-col md:flex-row mt-3">

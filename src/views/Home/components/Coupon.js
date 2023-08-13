@@ -9,7 +9,7 @@ export default function TopProduct() {
     //
     useFetchListCoupon()
     const listCoupon = useListCoupon();
-    console.log("====> Discount: ", listCoupon);
+    // console.log("====> Discount: ", listCoupon);
 
     //
     function isCouponValid(coupon) {

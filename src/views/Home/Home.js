@@ -12,7 +12,7 @@ import '../../styles/home.css';
 export default function Home() {
 
   return (
-    <div className="w-screen px-7 overflow-hidden relative">
+    <div className="w-screen px-4 overflow-hidden relative">
       <Banner />
       {/* <Collect /> */}
       {/* <Product /> */}

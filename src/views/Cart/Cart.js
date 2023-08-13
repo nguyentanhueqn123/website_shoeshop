@@ -76,7 +76,7 @@ export default function Cart() {
             {
                 cart?.length ? (
                     <div className="items-start max-w-screen-3xl mx-auto w-full flex flex-col md:flex-row my-6">
-                        <div className="w-full md:w-2/3 px-6 pb-6 md:pt-6 mr-5 flex-1 md:border md:rounded-lg shadow-lg">
+                        <div className="w-full md:w-2/3 px-4 md:px-6 pb-6 md:pt-6 mr-5 flex-1 md:border md:rounded-lg shadow-lg">
                             <table className="w-full">
                                 <thead className="border-b-2 border-gray-300">
                                     <tr className="mb-3">
@@ -107,7 +107,7 @@ export default function Cart() {
                             </div>
                         </div>
 
-                        <div className="w-full md:w-1/3 p-6 md:border md:rounded-lg shadow-lg">
+                        <div className="w-full md:w-1/3 p-4 md:p-6 md:border md:rounded-lg shadow-lg">
                             <div className="flex items-center justify-between py-2">
                                 <p>Total Amount:</p>
                                 <div className="flex items-end flex-col">

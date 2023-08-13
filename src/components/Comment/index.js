@@ -161,7 +161,7 @@ export default function Comment({ comment, question, productId }) {
 
 
   return (
-    <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-6 md:rounded-lg">
+    <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-4 md:p-6 md:rounded-lg">
       <div className="mb-6">
         <h1 className="text-lg md:text-2xl font-medium uppercase">product reviews</h1>
       </div>

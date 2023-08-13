@@ -5,32 +5,14 @@
   
   .userTitleContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
+    // align-items: center;
+    // justify-content: space-between;
+    // margin-top: 20px;
   }
   .userTitle {
     font-size: 25px;
-    opacity: 0.6;
-  }
-  .userLogout {
-    border: none;
-    padding: 10px;
-    background-color: teal;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    margin-left: 25px;
-  }
-  .userChangePassWord {
-    border: none;
-    padding: 10px;
-    background-color: rgb(3, 169, 244);
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.8;
   }
   
   .userContainer {

@@ -100,7 +100,7 @@ export default function Customers() {
 
     return (
         <AdminContainer>
-            <p className="text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-3 md:mb-6">
                 Customers
             </p>
 
@@ -113,8 +113,8 @@ export default function Customers() {
                     placeholder="Search by name, email, phone number"
                 />
             </div>
-
-           {
+            <div className="overflow-x-scroll md:overflow-hidden">
+            {
                customers && (
                 <Table
                     data={customers?.data
@@ -130,7 +130,9 @@ export default function Customers() {
                     columnsTable={columnsTable}
                     />
                )
-           }
+            }
+            </div>
+            
            <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"

@@ -1,6 +1,6 @@
 export default function Contact() {
     return (
-        <div className="my-5 md:my-10 md:max-w-screen-xl mx-7 md:mx-auto">
+        <div className="my-4 md:my-10 md:max-w-screen-xl mx-4 md:mx-auto">
 
             <section className="mb-32 text-gray-800">
             <div className="block rounded-lg shadow-lg border bg-white">

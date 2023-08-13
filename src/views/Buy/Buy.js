@@ -57,7 +57,7 @@ export default function Buy() {
     }
   };
   const productIds = cart?.map((product) => product.data._id);
-  console.log("========>",productIds);
+  // console.log("========>",productIds);
  
 
    // lọc id trùng theo sp
@@ -89,7 +89,7 @@ export default function Buy() {
     <div className="bg-white w-full">
       <Container className="md:py-6 mb-10 flex justify-center">
         <div className="md:border md:rounded-lg shadow-lg py-5 md:w-4/5 flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:pl-10 px-7">
+          <div className="w-full md:w-1/2 md:pl-10 px-4">
             <p className="uppercase text-black text-lg font-medium">About your order</p>
 
             <div className="flex items-center justify-between text-black text-md font-medium py-3 border-b-2 border-gray-300">
@@ -116,7 +116,7 @@ export default function Buy() {
               <p className="opacity-50">Free Shipping</p>
             </div>
           </div>
-          <div className="w-full md:w-1/2 pt-4 md:pt-0 px-7 md:px-10 mt-10 border-t-2 md:border-t-0">
+          <div className="w-full md:w-1/2 pt-4 md:pt-0 px-4 md:px-10 mt-10 border-t-2 md:border-t-0">
             <Input
               className="border border-gray-400 rounded-lg text-md bg-white text-black"
               id="tien1"

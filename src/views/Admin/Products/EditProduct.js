@@ -168,6 +168,7 @@ export default function AdminEditProduct() {
           value={sale}
         />
         <Button
+          className={"text-white w-full md:w-auto text-center flex justify-center"}
           onClick={(e) => handleEditProduct(e) }
           pending={pending}
           isLoading={pending}

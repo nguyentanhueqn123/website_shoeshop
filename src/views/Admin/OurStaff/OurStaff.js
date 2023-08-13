@@ -24,7 +24,7 @@ export default function OurStaff() {
     useUpdateQuery()
     const searchData = useSearchData()
     const allStaff = useUsers()
-    console.log(allStaff)
+    // console.log(allStaff)
     const dispatch = useDispatch()
     const [textSearch, setTextSearch] = useState()
 
@@ -78,12 +78,12 @@ export default function OurStaff() {
 
     return (
         <AdminContainer>
-            <p className="text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-3 md:mb-6">
                 All Staff
             </p>
 
-            <div className="p-5 w-full rounded-lg bg-[#F2F2F2] flex items-center mb-5">
-                <div className="grid grid-cols-2 w-4/5 mr-5 gap-x-5">
+            <div className="md:p-5 w-full rounded-lg md:bg-[#F2F2F2] flex flex-col md:flex-row md:items-center mb-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-4/5 md:mr-5 gap-x-5 gap-y-4">
                     <Input
                         className="border border-gray-400 rounded-lg text-md text-black"
                         onChange={handleChangeInput}
@@ -104,7 +104,7 @@ export default function OurStaff() {
 
                 </div>
 
-                <button className="bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] w-1/5 h-[42px] text-white">
+                <button className="bg-[#62B4FF] rounded-lg mt-4 md:mt-0 px-10 hover:bg-[#349eff] w-full md:w-1/5 h-[40px] text-white">
                     <div className="flex items-center justify-center text-md">
                         <i className='bx bx-plus mr-2'></i>
                         <span className="whitespace-nowrap">Add Staff</span>
@@ -112,7 +112,7 @@ export default function OurStaff() {
                 </button>
             </div>
 
-           <div className="grid grid-cols-4 gap-x-4">
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-x-4">
                {
                 filteredStaff?.map((staff, index) => {
                 

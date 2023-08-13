@@ -68,7 +68,7 @@ export default function AdminAddProduct() {
             placeholder="Image Link"
             id="product-image"
             name="product-image"
-            className="p-3 w-full h-40 border-gray-400 rounded-lg text-md text-black border"
+            className="p-3 w-full h-20 border-gray-400 rounded-lg text-md text-black border"
           />
         </div>
 
@@ -156,6 +156,7 @@ export default function AdminAddProduct() {
           value={sale}
         />
         <Button
+          className={"text-white w-full md:w-auto text-center flex justify-center"}
           onClick={(e) => handleAddProduct(e)}
           pending={pending}
           isLoading={pending}

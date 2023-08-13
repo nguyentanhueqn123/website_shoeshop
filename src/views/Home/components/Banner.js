@@ -22,7 +22,7 @@ export default function Banner() {
        
     };
     return (
-        <div className="mx-auto mt-6 rounded-lg max-w-screen-xl sm:h-[400px] max-h-[400px] bg-black bg-cover bg-center object-cover overflow-hidden">
+        <div className="mx-auto mt-2 md:mt-6 rounded-lg max-w-screen-xl sm:h-[400px] max-h-[400px] bg-black bg-cover bg-center object-cover overflow-hidden">
             <Carousel
                         swipeable
                         autoPlay

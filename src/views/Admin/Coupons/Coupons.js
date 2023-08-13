@@ -147,13 +147,13 @@ export default function Coupons() {
 
     return (
         <AdminContainer>
-            <p className="text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-3 md:mb-6">
                 Coupons
             </p>
 
-            <form className="p-5 w-full rounded-lg bg-[#F2F2F2] flex items-center mb-5">
+            <form className="md:p-5 w-full rounded-lg md:bg-[#F2F2F2] flex flex-col md:flex-row md:items-center mb-5">
                 <Input
-                    className="border border-gray-500 rounded-lg text-md text-black h-[42px] mr-5"
+                    className="w-full border border-gray-500 rounded-lg text-md text-black h-[42px] md:mr-5"
                     onChange={handleChangeInput}
                     dark={1}
                     type="text"
@@ -161,7 +161,7 @@ export default function Coupons() {
                     classNameContainer="w-full mr-5"
                 />
                 
-               <div className="mr-5 w-2/5">
+               <div className="mt-4 md:mt-0 md:mr-5 w-full md:w-2/5">
                     <Dropdown
                         title="Coupon Status"
                         listDropdown={Object.values(COUPON_STATUS)}
@@ -172,7 +172,7 @@ export default function Coupons() {
                     />
                </div>
 
-                <button className="w-1/4 h-[42px] bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] text-white"
+                <button className="w-full md:w-1/4 h-[40px] mt-4 md:mt-0 bg-[#62B4FF] rounded-lg px-10 hover:bg-[#349eff] text-white"
                     onClick={() => navigate('/admin/coupons/add-coupon')}
                 >
                     <div className="flex items-center justify-center text-md h-full">
@@ -181,7 +181,7 @@ export default function Coupons() {
                     </div>
                 </button>
             </form>
-
+            <div className="overflow-x-scroll md:overflow-hidden mt-8 md:mt-0">
             {
                 listCoupon && (
                     <Table
@@ -191,6 +191,8 @@ export default function Coupons() {
                     />
                 )
             }
+            </div>
+            
             <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"

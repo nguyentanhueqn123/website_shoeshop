@@ -91,7 +91,7 @@ export default function Product() {
   }
 
   return (
-    <div className="w-full bg-white px-7">
+    <div className="w-full bg-white px-4 md:px-7">
       <div className="fixed bottom-10 right-10 z-9">
         <OnTop />
       </div>

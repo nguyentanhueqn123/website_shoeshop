@@ -234,11 +234,11 @@ export default function Orders() {
 
     return (
         <AdminContainer>
-            <p className="text-lg font-medium mb-6">
+            <p className="text-lg font-medium mb-3 md:mb-6">
                 Orders
             </p>
 
-            <div className="p-5 w-full rounded-lg bg-[#F2F2F2] grid grid-cols-3 gap-x-5 mb-5">
+            <div className="md:p-5 w-full rounded-lg md:bg-[#F2F2F2] grid grid-cols-1 md:grid-cols-3 gap-x-5 gap-y-4 mb-5">
                 <Input
                     className="border border-gray-400 rounded-lg text-md text-black"
                     onChange={handleChangeInput}
@@ -266,13 +266,15 @@ export default function Orders() {
 
             </div>
 
-
+            <div className="overflow-x-scroll md:overflow-hidden mt-8 md:mt-0">
             {
                 listInvoice && <Table
                     columnsTable={columnsTable}
                     data={listInvoice?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
                 />
             }
+            </div>
+            
             <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"

@@ -41,7 +41,8 @@ export default function ProductDetail() {
 
 
   const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
-  console.log("List Order Delivered: ",deliveredInvoices);
+  //sài đc console.log("List Order Delivered: ",deliveredInvoices);
+
   // console.log(product?.data?._id)
   // deliveredInvoices?.forEach((invoice, index) => {
   //   console.log("đơn hàng thứ :", index+1)
@@ -143,7 +144,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:mt-6 p-6 md:border rounded-lg">
+        <div className="flex flex-col md:flex-row md:mt-6 p-4 md:border rounded-lg">
           <div className="w-full md:w-2/5">
             {
               <img src={product?.data?.image?.[0]} alt="product" className="w-full h-full object-cover" />
@@ -338,7 +339,7 @@ export default function ProductDetail() {
        
         {
           products && (
-            <div className="mx-7 md:mx-auto">
+            <div className="mx-4 md:mx-auto">
               <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
@@ -378,7 +379,7 @@ export default function ProductDetail() {
 
         {
           products && (
-            <div className="mx-7 md:mx-auto">
+            <div className="mx-4 md:mx-auto">
               <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Recently Viewed</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
