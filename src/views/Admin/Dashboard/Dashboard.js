@@ -311,29 +311,35 @@ useEffect(() => {
 
   return (
     <AdminContainer>
-      <p className="text-lg font-medium mb-6">
+      <p className="text-lg font-medium mb-3 md:mb-6">
         Dashboard Overview
       </p>
-      
-      <div className="grid grid-cols-3 gap-x-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-3 md:gap-x-5 text-center">
         <div className="bg-green-2 rounded-lg flex flex-col items-center justify-center py-5 shadow-lg">
-          <i className='bx bx-layer text-4xl text-white'></i>
-          <p className="text-lg mt-1 text-white">Total Processing</p>
-          <p className="text-3xl font-bold mt-2 text-white">{formatPrice(reportCost?.PROCESSING) || 0} VND</p>
+          <div className="flex flex-row md:flex-col">
+            <i className='bx bx-layer text-2xl md:text-4xl text-white'></i>
+            <p className="md:text-lg md:mt-1 ml-2 md:ml-0 text-white">Total Processing</p>
+          </div>
+          <p className="text-xl md:text-2xl font-bold mt-2 text-white">{formatPrice(reportCost?.PROCESSING) || 0} VND</p>
+
         </div>
         <div className="bg-blue-1 rounded-lg flex flex-col items-center justify-center py-5 shadow-lg">
-          <i className='bx bx-cart text-4xl text-white'></i>
-          <p className="text-lg mt-1 text-white">Total Pending</p>
-          <p className="text-3xl font-bold mt-2 text-white">{formatPrice(reportCost?.PENDING) || 0} VND</p>
+          <div className="flex flex-row md:flex-col">
+            <i className='bx bx-cart text-2xl md:text-4xl text-white'></i>
+            <p className="md:text-lg md:mt-1 ml-2 md:ml-0 text-white">Total Pending</p>
+          </div>
+          <p className="text-xl md:text-2xl font-bold mt-2 text-white">{formatPrice(reportCost?.PENDING) || 0} VND</p>
         </div>
         <div className="bg-green-1 rounded-lg flex flex-col items-center justify-center py-5 shadow-lg">
-          <i className='bx bxs-credit-card text-4xl text-white'></i>
-          <p className="text-lg mt-1 text-white">Total Delivered</p>
-          <p className="text-3xl font-bold mt-2 text-white">{formatPrice(reportCost?.DELIVERED) || 0} VND</p>
+          <div className="flex flex-row md:flex-col">
+            <i className='bx bxs-credit-card text-2xl md:text-4xl text-white'></i>
+            <p className="md:text-lg md:mt-1 ml-2 md:ml-0 text-white">Total Delivered</p>
+          </div>
+          <p className="text-xl md:text-2xl font-bold mt-2 text-white">{formatPrice(reportCost?.DELIVERED) || 0} VND</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-x-5 my-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-y-3 gap-x-3 md:gap-x-5 my-8">
         <div className="px-5 rounded-lg bg-[#F2F2F2] border py-5 flex items-center shadow-lg">
           <div className="w-12 h-12 rounded-full bg-orange-1 flex items-center justify-center text-2xl mr-4">
             <i className='bx bx-cart'></i>
@@ -347,6 +353,7 @@ useEffect(() => {
             </p>
           </div>
         </div>
+        
         <div className="px-5 rounded-lg bg-[#F2F2F2] border py-5 flex items-center shadow-lg">
           <div className="w-12 h-12 rounded-full bg-blue-1 flex items-center justify-center text-2xl mr-4">
             <i className='bx bx-refresh' ></i>
@@ -390,7 +397,7 @@ useEffect(() => {
         </div>
 
       </div>
-      <div className="p-4 mb-8 rounded-lg shadow-xs bg-white border shadow-lg">
+      <div className="p-4 md:mt-8 my-8 rounded-lg shadow-xs bg-white border shadow-lg">
         <p className="uppercase font-bold">Products sold this week</p>
         <div className="flex w-full justify-center">
           <div className="flex justify-center items-center h-auto w-[780px]">
@@ -403,14 +410,14 @@ useEffect(() => {
         <canvas id="productChart1"></canvas>
       </div> */}
     
-      <div className="grid grid-cols-2 my-8 gap-x-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 my-8 gap-x-5">
         <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
           <p className="opacity-80 font-medium text-lg mb-5">Product revenue this week</p>
           <div className="flex flex-cols items-end">
             <canvas id="productChart1"></canvas>
           </div>
         </div>
-        <div className="p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
+        <div className="mt-4 md:mt-0 p-4 rounded-lg shadow-xs bg-[#F2F2F2] border shadow-lg">
           <p className="opacity-80 font-medium text-lg mb-5">Revenue this month</p>
           <div className="flex flex-cols items-end">
             <canvas id="productChart2"></canvas>
@@ -418,9 +425,11 @@ useEffect(() => {
         </div>
       </div>
 
-      {
-        listInvoice?.data && <Table columnsTable={columnsTable} data={listInvoice?.data} />
-      }
+      <div className="overflow-x-scroll md:overflow-hidden">
+        {
+          listInvoice?.data && <Table columnsTable={columnsTable} data={listInvoice?.data} />
+        }
+      </div>
     </AdminContainer>
   )
 }

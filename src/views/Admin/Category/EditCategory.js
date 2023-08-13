@@ -72,6 +72,7 @@ export default function EditCategory() {
         </div>
 
         <Button
+          className={"text-white w-full md:w-auto text-center flex justify-center"}
           onClick={(e) => handleEditCategory(e)}
           pending={pending}
           isLoading={pending}

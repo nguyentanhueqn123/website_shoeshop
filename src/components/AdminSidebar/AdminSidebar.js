@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { FiUsers, FiUser, FiGift, FiList, FiShoppingBag, FiGrid, FiCheckCircle, FiMessageCircle } from "react-icons/fi";
 
 import { NavLink, Link } from 'react-router-dom'
@@ -47,13 +47,14 @@ export default function AdminLeftMenu() {
         //     link: '/admin/news',
         // },
     ]
+    const [open, setOpen] = useState(false);
 
     return (
-        <div className="sidebar h-full w-[230px] overflow-hidden fixed">
+        <div className="sidebar md:top-0 md:left-0 bg-[#eee] md:bg-white h-auto md:h-full w-full md:w-[230px] mt-[70px] md:mt-0 overflow-hidden fixed z-20">
             <Link to="/">
-                <img className="image-logo bg-cover bg-center bg-[url('/public/images/home/logo1.png')]" style={{ width: "150px", height: "150px", marginLeft: "40px" }} alt="" />
+                <img className="hidden md:block image-logo bg-cover bg-center bg-[url('/public/images/home/logo1.png')]" style={{ width: "150px", height: "150px", marginLeft: "40px" }} alt="" />
             </Link>
-            <ul className="py-10">
+            <ul className="py-4 md:py-10">
                 {
                     leftMenu.map((item, index) => {
                         return (

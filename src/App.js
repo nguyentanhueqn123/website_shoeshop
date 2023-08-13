@@ -35,6 +35,7 @@ import EditProfile from "./views/Admin/EditProfile/EditProfile"
 // import DonHang from './views/DonHang/DonHang'
 // import MessengerCustomerChat from 'react-messenger-customer-chat'
 import Chatbot from "./chatbot";
+import { useState } from 'react';
 
 const UserLayout = () => {
   return (
@@ -58,7 +59,6 @@ const LoginLayout = () => {
 
 const AdminLayout = () => {
   const userLogin = JSON.parse(localStorage.getItem("USER_LOGIN"))
-
   if (userLogin && userLogin?.role === 'CUSTOMER') {
     return <p>abc</p>
   }
@@ -66,7 +66,7 @@ const AdminLayout = () => {
     <div>
       <AdminHeader />
       <div className="flex">
-        <AdminSidebar />
+        {/* <AdminSidebar /> */}
         <Outlet />
       </div>
     </div>

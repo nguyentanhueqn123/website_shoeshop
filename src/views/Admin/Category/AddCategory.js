@@ -63,7 +63,7 @@ export default function AddCategory() {
                 </div>
 
                 <Button
-                    className={"text-white"}
+                    className={"text-white w-full md:w-auto text-center flex justify-center"}
                     onClick={(e) => handleAddCategory(e)}
                     pending={pending}
                     isLoading={pending}

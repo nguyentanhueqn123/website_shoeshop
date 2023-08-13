@@ -89,7 +89,7 @@ export default function Category() {
 
             <div className="mb-5">
             
-                <button className="bg-[#62b4ff] rounded-lg px-10 hover:bg-[#349eff] w-1/5 h-[50px]"
+                <button className="bg-[#62b4ff] rounded-lg px-10 hover:bg-[#349eff] w-full md:w-1/5 h-[50px]"
                     onClick={() => navigate('/admin/category/add-category')}
                 >
                     <div className="flex items-center justify-center text-lg">
@@ -99,13 +99,16 @@ export default function Category() {
                 </button>
             </div>
 
-
+            <div className="overflow-x-scroll md:overflow-hidden">
             {
                 productTypes && <Table
                     columnsTable={columnsTable}
                     data={productTypes?.data.slice(pagesVisited, pagesVisited + productsPerPage)}
                 />
             }
+
+            </div>
+            
             <ReactPaginate
               previousLabel={"Previous"}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
