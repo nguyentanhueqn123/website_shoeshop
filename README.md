@@ -1,12 +1,12 @@
 # Demo Account
 <div>
-  <p>User</p> 
-  Username: linkka@gmail.com
+  <p>● User</p> 
+  Username: linkka@gmail.com,
   Password: 111111
 </div>
 <div>
-  <p>Admin</p> 
-  Username: nguyentanhueqn@gmail.com
+  <p>● Admin</p> 
+  Username: nguyentanhueqn@gmail.com,
   Password: 111111
 </div>
 
