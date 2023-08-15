@@ -1,9 +1,14 @@
 # Demo Account
+<div>
 User: 
 Username: linkka@gmail.com
 Password: 111111
+</div>
+<div>
 Admin: nguyentanhueqn@gmail.com
 Password: 111111
+</div>
+
 
 # Getting Started with Create React App
 
