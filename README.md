@@ -1,3 +1,10 @@
+# Demo Account
+User: 
+Username: linkka@gmail.com
+Password: 111111
+Admin: nguyentanhueqn@gmail.com
+Password: 111111
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
