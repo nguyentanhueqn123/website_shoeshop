@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // import News from './components/News'
 // import Collect from './components/Collect'
-// import Product from './components/Product'
+import Product from './components/Product'
 import TopProduct from './components/TopProduct'
 import Banner from './components/Banner'
 import Coupon from './components/Coupon'
@@ -15,7 +15,7 @@ export default function Home() {
     <div className="w-screen px-4 overflow-hidden relative">
       <Banner />
       {/* <Collect /> */}
-      {/* <Product /> */}
+      <Product />
       <TopProduct />
       <Coupon />
       {/* <News /> */}
