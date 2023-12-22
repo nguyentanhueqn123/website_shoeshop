@@ -7,6 +7,8 @@ import couponReducer from './coupon'
 // import newsReducer from './news'
 // import reportReducer from './report'
 import invoiceReducer from './invoice'
+
+import productCompareSlice from './compare/productCompareSlice'
 const store = configureStore({
     reducer: {
         product: productReducer,
@@ -16,6 +18,7 @@ const store = configureStore({
         invoice: invoiceReducer,
         coupon: couponReducer,
         search: searchReducer,
+        productCompare: productCompareSlice,
     }
 })
 

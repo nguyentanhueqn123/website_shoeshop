@@ -36,6 +36,7 @@ import EditProfile from "./views/Admin/EditProfile/EditProfile"
 // import MessengerCustomerChat from 'react-messenger-customer-chat'
 import Chatbot from "./chatbot";
 import { useState } from 'react';
+import CompareDetail from './views/ProductDetail/CompareDetail';
 
 const UserLayout = () => {
   return (
@@ -86,6 +87,8 @@ function App() {
           <Route path="/thanh-toan" element={<Buy />} />
           {/* <Route path="/don-hang" element={<DonHang />} /> */}
           <Route path="/san-pham/:id" element={<ProductDetail />} />
+          <Route path="/sosanh-sanpham" element={<CompareDetail />} />
+
           {/* <Route path="/blog" element={<Blog />} /> */}
           <Route path="/lien-he" element={<Contact />} />
           <Route path="/setting" element={<Setting />} />

@@ -16,6 +16,7 @@ import { showToastError } from '../../components/CustomToast/CustomToast'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { SIZE } from '../../constants/index'
 import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
+import Compare from '../../components/Compare/Compare'
 
 
 
@@ -81,6 +82,8 @@ export default function ProductDetail() {
 
   /////
   const [inputValue, setInputValue] = useState(1)
+
+  const [showCompare, setShowCompare] = useState(false);
   // const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
   // const dispatch = useDispatch()
   const handleInputChange = (e) => {
@@ -127,6 +130,11 @@ export default function ProductDetail() {
   }
   // console.log(starAvg.toFixed(1));
 
+  const handleCompare = () => {
+    setShowCompare(!showCompare);
+  }
+ 
+
   return (
 
     <div className="w-full bg-white md:mt-6">
@@ -152,9 +160,21 @@ export default function ProductDetail() {
           </div>
 
           <div className="w-full md:w-3/5 mt-2 md:mt-0 md:ml-10">
-            <p className="text-black font-medium text-2xl opacity-80 mb-3">
-              {product?.data?.nameProduct}
-            </p>
+            <div className='flex justify-start items-center'>
+              <p className="text-black font-medium text-2xl opacity-80 mb-3">
+                {product?.data?.nameProduct}
+              </p>
+              {/* <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 flex items-center text-lg' onClick={handleCompare}>
+                <i className="fa-solid fa-plus"></i>
+                <span className="ml-1">Compare</span>
+              </div> */}
+              <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 flex items-center text-lg' onClick={handleCompare}>
+                <i className="fa-solid fa-plus"></i>
+                <span className="ml-1">{showCompare ? 'Hide' : 'Compare'}</span>
+              </div>
+                {showCompare && <Compare imageProduct={product?.data?.image?.[0]} nameProduct={product?.data?.nameProduct} />}
+            </div>
+            
             <div className="mb-5 flex">
             <div className="flex justify-center items-center text-[#EF4444]">
                 <span className="mr-1">
