@@ -297,12 +297,15 @@ export default function ProductDetail() {
           {
             tab === 1 && (
               <div>
-                <p className="opacity-70 px-5">
-                  {
-                    product?.data?.description
-                  }
-                </p>
-              </div>
+              {
+                product?.data?.description.split(".").map((item, index) => (
+                  <p key={index}>
+                  • {item}
+                    <br />
+                  </p>
+                ))
+              }
+            </div>
             )
           }
           {
@@ -313,7 +316,7 @@ export default function ProductDetail() {
                     <>
                       <div className="flex items-start mb-3">
                         <p className="text-black font-bold">
-                          METAL
+                        QUANTITY
                         </p>
                         <p className="ml-2">
                           {product?.data?.metal}
@@ -328,10 +331,10 @@ export default function ProductDetail() {
                     <>
                       <div>
                         <p className="text-black font-bold mb-1">
-                          SIZE
+                        WEIGH
                         </p>
                         <p>
-                          {product?.data?.size}
+                          {product?.data?.size} gam
                         </p>
                       </div>
                     </>

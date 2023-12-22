@@ -11,7 +11,8 @@ export default function ProductCardCompare({ product,closeModal }) {
 
     const handleAddProductCompare = (e) =>{
         e.stopPropagation(); // Ngăn chặn sự kiện click lan rộng
-        dispatch(selectProductCompare({name: product?.nameProduct, image: product?.image?.[0]}));
+        dispatch(selectProductCompare({name: product?.nameProduct, image: product?.image?.[0], price: product?.price, priceSale: product?.priceSale, metal: product?.metal,
+             description: product?.description, sale: product?.sale, size: product?.size}));
         // alert(`Đã thêm sản phẩm: ${product?.nameProduct}`);
         showToastSuccess("Add Product Compare Successfully");
         closeModal();
