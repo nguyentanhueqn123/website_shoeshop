@@ -161,16 +161,14 @@ export default function ProductDetail() {
 
           <div className="w-full md:w-3/5 mt-2 md:mt-0 md:ml-10">
             <div className='flex justify-start items-center'>
-              <p className="text-black font-medium text-2xl opacity-80 mb-3">
-                {product?.data?.nameProduct}
-              </p>
-              {/* <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 flex items-center text-lg' onClick={handleCompare}>
-                <i className="fa-solid fa-plus"></i>
-                <span className="ml-1">Compare</span>
-              </div> */}
-              <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 flex items-center text-lg' onClick={handleCompare}>
-                <i className="fa-solid fa-plus"></i>
-                <span className="ml-1">{showCompare ? 'Hide' : 'Compare'}</span>
+              <div className='flex flex-col md:flex-row justify-start items-center'>
+                <p className="text-black font-medium text-2xl opacity-80 mb-3">
+                  {product?.data?.nameProduct}
+                </p>
+                <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 items-center text-lg' onClick={handleCompare}>
+                  <i className="fa-solid fa-plus"></i>
+                  <span className="ml-1">{showCompare ? 'Hide' : 'Compare'}</span>
+                </div>
               </div>
                 {showCompare && <Compare imageProduct={product?.data?.image?.[0]} nameProduct={product?.data?.nameProduct} />}
             </div>
@@ -299,7 +297,7 @@ export default function ProductDetail() {
               <div>
               {
                 product?.data?.description.split(".").map((item, index) => (
-                  <p key={index}>
+                  <p className='mx-4' key={index}>
                   • {item}
                     <br />
                   </p>

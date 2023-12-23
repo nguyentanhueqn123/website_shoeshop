@@ -39,7 +39,7 @@ const ProductCompare = ({ onClose }) => {
     <div className="bg-gray-800 opacity-95 fixed w-screen h-full top-0 left-0 z-[100001]">
       <div className='flex justify-center items-center h-full opacity-100'>
         <div className='h-[600px] w-[800px] bg-white opacity-100 overflow-y-scroll p-6 rounded-xl'>
-          <p className='z-1 cursor-pointer absolute hover:text-[#62B4FF] ml-[700px]' onClick={onClose}>Close</p>
+          <p className='z-1 cursor-pointer absolute hover:text-[#62B4FF] ml-[300px] md:ml-[700px]' onClick={onClose}>Close</p>
           <div className="container-searchbar">
               <Input
                   className="border border-gray-500 rounded-lg text-md text-black mb-[20px] pl-9 mt-8"

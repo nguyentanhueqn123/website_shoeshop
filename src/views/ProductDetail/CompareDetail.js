@@ -38,18 +38,18 @@ const CompareDetail = () => {
   
 
   return (
-    <div className='px-[12%] my-8'>
-      <div className='flex justify-center'>
-        <div className='w-1/3 text-lg'>
+    <div className='md:px-[12%] my-4 md:my-8'>
+      <div className='flex flex-col md:flex-row justify-center'>
+        <div className='w-full md:w-1/3 text-lg text-center md:text-start'>
           <p>Compare Product</p>
           <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{product?.data?.nameProduct}</p>
           &
           <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{selectedProduct.name}</p>
         </div>
-        <div className='w-2/3 grid grid-cols-2 gap-5'>
-          <div className='border p-6'>
-            <img className='object-cover h-[380px] w-full' src={`${product?.data?.image?.[0]}`} alt="" />
-            <p className='mt-4 text-lg font-semibold'>{product?.data?.nameProduct}</p>
+        <div className='w-full md:w-2/3 grid grid-cols-2 md:gap-5 mt-2 md:mt-0'>
+          <div className='border p-2 text-sm md:text-base md:p-6 overflow-hidden'>
+            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${product?.data?.image?.[0]}`} alt="" />
+            <p className='mt-4 md:text-lg font-semibold'>{product?.data?.nameProduct}</p>
             <p className=' opacity-80'>{product?.data?.price} đ -{product?.data?.sale}%</p>
             <p className='text-red-400 font-semibold'>{product?.data?.priceSale} đ</p>
             <div className='flex flex-row'>
@@ -78,9 +78,9 @@ const CompareDetail = () => {
             </p>
 
           </div>
-          <div className='border p-6'>
-            <img className='object-cover h-[380px] w-full' src={`${selectedProduct.image}`} alt="" />
-            <p className='mt-4 text-lg font-semibold'>{selectedProduct.name}</p>
+          <div className='border p-2 text-sm md:text-base md:p-6 overflow-hidden'>
+            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${selectedProduct.image}`} alt="" />
+            <p className='mt-4 md:text-lg font-semibold'>{selectedProduct.name}</p>
             <p className=' opacity-80'>{selectedProduct.price} đ   -{selectedProduct.sale}%</p>
             <p className='text-red-400 font-semibold'>{selectedProduct.priceSale} đ</p>
             <div className='flex flex-row'>
