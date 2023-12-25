@@ -9,6 +9,7 @@ import ProductRow from "./ProductRow"
 import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast';
 import { useDispatch } from 'react-redux'
 import ModalQR from '../../components/ModalQR/ModalQR';
+import { Link } from 'react-router-dom'
 
 
 export default function Buy() {
@@ -163,12 +164,14 @@ export default function Buy() {
               </li>
             </ul>
 
-            <button
-              onClick={handleOrder}
-              disabled={disabled}
-              className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
-              Order Now
-            </button>
+            <Link to={"/danh-muc"}>
+              <button
+                onClick={handleOrder}
+                disabled={disabled}
+                className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
+                Order Now
+              </button>
+            </Link>
           </div>
         </div>
       </Container>
