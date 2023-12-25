@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux'
 import ModalQR from '../../components/ModalQR/ModalQR';
 import { Link } from 'react-router-dom'
 
-
 export default function Buy() {
   const totalPrice = useTotalPrice()
   const cart = useCart()
@@ -49,8 +48,10 @@ export default function Buy() {
         product: productIds, // add productIds here
       });
   
-      showToastSuccess("Order successfully");
       setDisabled(false);
+      window.location.href = "/danh-muc";
+      showToastSuccess("Order successfully");
+
     } catch (err) {
       console.log(err);
       setDisabled(false);
@@ -164,14 +165,12 @@ export default function Buy() {
               </li>
             </ul>
 
-            <Link to={"/danh-muc"}>
               <button
                 onClick={handleOrder}
                 disabled={disabled}
                 className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
                 Order Now
               </button>
-            </Link>
           </div>
         </div>
       </Container>
