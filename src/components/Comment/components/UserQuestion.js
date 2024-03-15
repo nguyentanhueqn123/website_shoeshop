@@ -8,7 +8,7 @@ import ActionGroup from './../../ActionGroup/ActionGroup';
 
 
 
-export default function UserQuestion({ question, productId }) {
+export default function UserQuestion({image, question, productId }) {
 
     const dispatch = useDispatch()
     const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
@@ -55,7 +55,7 @@ export default function UserQuestion({ question, productId }) {
         <div className="group max-w-screen-xl w-full mx-auto border-t border-gray-300 py-8 pl-6 relative">
             <div className="flex items-center justify-between mb-2">
                 <div className="flex">
-                    <img  className="userShowImg" src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt=""/>
+                    <img  className="userShowImg" src={image || "https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"} alt=""/>
                     <div className="ml-2">
                         <div className="text-yellow-2 text-md">{question?.userId?.nameAccount}</div>
                         <p className="text-md opacity-80 mb-3 font-medium">

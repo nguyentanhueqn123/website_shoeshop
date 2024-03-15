@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import userApi from '../../api/userApi';
 import { showToastError, showToastSuccess } from '../../components/CustomToast/CustomToast';
 
@@ -20,7 +20,7 @@ function updateUserInformation(userId, userInfo, setUserLogin) {
 
 export default function Setting() {
     const [userLogin, setUserLogin] = useState(JSON.parse(localStorage?.getItem('USER_LOGIN')));
-    console.table(userLogin);  
+    // console.table(userLogin);  
 
     const [userInfo, setUserInfo] = useState({
       nameAccount: `${userLogin?.nameAccount}`,

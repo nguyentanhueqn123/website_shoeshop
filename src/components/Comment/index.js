@@ -158,6 +158,7 @@ export default function Comment({ comment, question, productId }) {
     const currentComments = comment?.slice(indexOfFirstComment, indexOfLastComment);
     const currentQuestions = question?.slice(indexOfFirstComment, indexOfLastComment);
 
+    console.log(question)
 
 
   return (
@@ -375,14 +376,14 @@ export default function Comment({ comment, question, productId }) {
       {
         tab === 1 ? (
           currentComments?.map((item, index) => {
-            return <UserComment createdAt={item?.createAt} key={index} comment={item?.content} name={item?.userId?.nameAccount} numOfStar={item?.star} />
+            return <UserComment image={item?.userId?.image} createdAt={item?.createAt} key={index} comment={item?.content} name={item?.userId?.nameAccount} numOfStar={item?.star} />
           })
         ) : null
       }
       {
         tab === 2 ? (
           currentQuestions?.map((item, index) => {
-            return <UserQuestion question={item} productId={productId} />
+            return <UserQuestion image={item?.userId?.image} question={item} productId={productId} />
           })
         ) : null
       }
