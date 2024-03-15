@@ -51,6 +51,10 @@ const userApi = {
                 productId: productId
             }
         })
+    },
+    changeInfor: (id, body)=>{
+        const url = `/user/changeInfor/${id}`
+        return axiosClient.patch(url, {...body})
     }
 }
 
