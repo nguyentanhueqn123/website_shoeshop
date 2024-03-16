@@ -158,7 +158,7 @@ export default function Comment({ comment, question, productId }) {
     const currentComments = comment?.slice(indexOfFirstComment, indexOfLastComment);
     const currentQuestions = question?.slice(indexOfFirstComment, indexOfLastComment);
 
-    console.log(question)
+    // console.log(question)
 
 
   return (

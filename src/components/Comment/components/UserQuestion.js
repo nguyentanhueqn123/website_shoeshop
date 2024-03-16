@@ -73,7 +73,7 @@ export default function UserQuestion({image, question, productId }) {
                         <div className="mt-4">
                             <div className="w-full flex items-center justify-between">
                                 <div className="flex">
-                                    <img  className="userShowImg" src="https://nhadepso.com/wp-content/uploads/2023/03/loa-mat-voi-101-hinh-anh-avatar-meo-cute-dang-yeu-dep-mat_3.jpg" alt=""/>
+                                    <img  className="userShowImg scale-150" src="/logo1.png" alt="logo-shop"/>
                                     <div className="ml-2">
                                         <div className="text-yellow-2 text-md">4HShoe Store</div>
                                         <p className="">
@@ -82,7 +82,7 @@ export default function UserQuestion({image, question, productId }) {
                                     </div>
                                 </div>
                                 <div className="opacity-80 text-sm-md">{formatDDMMYYYYHHmm(question?.answerDate)}</div>
-                                {/* chưa fix lỗi */}
+                                
                             </div>
                         </div>
                     </div>
