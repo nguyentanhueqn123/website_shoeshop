@@ -44,6 +44,12 @@ const productApi = {
     getProductType: (id) => {
         const url = `/product/type/${id}`
         return axiosClient.get(url)
+    },
+
+
+    getCompareProducts: (id1, id2) =>{
+        const url = `/product/compare/${id1}/${id2}`;
+        return axiosClient.get(url);
     }
 }
 

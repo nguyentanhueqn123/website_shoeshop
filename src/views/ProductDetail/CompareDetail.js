@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useProduct, useProducts } from '../../store/product/hook'
 import { useSelector } from 'react-redux';
 import Star from '../../components/Star/Star';
 import Carousel from "react-multi-carousel";
 import ProductCardV2 from '../../components/Card/ProductCardV2';
+import productApi from '../../api/productApi';
+import { useParams } from 'react-router-dom';
 
 const responsive = {
   desktop: {
@@ -23,35 +25,56 @@ const responsive = {
   }
 };
 const CompareDetail = () => {
+
   const product = useProduct();
   const products = useProducts()
-
-  const selectedProduct = useSelector((state) => state.productCompare.selectedProduct);
-
   const commentData = product?.comment?.data;
+
+  // const selectedProduct = useSelector((state) => state.productCompare.selectedProduct);
+  // console.log("id1 và id2: ", product?.data?._id, " " , selectedProduct._id)
+
+  const { id1, id2 } = useParams(); 
+  const [productInfo, setProductInfo] = useState({ product1: null, product2: null });
+
   let starAvg = 0;
   if (commentData && commentData.length > 0) {
     const starSum = commentData.reduce((acc, comment) => acc + comment.star, 0);
     starAvg = starSum / commentData.length;
   }
 
-  
+  useEffect(() => {
+    const fetchProductInfo = async () => {
+        try {
+            const response1 = await productApi.getCompareProducts(id1, id2);
+            setProductInfo({ product1: response1.data.product1, product2: response1.data.product2 });
+        } catch (error) {
+            console.error('Failed to fetch product info:', error);
+        }
+    };
+
+    fetchProductInfo();
+  }, [id1, id2]);
+
+  // Render UI dựa trên productInfo
+  if (!productInfo.product1 || !productInfo.product2) {
+    return <div className='text-center mt-4'>Loading...</div>;
+  }
 
   return (
-    <div className='md:px-[12%] my-4 md:my-8'>
+    <div className='md:px-[12%] my-4 md:my-8'>      
       <div className='flex flex-col md:flex-row justify-center'>
         <div className='w-full md:w-1/3 text-lg text-center md:text-start'>
           <p>Compare Product</p>
-          <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{product?.data?.nameProduct}</p>
+          <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{productInfo.product1?.nameProduct}</p>
           &
-          <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{selectedProduct.name}</p>
+          <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{productInfo.product2?.nameProduct}</p>
         </div>
         <div className='w-full md:w-2/3 grid grid-cols-2 md:gap-5 mt-2 md:mt-0'>
           <div className='border p-2 text-sm md:text-base md:p-6 overflow-hidden'>
-            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${product?.data?.image?.[0]}`} alt="" />
-            <p className='mt-4 md:text-lg font-semibold'>{product?.data?.nameProduct}</p>
-            <p className=' opacity-80'>{product?.data?.price} đ -{product?.data?.sale}%</p>
-            <p className='text-red-400 font-semibold'>{product?.data?.priceSale} đ</p>
+            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${productInfo.product1?.image?.[0]}`} alt="" />
+            <p className='mt-4 md:text-lg font-semibold'>{productInfo.product1?.nameProduct}</p>
+            <p className=' opacity-80'>{productInfo.product1?.price} đ -{productInfo.product1?.sale}%</p>
+            <p className='text-red-400 font-semibold'>{productInfo.product1?.priceSale} đ</p>
             <div className='flex flex-row'>
               <span className="mr-2">
                 {
@@ -64,25 +87,24 @@ const CompareDetail = () => {
               />
             </div>
             
-            <p className='mt-4'>Quantity: {product?.data?.metal}</p>
-            <p className=''>Weigh: {product?.data?.size} gam</p>
-
+            <p className='mt-4'>Quantity: {productInfo.product1?.metal}</p>
+            <p className=''>Weigh: {productInfo.product1?.size} gam</p>
             <p className='text-[#62B4FF] mt-2'>Description:</p>
-            <p>{product?.data?.description && product?.data?.description.split(".").map((item, index) => (
+            <div>{productInfo.product1?.description && productInfo.product1?.description.split(".").map((item, index) => (
                     <p key={index}>
                     • {item}
                       <br />
                     </p>
                   ))
             }
-            </p>
+            </div>
 
           </div>
           <div className='border p-2 text-sm md:text-base md:p-6 overflow-hidden'>
-            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${selectedProduct.image}`} alt="" />
-            <p className='mt-4 md:text-lg font-semibold'>{selectedProduct.name}</p>
-            <p className=' opacity-80'>{selectedProduct.price} đ   -{selectedProduct.sale}%</p>
-            <p className='text-red-400 font-semibold'>{selectedProduct.priceSale} đ</p>
+            <img className='object-cover h-[150px] md:h-[380px] w-full mt-[-20px]' src={`${productInfo.product2?.image}`} alt="" />
+            <p className='mt-4 md:text-lg font-semibold'>{productInfo.product2?.nameProduct}</p>
+            <p className=' opacity-80'>{productInfo.product2?.price} đ   -{productInfo.product2?.sale}%</p>
+            <p className='text-red-400 font-semibold'>{productInfo.product2?.priceSale} đ</p>
             <div className='flex flex-row'>
               <span className="mr-2">
                 {
@@ -94,19 +116,16 @@ const CompareDetail = () => {
                 size="xl"
               />
             </div>
-            <p className='mt-4'>Quantity: {selectedProduct.metal}</p>
-            <p className=''>Weigh: {selectedProduct.size} gam</p>
+            <p className='mt-4'>Quantity: {productInfo.product2?.metal}</p>
+            <p className=''>Weigh: {productInfo.product2?.size} gam</p>
             <p className='text-[#62B4FF] mt-2'>Description:</p>
-            <p>{selectedProduct.description && selectedProduct.description.split(".").map((item, index) => (
+            <div>{productInfo.product2?.description && productInfo.product2?.description.split(".").map((item, index) => (
                     <p key={index}>
                     • {item}
                       <br />
                     </p>
-                  ))}</p>
-
-
+                  ))}</div>
           </div>
-
         </div>
       </div>
       {

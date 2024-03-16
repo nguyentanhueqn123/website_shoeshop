@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React from 'react'
 import '../../styles/cardProduct.scss'
 import Price from '../../components/Price/Price'
 import { useDispatch } from 'react-redux'
@@ -10,10 +10,11 @@ export default function ProductCardCompare({ product,closeModal }) {
     const dispatch = useDispatch();
 
     const handleAddProductCompare = (e) =>{
-        e.stopPropagation(); // Ngăn chặn sự kiện click lan rộng
-        dispatch(selectProductCompare({name: product?.nameProduct, image: product?.image?.[0], price: product?.price, priceSale: product?.priceSale, metal: product?.metal,
+        e.stopPropagation(); 
+        
+        dispatch(selectProductCompare({_id: product?._id, name: product?.nameProduct, image: product?.image?.[0], price: product?.price, priceSale: product?.priceSale, metal: product?.metal,
              description: product?.description, sale: product?.sale, size: product?.size}));
-        // alert(`Đã thêm sản phẩm: ${product?.nameProduct}`);
+        // alert(`Đã thêm sản phẩm: ${product?._id}`);
         showToastSuccess("Add Product Compare Successfully");
         closeModal();
     }
@@ -29,6 +30,7 @@ export default function ProductCardCompare({ product,closeModal }) {
                         {product?.image?.[0] && <img src={product?.image?.[0]} alt="product" className="object-cover" />}
                     </div>
                     <div className="ml-3">
+                        {/* <div className="text-[#334862] font-bold">{product?._id}</div> */}
                         <div className="text-[#334862] font-bold">{product?.nameProduct}</div>
                         <Price
                             price={product?.priceSale}

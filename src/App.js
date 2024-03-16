@@ -4,10 +4,8 @@ import Product from './views/Product/Product';
 import Contact from './views/Contact/Contact';
 import Setting from './views/Setting/Setting';
 import Order from './views/Order/Order';
-import Blog from './views/Blog/Blog';
 import Login from './views/RegisterLogin/Login';
 import Register from './views/RegisterLogin/Register';
-// import News from './views/News/News';
 import Cart from './views/Cart/Cart'
 import Buy from './views/Buy/Buy'
 import ProductDetail from './views/ProductDetail/ProductDetail';
@@ -21,7 +19,6 @@ import Category from './views/Admin/Category/Category';
 import Customers from './views/Admin/Customers/Customers';
 import Coupons from './views/Admin/Coupons/Coupons';
 import OurStaff from './views/Admin/OurStaff/OurStaff';
-// import AdminNews from './views/Admin/News/News';
 import Orders from './views/Admin/Orders/Orders';
 import AdminAddProduct from './views/Admin/Products/AddProduct';
 import AdminEditProduct from './views/Admin/Products/EditProduct';
@@ -31,11 +28,7 @@ import AddCoupon from './views/Admin/Coupons/AddCoupon';
 import EditCoupon from './views/Admin/Coupons/EditCoupon';
 import { ToastContainer } from 'react-toastify'
 import EditProfile from "./views/Admin/EditProfile/EditProfile"
-// import Intro from './views/Intro/Intro'
-// import DonHang from './views/DonHang/DonHang'
-// import MessengerCustomerChat from 'react-messenger-customer-chat'
 import Chatbot from "./chatbot";
-import { useState } from 'react';
 import CompareDetail from './views/ProductDetail/CompareDetail';
 
 const UserLayout = () => {
@@ -81,24 +74,15 @@ function App() {
         <Route element={<UserLayout />}>
           <Route index element={<Home />} />
           <Route path="/danh-muc" element={<Product />} />
-          {/* <Route path="/gioi-thieu" element={<Intro />} /> */}
-          {/* <Route path="/tin-tuc" element={<News />} /> */}
           <Route path="/gio-hang" element={<Cart />} />
           <Route path="/thanh-toan" element={<Buy />} />
-          {/* <Route path="/don-hang" element={<DonHang />} /> */}
           <Route path="/san-pham/:id" element={<ProductDetail />} />
-          <Route path="/sosanh-sanpham" element={<CompareDetail />} />
-
-          {/* <Route path="/blog" element={<Blog />} /> */}
+          <Route path="/so-sanh/:id1/:id2" element={<CompareDetail />} />
           <Route path="/lien-he" element={<Contact />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/order" element={<Order />} />
-
-
-
-
-          {/* <Route path="/da" element={<News/>} /> */}
         </Route>
+
         <Route element={<LoginLayout />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -112,7 +96,6 @@ function App() {
           <Route path="customers" element={<Customers />} />
           <Route path="coupons" element={<Coupons />} />
           <Route path="our-staff" element={<OurStaff />} />
-          {/* <Route path="news" element={<AdminNews />} /> */}
           <Route path="orders" element={<Orders />} />
           <Route path="products/add-product" element={<AdminAddProduct />} />
           <Route path="products/edit-product/:id" element={<AdminEditProduct />} />
@@ -122,11 +105,7 @@ function App() {
           <Route path="coupons/edit-coupon/:id" element={<EditCoupon />} />
         </Route>
       </Routes>
-      {/* <ToastContainer newestOnTop />
-      <MessengerCustomerChat 
-      pageId="110075895291944"
-      appId="3317137035215894"
-      /> */}
+      
       <ToastContainer></ToastContainer>
       <Chatbot></Chatbot>
     </BrowserRouter>

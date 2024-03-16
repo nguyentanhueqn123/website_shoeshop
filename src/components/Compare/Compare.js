@@ -3,7 +3,7 @@ import { useSelector} from "react-redux";
 import ProductCompare from "../../views/ProductDetail/ProductCompare";
 import { Link } from "react-router-dom";
 
-const Compare = ({ imageProduct, nameProduct }) => {
+const Compare = ({ imageProduct, nameProduct, id }) => {
   const selectedProduct = useSelector((state) => state.productCompare.selectedProduct);
 
   const [showProductCompare, setShowProductCompare] = useState(false);
@@ -26,12 +26,14 @@ const Compare = ({ imageProduct, nameProduct }) => {
               <div className="w-full flex flex-col justify-center items-center border-r-[1px]">
                 <img className="h-[100px] w-auto object-cover" src={imageProduct} alt={nameProduct}></img>
                 <p>{nameProduct}</p>
+                {/* <p>{id}</p> */}
+
               </div>
               <div className="w-full flex flex-col justify-center items-center md:border-r-[1px]">
                 <div className="cursor-pointer flex flex-col justify-center items-center" onClick={handleAddProductCompare}>
                   {selectedProduct.image
                     ? <img className="h-[100px] w-auto" src={`${selectedProduct.image}`} alt="" />
-                    :<img src="https://scontent.fsgn10-2.fna.fbcdn.net/v/t1.15752-9/413428900_377969161376346_6778087915424795519_n.png?stp=cp0_dst-png&_nc_cat=106&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=9pxcADSn9SoAX9nq147&_nc_oc=AQkq-PWzFBv589dr9IdE3T7C3Qf_IsKTAOwVU0gMr6Q0wZtfrImfqroY32Gz8TdQo1LkEuDpFVF1uS-HlTUN3Y7n&_nc_ht=scontent.fsgn10-2.fna&oh=03_AdRcKatGi_OaoWJURsGMX7e0OKkK8vZKIFlkRND53WtwmA&oe=65AC2075" alt="" />
+                    :<img src="https://scontent.fsgn7-2.fna.fbcdn.net/v/t1.15752-9/432397154_2388961204641817_5867822921525463661_n.png?stp=cp0_dst-png&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGrTRiR9DNMlM_5TdRa1aNCb3vw1NE7AzJve_DU0TsDMqVljdJcQvQ9IHOaDOfbSQkq9ohxPIKEcswuoI6_bFdM&_nc_ohc=0lJHyXdjAkkAX80TpY7&_nc_ht=scontent.fsgn7-2.fna&oh=03_AdSx0SVALYz8D4apkuCVj6iKzc5mqDeFpyLPioqMlNQRzA&oe=661D1791" alt="" />
                   }
                   {selectedProduct.name 
                     ? <p className="ml-4 md:ml-0">{selectedProduct.name}</p> 
@@ -40,10 +42,12 @@ const Compare = ({ imageProduct, nameProduct }) => {
                 </div>
               </div>
             </div>
+            {/* {console.log("sp1: ", nameProduct)}
+            {console.log("sp2: ", selectedProduct.name)} */}
 
             <div className="w-full md:w-1/3 mt-2 md:mt-0 flex flex-col justify-center items-center text-center">
               {selectedProduct.name 
-                ? <Link to="/sosanh-sanpham" className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-pointer hover:opacity-80 hover:text-black">Compare Now</Link>
+                ? <Link to={`/so-sanh/${id}/${selectedProduct._id}`} className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-pointer hover:opacity-80 hover:text-black">Compare Now</Link>
                 : <div className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-not-allowed opacity-50">Compare Now</div>
               }
             </div>

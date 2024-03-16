@@ -170,7 +170,7 @@ export default function ProductDetail() {
                   <span className="ml-1">{showCompare ? 'Hide' : 'Compare'}</span>
                 </div>
               </div>
-                {showCompare && <Compare imageProduct={product?.data?.image?.[0]} nameProduct={product?.data?.nameProduct} />}
+                {showCompare && <Compare id={product?.data?._id} imageProduct={product?.data?.image?.[0]} nameProduct={product?.data?.nameProduct} />}
             </div>
             
             <div className="mb-5 flex">

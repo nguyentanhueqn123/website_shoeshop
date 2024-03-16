@@ -4,6 +4,7 @@ export const productCompareSlice = createSlice({
   name: 'productCompare',
   initialState: {
     selectedProduct: {
+      _id: null,
       name: null,
       image: null,
       price: null,
@@ -12,12 +13,11 @@ export const productCompareSlice = createSlice({
       size: null,
       description: null,
       sale: null,
-
-
     },
   },
   reducers: {
     selectProductCompare: (state, action) => {
+      state.selectedProduct._id = action.payload._id;
       state.selectedProduct.name = action.payload.name;
       state.selectedProduct.image = action.payload.image;
       state.selectedProduct.price = action.payload.price;
@@ -37,21 +37,3 @@ export const { selectProductCompare } = productCompareSlice.actions;
 
 export default productCompareSlice.reducer;
 
-// import { createSlice } from '@reduxjs/toolkit';
-
-// export const productCompareSlice = createSlice({
-//   name: 'productCompare',
-//   initialState: {
-//     selectedProduct: null,
-   
-//   },
-//   reducers: {
-//     selectProductCompare: (state, action) => {
-//       state.selectedProduct = action.payload;
-//     },
-//   },
-// });
-
-// export const { selectProductCompare } = productCompareSlice.actions;
-
-// export default productCompareSlice.reducer;
