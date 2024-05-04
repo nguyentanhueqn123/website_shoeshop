@@ -1,0 +1,33 @@
+{
+    "header": {
+        "login": "Đăng Nhập"
+    },
+    "account": {
+        "myCart": "Giỏ hàng",
+        "myOrder": "Đơn hàng",
+        "setting": "Cài đặt",
+        "logout": "Đăng xuất"
+    },
+    "nav": {
+        "home": "Trang chủ",
+        "product": "Sản phẩm",
+        "contact": "Liên hệ"
+
+    },
+    "boxCart": {
+        "statusProduct": "Không có Sản phẩm !",
+        "productAddCart": "sp đã thêm vào Giỏ hàng",
+        "viewCart": "Xem Giỏ hàng"
+
+
+    },
+    "text-purchased": "Được mua nhiều nhất",
+    "text-discount": "Mã giảm giá cho bạn",
+    "footer": {
+        "text-connect": "Hãy kết nối với chúng tôi trên các mạng xã hội:",
+        "products": "Sản phẩm",
+        "links": "Liên kết",
+        "contact": "Liên hệ"
+    }
+    
+}

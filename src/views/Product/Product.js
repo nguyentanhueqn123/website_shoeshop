@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
-import ProductCard from '../../components/Card/ProductCard'
-import { useFetchProducts, useProducts, useFetchAllProductType, useAllProductType } from '../../store/product/hook'
-import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage'
-import Price from '../../components/Price/Price'
-import LoadingPage from './../../components/LoadingPage/Loading';
-import Dropdown from './../../components/Dropdown/Dropdown';
-import { SORT_PRODUCT_PAGE_PRODUCT } from '../../constants';
-import CheckBox from './../../components/Checkbox/Checkbox';
-import { updateSearchData, resetSearchData } from '../../store/search/index'
-import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../store/search/hook'
-import { useDispatch } from 'react-redux'
-import OnTop from '../../components/OnTop/OnTop'
+import { useDispatch } from 'react-redux';
+import ProductCard from '../../components/Card/ProductCard';
 import Input from '../../components/Input/Input';
-import "./Product.scss"
+import OnTop from '../../components/OnTop/OnTop';
+import { SORT_PRODUCT_PAGE_PRODUCT } from '../../constants';
+import { useAllProductType, useFetchAllProductType, useFetchProducts, useProducts } from '../../store/product/hook';
+import { useSearchData, useUpdateQuery, useUpdateSearch } from '../../store/search/hook';
+import { resetSearchData, updateSearchData } from '../../store/search/index';
+import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage';
+import CheckBox from './../../components/Checkbox/Checkbox';
+import Dropdown from './../../components/Dropdown/Dropdown';
+import LoadingPage from './../../components/LoadingPage/Loading';
+import "./Product.scss";
+import { useTranslation } from 'react-i18next';
+
 
 
 export default function Product() {
+  const { t } = useTranslation("product");
+
   useFetchProducts()
   useFetchAllProductType()
   useUpdateQuery()
@@ -90,6 +93,7 @@ export default function Product() {
     return <LoadingPage />
   }
 
+
   return (
     <div className="w-full bg-white px-4 md:px-7">
       <div className="fixed bottom-10 right-10 z-9">
@@ -98,18 +102,18 @@ export default function Product() {
       <div className="max-w-screen-3xl w-full mx-auto md:py-5">
         <div className="hidden md:block items-center justify-between">
           <div className="flex items-center text-xl" id="top">
-            <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
+            <Link to="/" className="opacity-50 hover:opacity-100 uppercase">{t('path.home')}</Link>
             <span className="mx-3">/</span>
-            <p className="text-black font-medium">PRODUCTS</p>
+            <p className="text-black font-medium uppercase">{t('path.products')}</p>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row mt-5">
           <div className="w-full h-auto inline md:block md:w-1/5 flex-col md:mr-[40px]">
             <div className="flex items-center justify-between mb-3 md:mb-5">
-              <h1 className="text-xl text-black opacity-80">Filter & Sort</h1>
+              <h1 className="text-xl text-black opacity-80">{t('filter.title')}</h1>
               <p className="opacity-80">
-                {products?.data?.length} Products
+                {products?.data?.length} {t('filter.product')}
               </p>
             </div>
              {/* Search Products */}
@@ -119,7 +123,7 @@ export default function Product() {
                   onChange={handleChangeInput}
                   dark={1}
                   type="text"
-                  placeholder="Search by Product Name"
+                  placeholder={t('filter.inputSearch')}
               />
               <span className='icon-search'><i className="fa-solid fa-magnifying-glass"></i></span>
 
@@ -127,7 +131,7 @@ export default function Product() {
 
             <div className="container-sort">
               <Dropdown
-                title="Sort"
+                title={t('filter.dropSort')}
                 listDropdown={Object.values(SORT_PRODUCT_PAGE_PRODUCT)}
                 label="label"
                 onSelect={(item) => {
@@ -148,7 +152,7 @@ export default function Product() {
 
 
             <div className="">
-              <p className="text-lg">Category</p>
+              <p className="text-lg">{t('filter.category')}</p>
               <div className="md:px-5 flex justify-between md:block">
                 {
                   productTypes?.data?.map((item, index) => (
@@ -168,7 +172,7 @@ export default function Product() {
             <button className="w-full text-white py-2.5 mb-5 md:mt-2 uppercase rounded-lg bg-[#62B4FF] hover:bg-[#349eff]"
               onClick={e => handleClear(e)}
             >
-              Clear Filter
+              {t('filter.btnClear')}
             </button>
           
           </div>

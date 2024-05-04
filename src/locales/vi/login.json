@@ -1,0 +1,17 @@
+{
+    "login": {
+        "title": "Đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "createAccount": "Tạo tài khoản"
+    },
+    "register": {
+        "title": "Đăng kí",
+        "name": "Tên",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "confirmPW": "Nhập lại mật khẩu",
+        "phoneNumber": "Số điện thoại",
+        "backLogin": "Đăng nhập"
+    }
+}

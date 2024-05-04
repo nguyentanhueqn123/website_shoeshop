@@ -6,9 +6,12 @@ import { showToastSuccess, showToastError } from '../../components/CustomToast/C
 import Tooltip from '../../components/Tooltip/Tooltip';
 import { AlertCircle } from 'react-feather'
 import "./Log.scss"
+import { useTranslation } from 'react-i18next';
+
 
 
 export default function Register() {
+  const { t } = useTranslation("login");
   const navigate = useNavigate()
   const [email, setEmail] = useState()
   const [nameAccount, setNameAccount] = useState()
@@ -80,12 +83,12 @@ export default function Register() {
     <div className="log-container w-full bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
       <div className="w-full h-full">
         <div className="log-form w-[400px] md:w-[500px] mx-auto py-10 rounded-lg">
-          <h1 className="text-white text-3xl text-center mb-10 font-medium">SIGN UP</h1>
+          <h1 className="text-white text-3xl text-center mb-10 font-medium uppercase">{t('register.title')}</h1>
           <form className="">
             <input
               className="form-input w-full border px-4 py-3 mb-5 rounded-lg"
               type="text"
-              placeholder="Name"
+              placeholder={t('register.name')}
               onChange={e => setNameAccount(e.target.value)}
             />
             <div className="relative mb-5">
@@ -107,27 +110,27 @@ export default function Register() {
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="text"
-              placeholder="Phone Number"
+              placeholder={t('register.phoneNumber')}
               onChange={e => setPhone(e.target.value)}
             />
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
-              placeholder="Password"
+              placeholder={t('register.password')}
               onChange={e => setPassword(e.target.value)}
             />
             <input
               className="form-input w-full border px-3 py-3 mb-5 rounded-lg"
               type="password"
-              placeholder="Confirm Password"
+              placeholder={t('register.confirmPW')}
               onChange={e => setConfirmPassword(e.target.value)}
             />
             <button 
               onClick={handleRegis}
-            className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]">SIGN UP</button>
+            className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556] uppercase">{t('register.title')}</button>
           </form>
           <div className="text-center text-white mt-5">
-            <Link to="/login" className="underline">Log in</Link>
+            <Link to="/login" className="underline">{t('register.backLogin')}</Link>
           </div>
         </div>
       </div>

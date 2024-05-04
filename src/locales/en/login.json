@@ -1,0 +1,17 @@
+{
+    "login": {
+        "title": "Log in",
+        "email": "Email",
+        "password": "Password",
+        "createAccount": "Create Account"
+    },
+    "register": {
+        "title": "Sign up",
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPW": "Confirm Password",
+        "phoneNumber": "Phone number",
+        "backLogin": "Log in"
+    }
+}

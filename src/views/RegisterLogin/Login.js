@@ -8,8 +8,10 @@ import { useNavigate } from 'react-router-dom'
 import { USER_LOGIN } from '../../utils/storage'
 import "./Log.scss"
 import useDebounce from '../../hooks/useDebounce';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+  const { t } = useTranslation("login");
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [isValidEmail, setIsValidEmail] = useState(true)
@@ -63,7 +65,7 @@ export default function Login() {
     <div className="log-container w-full bg-[url('/public/images/home/login_main2.jpg')] bg-cover bg-center">
       <div className="w-full h-full">
         <div className="log-form w-[400px] md:w-[500px] md:mx-auto py-10 rounded-lg">
-          <h1 className="text-white text-3xl text-center mb-10 font-medium">LOG IN</h1>
+          <h1 className="text-white text-3xl text-center mb-10 font-medium uppercase">{t('login.title')}</h1>
           <form className="">
             <div className="relative  mb-8">
               <input
@@ -88,7 +90,7 @@ export default function Login() {
               <input
                 className="form-input w-full border px-3 py-3 rounded-lg"
                 type="password"
-                placeholder="Password"
+                placeholder={t('login.password')}
                 onChange={(e) => {
                   setPassword(e.target.value)
                 }}
@@ -96,13 +98,13 @@ export default function Login() {
             </div>
             <button
               onClick={(e) => { Login(e) }}
-              className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556]"
+              className="w-full py-3 hover:opacity-90 text-white mt-8 font-medium text-xl rounded-lg bg-[#539556] uppercase"
             >
-              LOG IN
+              {t('login.title')}
             </button>
           </form>
           <div className="text-center text-white mt-5">
-            <Link to="/register" className="underline">Create Account</Link>
+            <Link to="/register" className="underline">{t('login.createAccount')}</Link>
           </div>
         </div>
       </div>

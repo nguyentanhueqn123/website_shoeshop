@@ -3,9 +3,13 @@ import CouponCard from '../../../components/Card/CouponCard';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useFetchListCoupon, useListCoupon } from '../../../store/coupon/hook';
+import { useTranslation } from 'react-i18next';
+
 
 //
 export default function TopProduct() {
+    const { t } = useTranslation("home");
+
     //
     useFetchListCoupon()
     const listCoupon = useListCoupon();
@@ -37,14 +41,13 @@ export default function TopProduct() {
     };
 
     if(listCoupon === undefined) {
-        return <p className='h-full flex justify-center justify-items-center mt-4'>Loading...</p>
-
+        return <></>
     }
 
     return (
         <div className="w-full bg-white pb-16">
             <div className="mb-5 md:mb-10">
-                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">Best Discount Coupons</h1>
+                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">{t('text-discount')}</h1>
             </div>
    
             <div className="max-w-screen-xl w-full mx-auto">
@@ -68,7 +71,7 @@ export default function TopProduct() {
                     >
 
                         {
-                            listCoupon?.data?.filter(isCouponValid).map((coupon, index) => {
+                            listCoupon?.data?.filter(isCouponValid)?.map((coupon, index) => {
                                 return (
                                     <CouponCard coupon={coupon} key={coupon?._id} />
                                 )

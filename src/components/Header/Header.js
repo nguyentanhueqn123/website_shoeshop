@@ -1,39 +1,47 @@
-import React, { useState, useEffect } from 'react'
-import { FiMail, FiClock, FiPhone, FiShoppingBag, FiUser, FiLogOut, FiSettings, FiShoppingCart } from "react-icons/fi";
+import React, { useEffect, useState } from 'react';
+import { FiLogOut, FiMail, FiPhone, FiSettings, FiShoppingBag, FiShoppingCart, FiUser } from "react-icons/fi";
+import { Link, NavLink } from 'react-router-dom';
 import Container from '../Container/Container';
-import { NavLink, Link } from 'react-router-dom';
-import { Toast } from '../CustomToast/CustomToast';
-import { showToastSuccess} from '../CustomToast/CustomToast';
+import { showToastSuccess } from '../CustomToast/CustomToast';
 
-import '../../styles/header.scss';
-import { fetchUser } from '../../store/user/index'
-import { fetchProduct, setTotalPriceRedux } from '../../store/product/index'
-import { useUser } from '../../store/user/hook'
-import { useDispatch } from 'react-redux'
-import productApi from '../../api/productApi';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../../store/product/hook'
-import { setCart } from '../../store/product/index'
-import "./Header.scss"
+import productApi from '../../api/productApi';
+import { useCart } from '../../store/product/hook';
+import { setCart, setTotalPriceRedux } from '../../store/product/index';
+import { useUser } from '../../store/user/hook';
+import { fetchUser } from '../../store/user/index';
+import '../../styles/header.scss';
+import "./Header.scss";
+
+import { useTranslation } from 'react-i18next';
+import { locales } from '../../i18n/i18n';
+
 export default function Header() {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = locales[i18n.language];
+  console.log(currentLanguage);
+  const [activeLanguage, setActiveLanguage] = useState("vi");
+  const [totalPrice, setTotalPrice] = useState()
+  const [ open, setOpen] = useState(false);
 
   const navigate = useNavigate()
   const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
   const dispatch = useDispatch()
-  const [totalPrice, setTotalPrice] = useState()
+  
   const user = useUser()
   const cart = useCart()
   
   const handleLogout = () => {
-    
     localStorage.removeItem("USER_LOGIN")
     navigate('/')
     showToastSuccess("Log Out successful");
-
   }
-  const handleAdmin = () => {
-    navigate('/admin/dashboard')
-  }
+ 
+  const changeLanguage = (language) => {
+    setActiveLanguage(language);
+    i18n.changeLanguage(language);
+  };
 
   useEffect(() => {
     if (userLogin) {
@@ -43,7 +51,6 @@ export default function Header() {
         console.log(err)
       }
     }
-
   }, [])
   // lỗi từ thèn này ra
 
@@ -61,7 +68,6 @@ export default function Header() {
     }
   }, [dispatch, user])
 
-
   useEffect(() => {
     const total = cart?.reduce((total, product) => total + product?.data?.priceSale, 0)
     setTotalPrice(total)
@@ -71,11 +77,11 @@ export default function Header() {
 
   const menu = [
     {
-      displayName: 'Home',
+      displayName: t('nav.home'),
       link: ''
     },
     {
-      displayName: 'Product',
+      displayName: t('nav.product'),
       link: 'danh-muc'
     },
     // {
@@ -83,11 +89,10 @@ export default function Header() {
     //   link: 'blog'
     // },
     {
-      displayName: 'Contact',
+      displayName: t('nav.contact'),
       link: 'lien-he'
     },
   ]
-  const [ open, setOpen] = useState(false);
 
 
   return (
@@ -95,17 +100,36 @@ export default function Header() {
       <div className="w-full bg-[#62B4FF] z-20">
         <div className="flex items-center justify-between py-2 mx-3 md:mx-auto max-w-screen-xl">
           <div className="flex items-center">
-            <div className="flex items-center text-white px-2 border-r border-white text-sm-md font-medium">
+            <p className='block md:hidden font-semibold text-white'>4HSHOE</p>
+            <div className="items-center text-white px-2 border-r border-white text-sm-md font-medium hidden md:flex">
               <FiMail className="mr-2" />
               <span>
                 4HShoe@gmail.com
               </span>
             </div>
-            <div className="flex items-center text-white px-2 border-r border-white text-sm-md font-medium">
+            <div className="items-center text-white px-2 border-r border-white text-sm-md font-medium hidden md:flex">
               <FiPhone className="mr-2" />
               <span className="uppercase">
                 0962256789
               </span>
+            </div>
+            <div className='flex ml-2'>
+              <p
+                onClick={() => changeLanguage('vi')}
+                className={`text-[13px] py-1 px-2 bg-white rounded-md cursor-pointer ${
+                  activeLanguage === 'vi' ? 'text-[#62B4FF]' : 'text-gray-500'
+                }`}
+              >
+                VI
+              </p>
+              <p
+                onClick={() => changeLanguage('en')}
+                className={`text-[13px] py-1 px-2 bg-white rounded-md ml-2 cursor-pointer ${
+                  activeLanguage === 'en' ? 'text-[#62B4FF]' : 'text-gray-500'
+                }`}
+              >
+                EN
+              </p>
             </div>
           </div>
 
@@ -114,10 +138,9 @@ export default function Header() {
               <button
                 className="flex flex-col relative items-center text-white"
               >
-                {/* <span onClick={handleAdmin} className="mr-2"> */}
                 <div className="md:mr-2 flex flex-row items-center" onClick={()=>{setOpen(!open)}}>
                   <FiUser className="text-[24px] mr-1" />
-                  <span className="hidden md:block">
+                  <span>
                     {
                       userLogin?.nameAccount
                     }
@@ -128,19 +151,19 @@ export default function Header() {
                 <ul className={`dropdown-menu md:right-1.5 text-left text-black shadow-md border absolute ${open ? 'active' : 'inactive'}`}>
                   <Link to="/gio-hang" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
                     <FiShoppingCart width={15} className="mx-3"/>
-                    <li>My Cart</li>
+                    <li>{t('account.myCart')}</li>
                   </Link>
                   <Link to="/order" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
                     <FiShoppingBag width={15} className="mx-3"/>
-                    <li>My Order</li>
+                    <li>{t('account.myOrder')}</li>
                   </Link>
                   <Link to="/setting" onClick={()=>{setOpen(!open)}} className={`flex items-center li-option ${open ? 'active' : 'inactive'}`}>
                     <FiSettings width={15} className="mx-3"/>
-                    <li>Setting</li>
+                    <li>{t('account.setting')}</li>
                   </Link>
                   <Link to="/" onClick={handleLogout} className="flex items-center li-option">
                     <FiLogOut width={15} className="mx-3"/>
-                    <li>Log out</li>
+                    <li>{t('account.logout')}</li>
                   </Link>
                 </ul>
                 
@@ -150,7 +173,9 @@ export default function Header() {
               
               <Link to="/login" className="text-white cursor-pointer flex items-center justify-center text-[24px]">
                 <FiUser className="hidden md:block" />
-                <p className="text-[13px] ml-2 py-1 px-4 bg-[#fff] rounded-lg text-[#62B4FF] hover:bg-[#eee]">LOG IN</p>
+                <p className="text-[13px] ml-2 py-1 px-4 bg-[#fff] rounded-lg text-[#62B4FF] hover:bg-[#eee] uppercase">
+                {t('header.login')}
+                </p>
                 
               </Link>
             )
@@ -200,7 +225,7 @@ export default function Header() {
                     !cart?.length ? (
                       <div className="text-[#777] flex flex-col w-full h-[260px] items-center justify-center">
                         <img className="flex w-[80px] h-[80px]" src="/images/icon/bags.png" alt="" />
-                        <p className="flex items-center justify-center mt-4">No Product !</p>  
+                        <p className="flex items-center justify-center mt-4">{t('boxCart.statusProduct')}</p>  
                       </div>
                     ) : (
                       <div className="w-full">
@@ -224,9 +249,9 @@ export default function Header() {
                         }
 
                         <div className="w-full flex justify-between items-center my-3">
-                          <p className="text-[14px] md:mr-2">{cart?.length || 0} Products Add to Cart</p>
+                          <p className="text-[14px] md:mr-2">{cart?.length || 0} {t('boxCart.productAddCart')}</p>
                           <a href="/gio-hang" className="text-[14px] px-5 py-2 rounded-lg bg-[#62B4FF] hover:bg-[#349eff] text-white">
-                            View Cart
+                            {t('boxCart.viewCart')}
                           </a>
                         </div>
                       </div>

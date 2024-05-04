@@ -1,11 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import CartIcon from '../../../components/CartIcon/CartIcon';
-import ProductCardV2 from '../../../components/Card/ProductCardV2';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useFetchProducts, useProducts } from '../../../store/product/hook'
+import ProductCardV2 from '../../../components/Card/ProductCardV2';
+import { useFetchProducts, useProducts } from '../../../store/product/hook';
+
 export default function TopProduct() {
+    const { t } = useTranslation("home");
+
     useFetchProducts()
     const products = useProducts()
 
@@ -35,7 +37,7 @@ export default function TopProduct() {
     return (
         <div className="w-full bg-white py-8 md:py-16">
             <div className="mb-5 md:mb-10">
-                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">The most purchased</h1>
+                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">{t('text-purchased')}</h1>
             </div>
    
             <div className="max-w-screen-xl w-full mx-auto">

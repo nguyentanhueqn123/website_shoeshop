@@ -30,6 +30,7 @@ import { ToastContainer } from 'react-toastify'
 import EditProfile from "./views/Admin/EditProfile/EditProfile"
 import Chatbot from "./chatbot";
 import CompareDetail from './views/ProductDetail/CompareDetail';
+import "./i18n/i18n"
 
 const UserLayout = () => {
   return (

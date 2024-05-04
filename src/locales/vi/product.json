@@ -1,0 +1,15 @@
+{
+    "path": {
+        "home": "Trang chủ",
+        "products": "Sản phẩm"
+    },
+    "filter": {
+        "title": "Lọc & Sắp xếp",
+        "product": "sản phẩm",
+        "inputSearch": "Tìm theo Tên giày",
+        "dropSort": "Sắp xếp",
+        "category": "Danh mục",
+        "btnClear": "Xóa bộ lọc"
+
+    }
+}

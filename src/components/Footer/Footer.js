@@ -1,14 +1,15 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
-  
+  const { t } = useTranslation("home");
   return (
     <footer
       className="bg-[#3A3839] px-[10%] text-center text-white dark:bg-neutral-600 dark:text-neutral-200 lg:text-left text-lg">
       <div
         className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
-          <span>Get connected with us on social networks:</span>
+          <span>{t('footer.text-connect')}</span>
         </div>
         <div className="flex justify-center">
           <a href="#!" className="mr-6 text-neutral-600 dark:text-neutral-200">
@@ -94,7 +95,7 @@ export default function Footer() {
           <div className="">
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Products
+              {t('footer.products')}
             </h6>
            
             <p className="mb-4">
@@ -116,7 +117,7 @@ export default function Footer() {
           <div className="">
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Useful links
+              {t('footer.links')}
             </h6>
             <p className="mb-4">
               <a href="#!" className="text-neutral-600 dark:text-neutral-200"
@@ -138,7 +139,7 @@ export default function Footer() {
           <div>
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-              Contact
+              {t('footer.contact')}
             </h6>
             <p className="mb-4 flex items-center justify-center md:justify-start">
               <svg

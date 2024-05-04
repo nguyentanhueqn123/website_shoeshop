@@ -1,0 +1,16 @@
+{
+    "path": {
+        "home": "home",
+        "products": "products"
+    },
+    "filter": {
+        "title": "Filter & Sort",
+        "product": "Products",
+        "inputSearch": "Search by Product Name",
+        "dropSort": "Sort",
+        "category": "category",
+        "btnClear": "Clear Filter"
+
+
+    }
+}

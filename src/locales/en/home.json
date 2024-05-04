@@ -1,0 +1,30 @@
+{
+    "header": {
+        "login": "Log in"
+    },
+    "account": {
+        "myCart": "My Cart",
+        "myOrder": "My Order",
+        "setting": "Setting",
+        "logout": "Log out"
+    },
+    "nav": {
+        "home": "Home",
+        "product": "Product",
+        "contact": "Contact"
+
+    },
+    "boxCart": {
+        "statusProduct": "No Product !",
+        "productAddCart": "Products Add to Cart",
+        "viewCart": "View Cart"
+    },
+    "text-purchased": "the most purchased",
+    "text-discount": "best coupons",
+    "footer": {
+        "text-connect": "Get connected with us on social networks:",
+        "products": "Products",
+        "links": "USEFUL LINKS",
+        "contact": "Contact"
+    }
+}
