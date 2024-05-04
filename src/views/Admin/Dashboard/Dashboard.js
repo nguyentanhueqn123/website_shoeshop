@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import AdminContainer from '../../../components/AdminContainer/AdminContainer'
 // import Dropdown from '../../../components/Dropdown/Dropdown'
-import DoughnutChart from '../../../components/DoughnutChart/DoughnutChart'
-import BarChart from '../../../components/BarChart/BarChart'
-import Table from '../../../components/Table/Table'
-import { useFetchListInvoice, useListInvoice, useFetchReport, useTotal, useCost } from '../../../store/invoice/hook'
-import { PRODUCT_STATUS_COLOR, PRODUCT_STATUS } from '../../../constants/index'
-import Badge from '../../../components/Badge/Badge'
 import classnames from 'classnames'
+import Badge from '../../../components/Badge/Badge'
+import Table from '../../../components/Table/Table'
+import { PRODUCT_STATUS, PRODUCT_STATUS_COLOR } from '../../../constants/index'
+import { useCost, useFetchListInvoice, useFetchReport, useListInvoice, useTotal } from '../../../store/invoice/hook'
 // import LoadingPage from '../../../components/LoadingPage/Loading'
-import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
+import { Chart, registerables } from 'chart.js'
+import { useFetchAllProductType, useFetchProducts, useProducts } from '../../../store/product/hook'
 import arrayToObject from '../../../utils/arrayToObject'
-import { formatPrice } from './../../../utils/formatPrice';
-import { useFetchProducts, useProducts, useFetchAllProductType} from '../../../store/product/hook'
-import {Chart, registerables} from 'chart.js';
+import { formatDDMMYYYYHHmm } from '../../../utils/formatDatetime'
+import { formatPrice } from './../../../utils/formatPrice'
 
 
 export default function Dashboard() {

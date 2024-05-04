@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import AdminContainer from '../../../components/AdminContainer/AdminContainer'
-import Input from '../../../components/Input/Input'
-import Dropdown from '../../../components/Dropdown/Dropdown'
-import Table from '../../../components/Table/Table'
-import ToggleButton from './../../../components/Button/ToggleButton';
+import React, { useEffect, useState } from 'react'
 import { Eye } from 'react-feather'
-import ActionGroup from '../../../components/ActionGroup/ActionGroup'
-import productApi from '../../../api/productApi'
-import { fetchProducts } from './../../../store/product/index';
+import ReactPaginate from 'react-paginate'
 import { useDispatch } from 'react-redux'
-import { useFetchProducts, useProducts, useFetchAllProductType, useAllProductType } from './../../../store/product/hook';
-import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../../store/search/hook'
-import { updateSearchData } from '../../../store/search/index'
 import { useNavigate } from 'react-router-dom'
+import productApi from '../../../api/productApi'
+import ActionGroup from '../../../components/ActionGroup/ActionGroup'
+import AdminContainer from '../../../components/AdminContainer/AdminContainer'
+import Dropdown from '../../../components/Dropdown/Dropdown'
+import Input from '../../../components/Input/Input'
+import Table from '../../../components/Table/Table'
 import { SORT_PRODUCT_PRICE } from '../../../constants/index'
+import { useSearchData, useUpdateQuery, useUpdateSearch } from '../../../store/search/hook'
+import { updateSearchData } from '../../../store/search/index'
 import { formatPrice } from '../../../utils/formatPrice'
-import ReactPaginate from 'react-paginate';
+import { useAllProductType, useFetchAllProductType, useFetchProducts, useProducts } from './../../../store/product/hook'
+import { fetchProducts } from './../../../store/product/index'
 
 
 export const ShowDetail = ({ onClick }) => {

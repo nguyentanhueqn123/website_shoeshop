@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import classnames from 'classnames';
+import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
-import classnames from 'classnames'
 import "./Table.scss";
 
 export default function Table({ data, columnsTable, bgNone=false }) {
