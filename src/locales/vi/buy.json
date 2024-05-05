@@ -1,0 +1,15 @@
+{
+    "title": "Đơn hàng cần thanh toán",
+    "total": "Tổng sản phẩm",
+    "product": "sản phẩm",
+    "totalPrice": "Tổng tiền",
+    "delivery": "Giao hàng",
+    "deliveryAddress": "Địa chỉ nhận hàng",
+    "inputAddress": "Nhập địa chỉ",
+    "phoneNumber": "Số điện thoại",
+    "inputPhone": "Nhập số điện thoại",
+    "paymentMethod": "Phương thức thanh toán",
+    "cod": "Tiền mặt",
+    "qr": "Với QR CODE",
+    "orderNow": "Thanh toán ngay"
+}

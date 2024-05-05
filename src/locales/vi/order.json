@@ -1,0 +1,23 @@
+{
+    "title": "Đơn hàng của tôi",
+    "search": "Tìm theo Địa chỉ nhận hàng",
+    "status": {
+        "all": "Tất cả",
+        "pending": "Đang chờ",
+        "processing": "Đang xử lý",
+        "delivered": "Đã giao",
+        "cancel": "Đã hủy",
+        "return": "Trả hàng"
+    },
+    "totalProduct": "tổng sản phẩm",
+    "review": "Đánh giá",
+    "description": "Mô tả",
+    "deliveryAddress": "Địa chỉ nhận hàng",
+    "card": {
+        "id": "ID đơn hàng",
+        "total": "Tổng SL",
+        "amountDue": "Tiền phải trả",
+        "time": "Thời gian",
+        "method": "Phương thức thanh toán"
+    }
+}

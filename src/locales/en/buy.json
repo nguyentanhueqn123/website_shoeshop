@@ -1,0 +1,16 @@
+{
+    "title": "About your order",
+    "total": "Total Product",
+    "product": "Products",
+    "totalPrice": "Total Price",
+    "delivery": "Delivery",
+    "deliveryAddress": "Delivery Address",
+    "inputAddress": "Your address",
+    "phoneNumber": "Phone Number",
+    "inputPhone": "Your phone number",
+    "paymentMethod": "payment method",
+    "cod": "Cash On Delivery",
+    "qr": "With QR CODE",
+    "orderNow": "Order Now"
+
+}

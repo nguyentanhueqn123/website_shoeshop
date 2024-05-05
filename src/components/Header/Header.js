@@ -98,7 +98,7 @@ export default function Header() {
   return (
     <div>
       <div className="w-full bg-[#62B4FF] z-20">
-        <div className="flex items-center justify-between py-2 mx-3 md:mx-auto max-w-screen-xl">
+        <div className="flex items-center justify-between py-2 mx-3 lg:mx-auto max-w-screen-xl">
           <div className="flex items-center">
             <p className='block md:hidden font-semibold text-white'>4HSHOE</p>
             <div className="items-center text-white px-2 border-r border-white text-sm-md font-medium hidden md:flex">
@@ -117,7 +117,7 @@ export default function Header() {
               <p
                 onClick={() => changeLanguage('vi')}
                 className={`text-[13px] py-1 px-2 bg-white rounded-md cursor-pointer ${
-                  activeLanguage === 'vi' ? 'text-[#62B4FF]' : 'text-gray-500'
+                  activeLanguage === 'vi' ? 'text-[#62B4FF] font-semibold' : 'text-gray-500'
                 }`}
               >
                 VI
@@ -125,7 +125,7 @@ export default function Header() {
               <p
                 onClick={() => changeLanguage('en')}
                 className={`text-[13px] py-1 px-2 bg-white rounded-md ml-2 cursor-pointer ${
-                  activeLanguage === 'en' ? 'text-[#62B4FF]' : 'text-gray-500'
+                  activeLanguage === 'en' ? 'text-[#62B4FF] font-semibold' : 'text-gray-500'
                 }`}
               >
                 EN
@@ -182,7 +182,7 @@ export default function Header() {
           }
         </div>
       </div>
-      <div className="w-full bg-white shadow-md mb-3 z-20">
+      <div className="w-full bg-white shadow-md mb-3 z-20 px-4">
         <Container className="flex justify-between items-center py-5">
           <Link to="/">
             <img src="/logo1.png" alt="logo" className="image-logo1 hidden md:block" />
@@ -192,11 +192,11 @@ export default function Header() {
             {
               menu.map((item, index) => {
                 return (
-                  <li className="mr-4 text-md text-black-1 font-medium uppercase tracking-widest" key={index}>
+                  <li className="mr-4 text-sm-md md:text-md text-black-1 font-medium uppercase tracking-widest" key={index}>
                     <NavLink
                       to={item.link}
                       className={({ isActive }) =>
-                        isActive ? "rounded px-3 py-2 text-[#62B4FF] font-bold" : "transition-all duration-100 ease-linear rounded hover:p-3 hover:text-black-2 hover:bg-[#ccc] hover:rounded-lg hover:text-white"
+                        isActive ? "rounded text-[#62B4FF] font-bold" : "transition-all duration-100 ease-linear rounded hover:p-3 hover:text-black-2 hover:bg-[#ccc] hover:rounded-lg hover:text-white"
                       }
                     >
                       {item.displayName}
@@ -216,7 +216,7 @@ export default function Header() {
 
                 <i className="fa-solid mr-2 md:mr-0 fa-cart-shopping text-black text-[1.5rem]"></i>
                 
-                <div className="rounded-full bg-red-400 w-[20px] h-[20px] text-white flex items-center justify-center mt-[-24px] mr-2 md:mr-0 ml-[-20px] md:ml-[-10px]">
+                <div className="rounded-full bg-red-400 w-[20px] h-[20px] text-white flex items-center justify-center mt-[-24px] ml-[-20px] md:ml-[-10px]">
                   {cart?.length || 0}
                 </div>
                     

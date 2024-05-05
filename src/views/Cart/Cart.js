@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import Container from '../../components/Container/Container'
-import { Tag, ArrowLeft } from 'react-feather'
-import Price from '../../components/Price/Price'
-import { Link } from 'react-router-dom'
-import productApi from './../../api/productApi';
-import { fetchUser } from './../../store/user/index'
-import { fetchProduct, setTotalPriceRedux, setCart } from './../../store/product/index'
-import { useCart } from '../../store/product/hook'
-import { useUser } from './../../store/user/hook'
+import React, { useEffect, useState } from 'react'
+import { ArrowLeft, Tag } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import Price from '../../components/Price/Price'
+import { useCart } from '../../store/product/hook'
+import couponApi from './../../api/couponApi'
+import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast'
+import { setTotalPriceRedux } from './../../store/product/index'
 import CartRow from './components/CartRow'
-import couponApi from './../../api/couponApi';
-import { showToastError, showToastSuccess } from './../../components/CustomToast/CustomToast';
 
 export default function Cart() {
+    const { t } = useTranslation("cart");
  
     const dispatch = useDispatch()
 
@@ -80,8 +78,8 @@ export default function Cart() {
                             <table className="w-full">
                                 <thead className="border-b-2 border-gray-300">
                                     <tr className="mb-3">
-                                        <th className="text-left pb-3 uppercase text-lg font-medium">
-                                            products in cart
+                                        <th className="text-left pb-3 uppercase text-md md:text-lg font-medium">
+                                        {t('title')}
                                         </th>
                                         <th className="text-right">
                                             
@@ -102,23 +100,23 @@ export default function Cart() {
                             <div className="mt-5">
                                 <Link to="/danh-muc" className="flex py-2 w-60 justify-center items-center text-[#62B4FF] border-[#62B4FF] border-2 rounded-lg uppercase font-medium hover:bg-[#62B4FF] hover:text-white">
                                     <ArrowLeft width={20} className="mr-1" />
-                                    continue shopping
+                                    {t('continueShopping')}
                                 </Link>
                             </div>
                         </div>
 
                         <div className="w-full md:w-1/3 p-4 md:p-6 md:border md:rounded-lg shadow-lg">
                             <div className="flex items-center justify-between py-2">
-                                <p>Total Amount:</p>
+                                <p>{t('total')}:</p>
                                 <div className="flex items-end flex-col">
                                     <p className="text-sm-md opacity-80 mb-2">
-                                        {cart?.length || 0} Product
+                                        {cart?.length || 0} {t('product')}
                                     </p>
                                 </div>
 
                             </div>
                             <div className="flex items-center justify-between py-2">
-                                <p>Delivery:</p>
+                                <p>{t('delivery')}:</p>
                                 <div className="flex items-end flex-col">
                                     <p className="text-sm-md opacity-80 mb-2">
                                         Free shipping
@@ -127,31 +125,31 @@ export default function Cart() {
                             </div>
 
                             <div className="flex items-center justify-between py-2 border-b-2 border-gray-300">
-                                <p>Total Price:</p>
+                                <p>{t('totalPrice')}:</p>
                                 <Price
                                     price={totalPrice}
                                     color="black"
                                 />
                             </div>
 
-                            <div className="text-black font-medium flex items-center py-3 border-gray-300">
+                            <div className="text-black font-medium flex items-center py-3 border-gray-300 uppercase">
                                 <Tag width={20} className="mr-2" />
-                                DISCOUNT COUPONS
+                                {t('coupon')}
                             </div>
 
                             <div className="flex w-full">
-                                <input disabled={disabled} placeholder="Enter ID code" className="w-4/5 rounded-lg p-2 border border-gray-300 mr-2" onChange={(e) => setCode(e.target.value)} />
+                                <input disabled={disabled} placeholder={t('inputCoupon')} className="w-4/5 rounded-lg p-2 border border-gray-300 mr-2" onChange={(e) => setCode(e.target.value)} />
                                 <button
                                     disabled={disabled}
                                     onClick={handleUseCoupon}
                                     className="w-1/5 bg-[#f9f9f9] rounded-lg border border-gray-300 hover:bg-[#62B4FF] hover:text-white"
                                 >
-                                    Apply
+                                    {t('apply')}
                                 </button>
                             </div>
                             <Link to="/thanh-toan">
                                 <div className="text-center rounded-lg w-full py-2 text-white font-medium uppercase bg-[#62B4FF] hover:bg-[#349eff] my-4">
-                                    Buy Now
+                                    {t('buyNow')}
                                 </div>
                             </Link>
                         </div>

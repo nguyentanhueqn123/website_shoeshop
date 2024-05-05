@@ -1,0 +1,14 @@
+{
+    "title": "product in cart",
+    "quantity": "Quantity",
+    "total": "Total Amount",
+    "delivery": "Delivery",
+    "totalPrice": "Total Price",
+    "coupon": "coupons",
+    "inputCoupon": "Enter ID code", 
+    "apply": "Apply",
+    "buyNow": "Buy now",
+    "continueShopping": "Continue Shopping",
+    "product": "Product",
+    "returnProduct": "7 days free return"
+}

@@ -1,13 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import '../../styles/cardProduct.scss'
-import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage'
-import Price from '../../components/Price/Price'
-import CartIcon from '../../components/CartIcon/CartIcon'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import CartIcon from '../../components/CartIcon/CartIcon';
+import Price from '../../components/Price/Price';
+import { fetchUser } from '../../store/user';
+import { useUser } from '../../store/user/hook';
+import '../../styles/cardProduct.scss';
 import { addToCart } from '../../utils/addtoCart';
-import { useDispatch } from 'react-redux'
-import { fetchUser } from '../../store/user'
-import { useUser } from '../../store/user/hook'
+import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage';
 
 
 export default function ProductCard({ product }) {

@@ -1,0 +1,23 @@
+{
+    "title": "my order",
+    "search": "Search by shipping address",
+    "status": {
+        "all": "All",
+        "pending": "Pending",
+        "processing": "Processing",
+        "delivered": "Delivered",
+        "cancel": "Cancel",
+        "return": "Return"
+    },
+    "totalProduct": "total product",
+    "review": "Review",
+    "description": "description",
+    "deliveryAddress": "delivery address",
+    "card": {
+        "id": "ID order",
+        "total": "Total Quanlity",
+        "amountDue": "Amount due",
+        "time": "Time Order",
+        "method": "Payment Method"
+    }
+}

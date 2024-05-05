@@ -23,6 +23,11 @@
     },
     "text-purchased": "Được mua nhiều nhất",
     "text-discount": "Mã giảm giá cho bạn",
+    "boxCoupon":{
+        "id": "ID",
+        "remaining": "Số lượng",
+        "time": "Thời hạn"
+    },
     "footer": {
         "text-connect": "Hãy kết nối với chúng tôi trên các mạng xã hội:",
         "products": "Sản phẩm",

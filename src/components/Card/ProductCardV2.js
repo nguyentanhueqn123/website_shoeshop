@@ -1,13 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import CartIcon from '../../components/CartIcon/CartIcon'
 import Price from '../../components/Price/Price'
-import { formatPrice } from '../../utils/formatPrice'
-import { addToCart } from '../../utils/addtoCart';
-import { useDispatch } from 'react-redux'
 import { fetchUser } from '../../store/user'
 import { useUser } from '../../store/user/hook'
 import '../../styles/cardProduct.scss'
+import { addToCart } from '../../utils/addtoCart'
 
 export default function ProductCardV2({ product }) {
     const dispatch = useDispatch()

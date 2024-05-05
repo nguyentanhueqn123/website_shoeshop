@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import Price from '../../../components/Price/Price'
-import { X, Archive } from 'react-feather'
-import { deleteCart } from '../../../utils/addtoCart'
-import { fetchUser } from '../../../store/user'
+import React, { useState } from 'react'
+import { Archive, X } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import userApi from '../../../api/userApi'
+import Price from '../../../components/Price/Price'
+import { fetchUser } from '../../../store/user'
+import { deleteCart } from '../../../utils/addtoCart'
 export default function CartRow({ product, quantity}) {
+    const { t } = useTranslation("cart");
+
 
     const [inputValue, setInputValue] = useState(quantity)
  
@@ -60,7 +63,7 @@ export default function CartRow({ product, quantity}) {
                     <p className="">{product?.data?.nameProduct}</p>
                     <div className="hidden md:flex items-center mt-2 opacity-60">
                         <Archive className="w-[1rem] h-[1rem] text-[#62B4FF]"/>
-                        <p className="text-sm ml-1">7 days free return</p>
+                        <p className="text-sm ml-1">{t('returnProduct')}</p>
                     </div>
                     <p className="md:hidden text-red-400">x {quantity}</p>
                 </div>
@@ -73,7 +76,7 @@ export default function CartRow({ product, quantity}) {
                 />
             </td> */}
             <td>
-                <p className="hidden md:block">Quantity: {quantity}</p>
+                <p className="hidden md:block">{t('quantity')}: {quantity}</p>
                 {/* <p className="md:hidden">x {quantity}</p> */}
             </td>
 

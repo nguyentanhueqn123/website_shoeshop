@@ -21,6 +21,11 @@
     },
     "text-purchased": "the most purchased",
     "text-discount": "best coupons",
+    "boxCoupon":{
+        "id": "ID Code",
+        "remaining": "Remaining",
+        "time": "Shelf time"
+    },
     "footer": {
         "text-connect": "Get connected with us on social networks:",
         "products": "Products",

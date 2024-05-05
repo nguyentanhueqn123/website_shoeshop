@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import Input from '../../components/Input/Input'
-import { useDispatch } from 'react-redux';
-import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
-import { useUpdateQuery, useSearchData, useUpdateSearch } from '../../store/search/hook'
-import { updateSearchData } from '../../store/search/index'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import { useFetchProducts, useProducts, useFetchAllProductType} from '../../store/product/hook'
-import OrderBox from "./OrderBox"
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Input from '../../components/Input/Input';
+import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook';
+import { useFetchAllProductType, useFetchProducts, useProducts } from '../../store/product/hook';
+import { useSearchData, useUpdateQuery, useUpdateSearch } from '../../store/search/hook';
+import { updateSearchData } from '../../store/search/index';
+import OrderBox from "./OrderBox";
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function Orders() {
+    const { t } = useTranslation(["order", "general"]);
+
     const products = useProducts()
     // products?.data.forEach(product => {
     //   console.log(product._id)
@@ -79,8 +82,8 @@ export default function Orders() {
 
     return (
         <div className="max-w-screen-xl mx-auto py-6 mb-10">
-            <p className="text-lg font-medium mx-4 md:mx-0 mb-3 md:mb-6 uppercase">
-                My Orders
+            <p className="text-md md:text-lg font-medium mx-4 md:mx-0 mb-3 md:mb-6 uppercase">
+              {t('title')}
             </p>
             <div className="relative mx-4 md:mx-0 md:p-5 rounded-lg bg-[#F2F2F2] mb-5">
                 <Input
@@ -88,7 +91,7 @@ export default function Orders() {
                     onChange={handleChangeInput}
                     dark={1}
                     type="text"
-                    placeholder="Search by shipping address"
+                    placeholder={t('search')}
                 />
               <span className="absolute ml-3 top-[10px] md:top-[30px]"><i className="fa-solid fa-magnifying-glass"></i></span>
 
@@ -103,7 +106,7 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("all")}
               >
-                All
+                {t('status.all')}
               </button>
               <button
                 className={`${
@@ -113,7 +116,7 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("PENDING")}
               >
-                PENDING
+                {t('status.pending')}
               </button>
               <button
                 className={`${
@@ -123,7 +126,7 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("PROCESSING")}
               >
-                PROCESSING
+                {t('status.processing')}
               </button>
               <button
                 className={`${
@@ -133,7 +136,7 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("DELIVERED")}
               >
-                DELIVERED
+                {t('status.delivered')}
               </button>
               <button
                 className={`${
@@ -143,7 +146,7 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("CANCEL")}
               >
-                CANCEL
+                {t('status.cancel')}
               </button>
               <button
                 className={`${
@@ -153,13 +156,12 @@ export default function Orders() {
                 } px-4 py-2 hover:text-[#62B4FF]`}
                 onClick={() => setSelectedStatus("RETURN")}
               >
-              RETURN
-
+                {t('status.return')}
               </button>
             </div>
             
             <div className="bg-[#F5F5F5] p-4 md:p-6 md:rounded-lg">
-              <h1 className="mb-2 uppercase">Total Product: {filteredInvoices?.length}</h1>
+              <h1 className="mb-2 uppercase">{t('totalProduct')}: {filteredInvoices?.length}</h1>
               {
                 paginatedInvoices?.map((invoice, index) => {
                     return (
@@ -171,9 +173,9 @@ export default function Orders() {
             </div>
             
             <ReactPaginate
-              previousLabel={"Previous"}
+              previousLabel={t('general:pre')}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
-              nextLabel={"Next"}
+              nextLabel={t('general:next')}
               nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
               pageCount={pageCount}
               pageClassName="px-3 py-1"

@@ -20,7 +20,7 @@ import { useTranslation } from 'react-i18next';
 
 
 export default function Product() {
-  const { t } = useTranslation("product");
+  const { t } = useTranslation(["product", "general"]);
 
   useFetchProducts()
   useFetchAllProductType()
@@ -187,9 +187,9 @@ export default function Product() {
             }
             <div className="">
             <ReactPaginate
-              previousLabel={"Previous"}
+              previousLabel={t('general:pre')}
               previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
-              nextLabel={"Next"}
+              nextLabel={t('general:next')}
               nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
               pageCount={pageCount}
               pageClassName="px-3 py-1"
