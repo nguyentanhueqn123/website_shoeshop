@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCardV2 from '../../../components/Card/ProductCardV2';
+import LoadingProductV2 from '../../../components/LoadingPage/LoadingProductV2';
 import { useFetchProducts, useProducts } from '../../../store/product/hook';
 
 export default function TopProduct() {
@@ -30,17 +31,15 @@ export default function TopProduct() {
     };
 
     if(products === undefined) {
-        return <p className='h-full flex justify-center justify-items-center mt-4'>Loading...</p>
-
+        return <LoadingProductV2/>
     }
 
     return (
         <div className="w-full bg-white py-8 md:py-16">
-            <div className="mb-5 md:mb-10">
-                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">{t('text-purchased')}</h1>
-            </div>
-   
             <div className="max-w-screen-xl w-full mx-auto">
+                <div className="mb-5 md:mb-10">
+                    <h1 className="uppercase text-xl md:text-2xl text-black-1 font-medium">{t('text-purchased')}</h1>
+                </div>
                 <div className="mr-[-8px] ml-[-8px]">
                     <Carousel
                         swipeable

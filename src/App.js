@@ -11,7 +11,7 @@ import Buy from './views/Buy/Buy'
 import ProductDetail from './views/ProductDetail/ProductDetail';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import AdminSidebar from './components/AdminSidebar/AdminSidebar'
+// import AdminSidebar from './components/AdminSidebar/AdminSidebar'
 import Dashboard from './views/Admin/Dashboard/Dashboard'
 import AdminHeader from './components/AdminHeader/AdminHeader'
 import Products from './views/Admin/Products/Products'

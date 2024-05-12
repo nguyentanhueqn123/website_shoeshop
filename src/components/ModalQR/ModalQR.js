@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Modal from 'react-modal';
-import { useTotalPrice, useCart } from './../../store/product/hook'
+import { useCart, useTotalPrice } from './../../store/product/hook';
 
 
 const ModalQR = ({ show, handleClose }) => {

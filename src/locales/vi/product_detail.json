@@ -1,0 +1,32 @@
+{
+    "compare": "So sánh",
+    "hide": "Ẩn so sánh",
+    "view": "Xem",
+    "review": "đánh giá",
+    "decrease": "Giảm đến",
+    "quantity": "Số lượng",
+    "descriptionDetails": "Mô tả và chi tiết",
+    "addToCart": "Thêm vào giỏ hàng",
+    "description": "Mô tả",
+    "detailsProduct": {
+        "title": "Chi tiết sản phẩm",
+        "quantity": "Số lượng",
+        "weigh": "Khối lượng"
+    },
+    "productReviews": {
+        "title": "Đánh giá sản phẩm",
+        "review": "Đánh giá",
+        "makeQuestion": "Tạo câu hỏi",
+        "writeReview": "Viết đánh giá",
+        "tab": {
+            "review": "Đánh giá",
+            "inputReview": "Nhập đánh giá của bạn...",
+            "btnReview": "Gửi đánh giá",
+            "question": "Câu hỏi",
+            "inputQuestion": "Nhập câu hỏi của bạn...",
+            "btnQuestion": "Gửi câu hỏi"
+        }
+    },
+    "suggestion": "Dành cho bạn",
+    "recentlyViewed": "Đã xem gần đây"
+}

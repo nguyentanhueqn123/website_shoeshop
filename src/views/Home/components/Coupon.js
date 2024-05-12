@@ -46,11 +46,10 @@ export default function TopProduct() {
 
     return (
         <div className="w-full bg-white pb-16">
-            <div className="mb-5 md:mb-10">
-                <h1 className="uppercase text-xl md:text-2xl text-black-1 md:px-[10%] font-medium">{t('text-discount')}</h1>
-            </div>
-   
             <div className="max-w-screen-xl w-full mx-auto">
+                <div className="mb-5 md:mb-10">
+                    <h1 className="uppercase text-xl md:text-2xl text-black-1 font-medium">{t('text-discount')}</h1>
+                </div>
                 <div className="mr-[-8px] ml-[-8px]">
                     <Carousel
                         swipeable

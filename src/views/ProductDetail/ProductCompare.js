@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import Input from '../../components/Input/Input'
 import { useDispatch } from 'react-redux'

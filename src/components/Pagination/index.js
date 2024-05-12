@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { ChevronRight, ChevronLeft } from 'react-feather'
 import classnames from 'classnames'
+import React, { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'react-feather'
 
 const Pagination = ({ children, className, itemsPerPage, data, classNameContain }) => {
     const limitPage = Math.ceil(data?.length / itemsPerPage)

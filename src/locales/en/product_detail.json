@@ -1,0 +1,32 @@
+{
+    "compare": "Compare",
+    "hide": "Hide",
+    "view": "View",
+    "review": "review",
+    "decrease": "decrease",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "descriptionDetails": "Description and Details",
+    "description": "Description",
+    "detailsProduct": {
+        "title": "Details Product",
+        "quantity": "Quantity",
+        "weigh": "Weigh"
+    },
+    "productReviews": {
+        "title": "Product Reviews",
+        "review": "review",
+        "makeQuestion": "Make a Question",
+        "writeReview": "Write a Review",
+        "tab": {
+            "review": "Review",
+            "inputReview": "Your review...",
+            "btnReview": "Submit review",
+            "question": "Question",
+            "inputQuestion": "Your question...",
+            "btnQuestion": "Submit question"
+        }
+    },
+    "suggestion": "Suggestions for you",
+    "recentlyViewed": "Recently Viewed"
+}

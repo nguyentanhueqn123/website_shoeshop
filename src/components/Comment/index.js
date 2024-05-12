@@ -14,6 +14,7 @@ import { fetchProduct } from '../../store/product'
 import ReactPaginate from 'react-paginate'
 import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
 import { useFetchProduct, useProduct, useFetchProducts} from '../../store/product/hook'
+import { useTranslation } from 'react-i18next'
 
 
 const labels = {
@@ -35,6 +36,7 @@ function getLabelText(value) {
 
 
 export default function Comment({ comment, question, productId }) {
+  const { t } = useTranslation(["product_detail", "general"]);
   useFetchProduct()
   useFetchProducts()
   const product = useProduct()
@@ -122,7 +124,7 @@ export default function Comment({ comment, question, productId }) {
                 userId: userLogin?._id,
                 question: contentQuestion,
             })
-            showToastSuccess("Add successul question")
+            showToastSuccess("Add successful question")
             dispatch(fetchProduct(productId))
         } catch (err) {
             console.log(err)
@@ -164,7 +166,7 @@ export default function Comment({ comment, question, productId }) {
   return (
     <div id="product-review" className="w-full bg-[#F5F5F5] mt-14 p-4 md:p-6 md:rounded-lg">
       <div className="mb-6">
-        <h1 className="text-lg md:text-2xl font-medium uppercase">product reviews</h1>
+        <h1 className="text-lg md:text-2xl font-medium uppercase">{t('productReviews.title')}</h1>
       </div>
 
       <div className="flex flex-col md:flex-row justify-between p-5 items-center bg-white rounded-lg">
@@ -180,7 +182,7 @@ export default function Comment({ comment, question, productId }) {
                 size="2xl"
               />
             </div>
-            <span className="opacity-70 text-md mt-10">{comment?.length} reviews</span>
+            <span className="opacity-70 text-md mt-10">{comment?.length} {t('productReviews.review')}</span>
           </div>
 
           <div className="pl-5">
@@ -257,7 +259,7 @@ export default function Comment({ comment, question, productId }) {
             }}
 
             className="px-4 py-2 text-[#62B4FF] border-[#62B4FF] border-2 rounded-lg uppercase">
-            Make a question
+            {t('productReviews.makeQuestion')}
           </button>
           {
             
@@ -268,7 +270,8 @@ export default function Comment({ comment, question, productId }) {
                   setShowReviewForm(true)
                 }}
                 className="mt-3 px-4 py-2 text-white font-medium rounded-lg hover:opacity-80 uppercase bg-[#62B4FF] hover:bg-[#62B4FF]">
-                Write a review
+                {t('productReviews.writeReview')}
+
               </button>
             )
           }
@@ -291,14 +294,14 @@ export default function Comment({ comment, question, productId }) {
             <form>
               <textarea
                 className="w-full border border-gray-300 mt-4 p-4 h-40 rounded-lg"
-                placeholder='Your question...'
+                placeholder={t('productReviews.tab.inputQuestion')}
                 onChange={e => setcontentQuestion(e.target.value)}
               />
               <button
                 className="mt-2 px-4 py-2 text-white bg-[#62B4FF] text-lg rounded-lg hover:bg-[#62B4FF] hover:opacity-80"
                 onClick={e => handleSubmitQuestion(e)}
               >
-                Submit question
+                {t('productReviews.tab.btnQuestion')}
               </button>
             </form>
           </div>
@@ -336,14 +339,14 @@ export default function Comment({ comment, question, productId }) {
                 <form>
                     <textarea
                         className="w-full border border-gray-300 mt-4 p-4 h-40 rounded-lg"
-                        placeholder='Your review...'
+                        placeholder={t('productReviews.tab.inputReview')}
                         onChange={e => setContentReview(e.target.value)}
                     />
                     <button
                         className="mt-2 px-4 py-2 text-white bg-[#62B4FF] text-lg rounded-lg hover:bg-[#62B4FF] hover:opacity-80"
                         onClick={e => handleSubmitReview(e)}
                     >
-                        Submit review
+                      {t('productReviews.tab.btnReview')}
                     </button>
                 </form>
             </div>
@@ -361,7 +364,7 @@ export default function Comment({ comment, question, productId }) {
 
           onClick={() => handleChangeTab(1)}
         >
-          Review ({comment?.length || 0})
+          {t('productReviews.tab.review')} ({comment?.length || 0})
         </div>
         <div
           className={classnames(
@@ -370,7 +373,7 @@ export default function Comment({ comment, question, productId }) {
           )}
           onClick={() => handleChangeTab(2)}
         >
-          Question ({question?.length || 0})
+          {t('productReviews.tab.question')} ({question?.length || 0})
         </div>
       </div>
       {
@@ -389,9 +392,9 @@ export default function Comment({ comment, question, productId }) {
       }
       {tab !== 1 && (
         <ReactPaginate
-          previousLabel={"Previous"}
+          previousLabel={t('general:pre')}
           previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
-          nextLabel={"Next"}
+          nextLabel={t('general:next')}
           nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
           pageCount={Math.ceil(question?.length / commentsPerPage)}
           pageClassName="px-3 py-1"
@@ -406,9 +409,9 @@ export default function Comment({ comment, question, productId }) {
       )}
       {tab !== 2 && (
         <ReactPaginate
-          previousLabel={"Previous"}
+          previousLabel={t('general:pre')}
           previousClassName="mr-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
-          nextLabel={"Next"}
+          nextLabel={t('general:next')}
           nextClassName="ml-2 border px-3 py-1 rounded-lg hover:bg-[#349eff] hover:text-white"
           pageCount={Math.ceil(comment?.length / commentsPerPage)}
           pageClassName="px-3 py-1"

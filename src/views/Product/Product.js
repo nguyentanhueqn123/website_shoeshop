@@ -1,21 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
-import { Link } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/Card/ProductCard';
 import Input from '../../components/Input/Input';
+import LoadingProduct from '../../components/LoadingPage/LoadingProduct';
 import OnTop from '../../components/OnTop/OnTop';
 import { SORT_PRODUCT_PAGE_PRODUCT } from '../../constants';
 import { useAllProductType, useFetchAllProductType, useFetchProducts, useProducts } from '../../store/product/hook';
 import { useSearchData, useUpdateQuery, useUpdateSearch } from '../../store/search/hook';
 import { resetSearchData, updateSearchData } from '../../store/search/index';
-import { ADD_ITEM_TO_JUST_VIEW } from '../../utils/storage';
 import CheckBox from './../../components/Checkbox/Checkbox';
 import Dropdown from './../../components/Dropdown/Dropdown';
-import LoadingPage from './../../components/LoadingPage/Loading';
 import "./Product.scss";
-import { useTranslation } from 'react-i18next';
 
 
 
@@ -51,7 +50,6 @@ export default function Product() {
   const productTypes = useAllProductType()
   const [reset, setReset] = useState(false)
   const dispatch = useDispatch()
-  let productStorage = ADD_ITEM_TO_JUST_VIEW.get()
 
   const updateFieldSearch = (field, value) => {
     dispatch(updateSearchData({ [field]: value }))
@@ -90,7 +88,7 @@ export default function Product() {
   ////
 
   if (!productTypes || !products) {
-    return <LoadingPage />
+    return <LoadingProduct />
   }
 
 

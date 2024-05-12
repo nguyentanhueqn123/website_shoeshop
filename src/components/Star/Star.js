@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
 import classnames from 'classnames'
+import React from 'react'
 
 export default function Star({ numberStar = 5, className, size = "md"}) {
 
-  var decimalStr = 0
-  var remainStar = 0
+  var decimalStr = 0;
+  var remainStar = 0;
 
   if(!Number.isInteger(numberStar)) {
     decimalStr = numberStar.toString().split('.')[1]
@@ -30,13 +30,13 @@ export default function Star({ numberStar = 5, className, size = "md"}) {
     >
       
       {
-        Array(numberStar).fill(<i className='bx bxs-star'></i>)
+        Array.from({ length: numberStar }, (_, index) => <i key={index} className='bx bxs-star'></i>)
       }
       {
-        decimalStr ? <i className='bx bxs-star-half' ></i> : null
+        decimalStr ? <i className='bx bxs-star-half' key="half-star"></i> : null
       }
       {
-        Array(remainStar).fill(<i className='bx bx-star' ></i>)
+        Array.from({ length: remainStar }, (_, index) => <i key={index} className='bx bx-star' ></i>)
       }
 
     </div>

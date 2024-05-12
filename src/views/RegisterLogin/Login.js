@@ -22,6 +22,7 @@ export default function Login() {
   const emailDebounce = useDebounce(email, 1000)
 
   useEffect(() => {
+    // eslint-disable-next-line no-useless-escape
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if(emailDebounce) {

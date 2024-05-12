@@ -1,47 +1,46 @@
-import React, { useState } from 'react'
-import Price from '../../components/Price/Price'
 import classnames from 'classnames'
-import Star from '../../components/Star/Star'
-import Comment from '../../components/Comment'
-import ProductCardV2 from '../../components/Card/ProductCardV2';
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { useFetchProduct, useProduct, useFetchProducts, useProducts } from '../../store/product/hook'
-import { Link, useParams } from 'react-router-dom'
-import { addToCart } from './../../utils/addtoCart';
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import Carousel from "react-multi-carousel"
+import "react-multi-carousel/lib/styles.css"
 import { useDispatch } from 'react-redux'
-import { fetchUser } from '../../store/user'
-import { setCart } from '../../store/product'
+import { Link, useParams } from 'react-router-dom'
+import ProductCardV2 from '../../components/Card/ProductCardV2'
+import Comment from '../../components/Comment'
+import Compare from '../../components/Compare/Compare'
 import { showToastError } from '../../components/CustomToast/CustomToast'
 import Dropdown from '../../components/Dropdown/Dropdown'
+import Price from '../../components/Price/Price'
+import Star from '../../components/Star/Star'
 import { SIZE } from '../../constants/index'
-import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook'
-import Compare from '../../components/Compare/Compare'
-
+import { useFetchListInvoice } from '../../store/invoice/hook'
+import { useFetchProduct, useFetchProducts, useProduct, useProducts } from '../../store/product/hook'
+import { fetchUser } from '../../store/user'
+import { addToCart } from './../../utils/addtoCart'
 
 
 export default function ProductDetail() {
-  const listInvoice = useListInvoice()
-  useFetchListInvoice()
+  const { t } = useTranslation(["product_detail", "product"]);
+  // const listInvoice = useListInvoice()
   // console.log("===== list Invoice:", listInvoice?.data);
+  useFetchListInvoice();
 
-  const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
+  const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'));
 
-  useFetchProduct()
-  useFetchProducts()
-  const product = useProduct()
-  const products = useProducts()
-  const [tab, setTab] = useState(1)
-  const { id } = useParams()
-  const dispatch = useDispatch()
+  useFetchProduct();
+  useFetchProducts();
+  const product = useProduct();
+  const products = useProducts();
+  const [tab, setTab] = useState(1);
+  const { id } = useParams();
+  const dispatch = useDispatch();
   
-
   const handleChangeTab = (tab) => {
     setTab(tab)
   }
 
 
-  const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
+  // const deliveredInvoices = listInvoice?.data?.filter(invoice => invoice.status === 'DELIVERED'&& invoice.userId === userLogin?._id)
   //sài đc console.log("List Order Delivered: ",deliveredInvoices);
 
   // console.log(product?.data?._id)
@@ -58,38 +57,14 @@ export default function ProductDetail() {
   //   });
   // });
   
-
-
-
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      partialVisibilityGutter: 16,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      partialVisibilityGutter: 16,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      partialVisibilityGutter: 16,
-    }
-  };
-
-
   /////
-  const [inputValue, setInputValue] = useState(1)
+  const [inputValue, setInputValue] = useState(1);
 
   const [showCompare, setShowCompare] = useState(false);
-  // const userLogin = JSON.parse(localStorage?.getItem('USER_LOGIN'))
-  // const dispatch = useDispatch()
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
   }
-
   const handleIncrease = async (e) => {
       e.preventDefault()
       setInputValue(inputValue + 1)
@@ -134,7 +109,23 @@ export default function ProductDetail() {
     setShowCompare(!showCompare);
   }
  
-
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      partialVisibilityGutter: 16,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      partialVisibilityGutter: 16,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 16,
+    }
+  };
   return (
 
     <div className="w-full bg-white md:mt-6">
@@ -142,9 +133,9 @@ export default function ProductDetail() {
         <div className="hidden md:block flex items-center justify-between">
           {/* display path on Product */}
           <div className="flex items-center text-xl" id="top">
-            <Link to="/" className="opacity-50 hover:opacity-100">HOME</Link>
+            <Link to="/" className="opacity-50 hover:opacity-100 uppercase">{t('product:path.home')}</Link>
             <span className="mx-3">/</span>
-            <Link to="/danh-muc" className="opacity-50 hover:opacity-100">PRODUCTS</Link>
+            <Link to="/danh-muc" className="opacity-50 hover:opacity-100 uppercase">{t('product:path.products')}</Link>
             <span className="mx-3">/</span>
             <p className="font-medium text-[#62B4FF]">
               {product?.data?.nameProduct}
@@ -167,7 +158,7 @@ export default function ProductDetail() {
                 </p>
                 <div className='text-[#62B4FF] cursor-pointer mb-2 ml-4 items-center text-lg' onClick={handleCompare}>
                   <i className="fa-solid fa-plus"></i>
-                  <span className="ml-1">{showCompare ? 'Hide' : 'Compare'}</span>
+                  <span className="ml-1">{showCompare ? t('hide') : t('compare')}</span>
                 </div>
               </div>
                 {showCompare && <Compare id={product?.data?._id} imageProduct={product?.data?.image?.[0]} nameProduct={product?.data?.nameProduct} />}
@@ -186,7 +177,7 @@ export default function ProductDetail() {
                 size="xl"
               />
               <a href="#product-review" className="ml-2 px-2 border-l border-gray-300">
-                View {product?.comment?.data?.length || 0} review
+                {t('view')} {product?.comment?.data?.length || 0} {t('review')}
               </a>
             </div>
             <div className="flex justify-between md:justify-start items-center">
@@ -196,7 +187,7 @@ export default function ProductDetail() {
                 color="black"
                 className="text-[2rem]"
               />
-              <span className="rounded-lg text-[14px] px-2 md:ml-[56px] bg-[#62B4FF] text-white">{product?.data?.sale}% decrease</span>
+              <span className="rounded-lg text-[14px] px-2 md:ml-[56px] bg-[#62B4FF] text-white">{t('decrease')} {product?.data?.sale}%</span>
             </div>
             <div className="container-box w-full flex justify-between my-4">
               <div className="flex w-[108px] bg-[#f9f9f9] rounded-l-lg items-center justify-between">
@@ -213,7 +204,7 @@ export default function ProductDetail() {
                 </div>
               </div>
               <div className="flex md:w-4/5 items-center ml-5">
-                <p className="mr-3">Quantity:</p>
+                <p className="mr-3">{t('quantity')}:</p>
                 <form className="flex items-center">
                   <button className="bg-[#f9f9f9] px-4 py-2 border border-gray-300 rounded-l-lg"
                       onClick={e => handleDecrease(e)}
@@ -232,7 +223,7 @@ export default function ProductDetail() {
             </div>
 
             <a href="#des-detail" className="text-gray-500 hover:text-[#62B4FF] underline">
-              Description and Details
+              {t('descriptionDetails')}
             </a>
 
             <div className="flex items-center w-full mt-5 pb-10 border-b border-gray-300">
@@ -247,7 +238,7 @@ export default function ProductDetail() {
                 }}
                 className=" text-white font-medium text-lg py-3 px-6 rounded-lg hover:opacity-80 uppercase bg-[#62B4FF] hover:bg-[#62B4FF]">
                 <i className="fa-solid fa-cart-shopping text-white mr-2"></i>
-                Add to Cart
+                {t('addToCart')}
               </button>
               
             </div>
@@ -281,13 +272,13 @@ export default function ProductDetail() {
               className={classnames("uppercase mr-4 px-12 py-5 cursor-pointer", { "border-b-4 border-[#62B4FF] text-[#62B4FF]": tab === 1 })}
               onClick={() => handleChangeTab(1)}
             >
-              Description
+              {t('description')}
             </div>
             <div
               className={classnames("uppercase px-12 py-5 cursor-pointer", { "border-b-4 border-[#62B4FF] text-[#62B4FF]": tab === 2 })}
               onClick={() => handleChangeTab(2)}
             >
-              Details Product
+              {t('detailsProduct.title')}
             </div>
 
           </div>
@@ -313,8 +304,8 @@ export default function ProductDetail() {
                   product?.data?.metal && (
                     <>
                       <div className="flex items-start mb-3">
-                        <p className="text-black font-bold">
-                        QUANTITY
+                        <p className="text-black font-bold uppercase">
+                          {t('detailsProduct.quantity')}:
                         </p>
                         <p className="ml-2">
                           {product?.data?.metal}
@@ -328,8 +319,8 @@ export default function ProductDetail() {
                   product?.data?.size && (
                     <>
                       <div>
-                        <p className="text-black font-bold mb-1">
-                        WEIGH
+                        <p className="text-black font-bold mb-1 uppercase">
+                          {t('detailsProduct.weigh')}:
                         </p>
                         <p>
                           {product?.data?.size} gam
@@ -361,7 +352,7 @@ export default function ProductDetail() {
         {
           products && (
             <div className="mx-4 md:mx-auto">
-              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
+              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">{t('suggestion')}</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable
@@ -384,6 +375,7 @@ export default function ProductDetail() {
                   {
                     products?.data?.map((product, index) => {
                       if (index % 5 === 0) {
+                        // eslint-disable-next-line array-callback-return
                         return
                       }
                       return (
@@ -401,7 +393,7 @@ export default function ProductDetail() {
         {
           products && (
             <div className="mx-4 md:mx-auto">
-              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Recently Viewed</p>
+              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">{t('recentlyViewed')}</p>
               <div className="mr-[-8px] ml-[-8px]">
                 <Carousel
                   swipeable

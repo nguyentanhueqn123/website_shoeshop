@@ -1,8 +1,8 @@
+/* eslint-disable array-callback-return */
 import React from 'react'
 import Price from '../../components/Price/Price'
 import { useFetchAllProductType, useFetchProducts, useProducts } from '../../store/product/hook'
 import { formatDDMMYYYYHHmm } from '../../utils/formatDatetime'
-import "./OrderBox.scss"
 import { useTranslation } from 'react-i18next';
 
 

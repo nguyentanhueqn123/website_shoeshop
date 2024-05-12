@@ -15,12 +15,12 @@ import '../../styles/header.scss';
 import "./Header.scss";
 
 import { useTranslation } from 'react-i18next';
-import { locales } from '../../i18n/i18n';
+// import { locales } from '../../i18n/i18n';
 
 export default function Header() {
   const { t, i18n } = useTranslation();
-  const currentLanguage = locales[i18n.language];
-  console.log(currentLanguage);
+  // const currentLanguage = locales[i18n.language];
+  // console.log(currentLanguage);
   const [activeLanguage, setActiveLanguage] = useState("vi");
   const [totalPrice, setTotalPrice] = useState()
   const [ open, setOpen] = useState(false);
@@ -41,7 +41,15 @@ export default function Header() {
   const changeLanguage = (language) => {
     setActiveLanguage(language);
     i18n.changeLanguage(language);
+    localStorage.setItem('activeLanguage', language);
   };
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('activeLanguage');
+    if (savedLanguage) {
+      setActiveLanguage(savedLanguage);
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, []);
 
   useEffect(() => {
     if (userLogin) {

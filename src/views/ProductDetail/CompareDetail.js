@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import { useProduct, useProducts } from '../../store/product/hook'
-import { useSelector } from 'react-redux';
-import Star from '../../components/Star/Star';
+import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
-import ProductCardV2 from '../../components/Card/ProductCardV2';
-import productApi from '../../api/productApi';
 import { useParams } from 'react-router-dom';
+import productApi from '../../api/productApi';
+import ProductCardV2 from '../../components/Card/ProductCardV2';
+import Star from '../../components/Star/Star';
+import { useProduct, useProducts } from '../../store/product/hook';
 
 const responsive = {
   desktop: {
@@ -154,6 +153,7 @@ const CompareDetail = () => {
                   {
                     products?.data?.map((product, index) => {
                       if (index % 5 === 0) {
+                        // eslint-disable-next-line array-callback-return
                         return
                       }
                       return (

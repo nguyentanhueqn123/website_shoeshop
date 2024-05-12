@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import { useFetchListInvoice, useListInvoice } from '../../store/invoice/hook';
-import { useFetchAllProductType, useFetchProducts, useProducts } from '../../store/product/hook';
+import { useFetchAllProductType, useFetchProducts } from '../../store/product/hook';
 import { useSearchData, useUpdateQuery, useUpdateSearch } from '../../store/search/hook';
 import { updateSearchData } from '../../store/search/index';
 import OrderBox from "./OrderBox";
-import { useTranslation } from 'react-i18next';
 
 
 
 export default function Orders() {
     const { t } = useTranslation(["order", "general"]);
 
-    const products = useProducts()
+    // const products = useProducts()
     // products?.data.forEach(product => {
     //   console.log(product._id)
     // })
@@ -30,7 +29,7 @@ export default function Orders() {
     useFetchListInvoice()
     useUpdateSearch()
     useUpdateQuery()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const dispatch = useDispatch()
     const searchData = useSearchData()
     const listInvoice = useListInvoice()
@@ -49,10 +48,12 @@ export default function Orders() {
         if (textSearch !== undefined) {
             updateFieldSearch('textSearch', textSearch)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [textSearch])
 
     useEffect(() => {
         setTextSearch(searchData?.textSearch)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     
