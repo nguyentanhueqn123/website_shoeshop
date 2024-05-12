@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Carousel from "react-multi-carousel";
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import productApi from '../../api/productApi';
-import ProductCardV2 from '../../components/Card/ProductCardV2';
+import LoadingPage from '../../components/LoadingPage/Loading';
 import Star from '../../components/Star/Star';
-import { useProduct, useProducts } from '../../store/product/hook';
+import { useProduct } from '../../store/product/hook';
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-    partialVisibilityGutter: 16,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    partialVisibilityGutter: 16,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    partialVisibilityGutter: 16,
-  }
-};
+
 const CompareDetail = () => {
+  const { t } = useTranslation("product_detail");
 
   const product = useProduct();
-  const products = useProducts()
   const commentData = product?.comment?.data;
 
   // const selectedProduct = useSelector((state) => state.productCompare.selectedProduct);
@@ -56,14 +40,14 @@ const CompareDetail = () => {
 
   // Render UI dựa trên productInfo
   if (!productInfo.product1 || !productInfo.product2) {
-    return <div className='text-center mt-4'>Loading...</div>;
+    return <LoadingPage/>
   }
 
   return (
     <div className='md:px-[12%] my-4 md:my-8'>      
       <div className='flex flex-col md:flex-row justify-center'>
         <div className='w-full md:w-1/3 text-lg text-center md:text-start'>
-          <p>Compare Product</p>
+          <p>{t('compareProducts.title')}</p>
           <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{productInfo.product1?.nameProduct}</p>
           &
           <p className='mt-2 uppercase font-semibold text-[#62B4FF]'>{productInfo.product2?.nameProduct}</p>
@@ -86,9 +70,9 @@ const CompareDetail = () => {
               />
             </div>
             
-            <p className='mt-4'>Quantity: {productInfo.product1?.metal}</p>
-            <p className=''>Weigh: {productInfo.product1?.size} gam</p>
-            <p className='text-[#62B4FF] mt-2'>Description:</p>
+            <p className='mt-4'>{t('compareProducts.quantity')}: {productInfo.product1?.metal}</p>
+            <p className=''>{t('compareProducts.weigh')}: {productInfo.product1?.size} gam</p>
+            <p className='text-[#62B4FF] mt-2'>{t('compareProducts.description')}:</p>
             <div>{productInfo.product1?.description && productInfo.product1?.description.split(".").map((item, index) => (
                     <p key={index}>
                     • {item}
@@ -115,9 +99,9 @@ const CompareDetail = () => {
                 size="xl"
               />
             </div>
-            <p className='mt-4'>Quantity: {productInfo.product2?.metal}</p>
-            <p className=''>Weigh: {productInfo.product2?.size} gam</p>
-            <p className='text-[#62B4FF] mt-2'>Description:</p>
+            <p className='mt-4'>{t('compareProducts.quantity')}: {productInfo.product2?.metal}</p>
+            <p className=''>{t('compareProducts.weigh')}: {productInfo.product2?.size} gam</p>
+            <p className='text-[#62B4FF] mt-2'>{t('compareProducts.description')}:</p>
             <div>{productInfo.product2?.description && productInfo.product2?.description.split(".").map((item, index) => (
                     <p key={index}>
                     • {item}
@@ -127,47 +111,7 @@ const CompareDetail = () => {
           </div>
         </div>
       </div>
-      {
-          products && (
-            <div className="mx-4 md:mx-auto">
-              <p className="text-black font-medium text-xl md:text-2xl py-5 my-10 border-b border-gray-300">Suggestions for you</p>
-              <div className="mr-[-8px] ml-[-8px]">
-                <Carousel
-                  swipeable
-                  autoPlay
-                  responsive={responsive}
-                  autoPlaySpeed={2000}
-                  draggable={true}
-                  showDots={false}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  // removeArrowOnDeviceType={["tablet", "mobile"]}
-                  minimumTouchDrag={80}
-                  slidesToSlide={1}
-                  itemClass="top-product-carousel-items"
-                  containerClass="top-product-carousel-container"
-                  partialVisible
-                >
-
-                  {
-                    products?.data?.map((product, index) => {
-                      if (index % 5 === 0) {
-                        // eslint-disable-next-line array-callback-return
-                        return
-                      }
-                      return (
-                        <ProductCardV2 product={product} key={product?._id} />
-                      )
-                    })
-                  }
-
-                </Carousel>
-              </div>
-            </div>
-          )
-      }
-
+     
        
     </div>
   )

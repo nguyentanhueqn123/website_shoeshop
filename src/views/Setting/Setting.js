@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import userApi from '../../api/userApi';
 import { showToastError, showToastSuccess } from '../../components/CustomToast/CustomToast';
-
+import { useTranslation } from 'react-i18next';
 
 function updateUserInformation(userId, userInfo, setUserLogin) {
   userApi.editUser(userId, userInfo)
@@ -19,6 +19,7 @@ function updateUserInformation(userId, userInfo, setUserLogin) {
 }
 
 export default function Setting() {
+  const { t } = useTranslation("settingUser");
     const [userLogin, setUserLogin] = useState(JSON.parse(localStorage?.getItem('USER_LOGIN')));
     // console.table(userLogin);  
 
@@ -47,7 +48,7 @@ export default function Setting() {
     return (
       <div className="px-4 md:px-[11%] mx-auto mb-[120px]">
         <div className="userTitleContainer">
-          <h1 className="userTitle text-lg md:text-2xl mt-4">Information User</h1>
+          <h1 className="userTitle text-lg md:text-2xl mt-4">{t('title')}</h1>
         </div>
 
         <div className="flex flex-col md:flex-row mt-3">
@@ -62,14 +63,14 @@ export default function Setting() {
                     </div>
                 </div>
                 <div className="userShowBottom">
-                    <span className="userShowTitle">Account</span>
+                    <span className="userShowTitle">{t('account')}</span>
                     <div className="userShowInfo">
                         <span className="userShowInfoTitle">
                             {userLogin?.nameAccount}
                         </span>
                     </div>
 
-                    <span className="userShowTitle">Contact</span>
+                    <span className="userShowTitle">{t('contact')}</span>
                     <div className="userShowInfo">
                         <span className="userShowInfoTitle">
                             {userLogin?.phone}
@@ -85,40 +86,40 @@ export default function Setting() {
                 </div>
             </div>
             <div className="userUpdate mt-5 md:mt-0 ml-0 md:ml-5">
-              <span className="userUpdateTitle">Update</span>
+              <span className="userUpdateTitle">{t('update')}</span>
               <form onSubmit={handleSubmit} className="userUpdateForm1 flex flex-col md:flex-row md:justify-between">
                 <div className="userUpdateLeft">
                   <div className="userUpdateItem">
-                    <label>Name</label>
+                    <label>{t('name')}</label>
                     <input
                         type="text"
                         name="nameAccount"
                         value={userInfo.nameAccount}
                         onChange={handleChange}
-                        placeholder="Name"
+                        placeholder={t('name')}
                         className='px-3 py-1 border rounded-md'
                     />
                   </div>
                   <div className="userUpdateItem">
-                    <label>Email</label>
+                    <label>{t('email')}</label>
                     <input
                         type="email"
                         name="email"
                         value={userInfo.email}
                         onChange={handleChange}
-                        placeholder="Email"
+                        placeholder={t('email')}
                         className='px-3 py-1 border rounded-md'
 
                     />
                   </div>
                   <div className="userUpdateItem">
-                    <label>Phone</label>
+                    <label>{t('phone')}</label>
                     <input
                         type="phone"
                         name="phone"
                         value={userInfo.phone}
                         onChange={handleChange}
-                        placeholder="Phone"
+                        placeholder={t('phone')}
                         className='px-3 py-1 border rounded-md'
 
                     />
@@ -133,13 +134,13 @@ export default function Setting() {
                       name="image"
                       value={userInfo.image}
                       onChange={handleChange}
-                      placeholder="Link image"
+                      placeholder={t('linkImage')}
                       className="my-4 px-3 py-1 border rounded-md"
                     />
                     {/* <label htmlFor="file"></label><label htmlFor="file"><i className="userUpdateIcon"></i></label>
                     <input type="file" id="file" style={{display: "none"}}/> */}
                   </div>
-                  <button className="userUpdateButton">Update</button>
+                  <button className="userUpdateButton">{t('update')}</button>
                 </div>
               </form>
             </div>

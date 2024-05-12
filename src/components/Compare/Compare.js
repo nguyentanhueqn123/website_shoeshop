@@ -2,8 +2,11 @@ import React, { useState} from "react";
 import { useSelector} from "react-redux";
 import ProductCompare from "../../views/ProductDetail/ProductCompare";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Compare = ({ imageProduct, nameProduct, id }) => {
+  const { t } = useTranslation("product_detail");
+
   const selectedProduct = useSelector((state) => state.productCompare.selectedProduct);
 
   const [showProductCompare, setShowProductCompare] = useState(false);
@@ -37,7 +40,7 @@ const Compare = ({ imageProduct, nameProduct, id }) => {
                   }
                   {selectedProduct.name 
                     ? <p className="ml-4 md:ml-0">{selectedProduct.name}</p> 
-                    : <p className="mt-2">Add Product</p>
+                    : <p className="mt-2">{t('compareProducts.box.title')}</p>
                   }
                 </div>
               </div>
@@ -47,8 +50,8 @@ const Compare = ({ imageProduct, nameProduct, id }) => {
 
             <div className="w-full md:w-1/3 mt-2 md:mt-0 flex flex-col justify-center items-center text-center">
               {selectedProduct.name 
-                ? <Link to={`/so-sanh/${id}/${selectedProduct._id}`} className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-pointer hover:opacity-80 hover:text-black">Compare Now</Link>
-                : <div className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-not-allowed opacity-50">Compare Now</div>
+                ? <Link to={`/so-sanh/${id}/${selectedProduct._id}`} className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-pointer hover:opacity-80 hover:text-black">{t('compareProducts.box.btnCompare')}</Link>
+                : <div className="bg-[#62B4FF] w-full md:w-auto px-6 py-2 rounded-lg text-white cursor-not-allowed opacity-50">{t('compareProducts.box.btnCompare')}</div>
               }
             </div>
           </div>

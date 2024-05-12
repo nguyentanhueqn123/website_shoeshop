@@ -28,5 +28,16 @@
         }
     },
     "suggestion": "Dành cho bạn",
-    "recentlyViewed": "Đã xem gần đây"
+    "recentlyViewed": "Đã xem gần đây",
+    "compareProducts": {
+        "title": "So sánh sản phẩm",
+        "quantity": "Số lượng",
+        "weigh": "Khối lượng", 
+        "description": "Mô tả",
+        "box": {
+            "title": "Thêm sản phẩm",
+            "btnCompare": "So sánh ngay",
+            "search": "Tìm kiếm tên sản phẩm"
+        }
+    }
 }

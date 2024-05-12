@@ -28,5 +28,16 @@
         }
     },
     "suggestion": "Suggestions for you",
-    "recentlyViewed": "Recently Viewed"
+    "recentlyViewed": "Recently Viewed",
+    "compareProducts": {
+        "title": "Compare Product",
+        "quantity": "Quantity",
+        "weigh": "Weigh", 
+        "description": "Description",
+        "box": {
+            "title": "Add product",
+            "btnCompare": "Compare Now",
+            "search": "Search by Product Name"
+        }
+    }
 }

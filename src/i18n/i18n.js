@@ -8,6 +8,8 @@ import CART_EN from "../locales/en/cart.json";
 import BUY_EN from "../locales/en/buy.json";
 import ORDER_EN from "../locales/en/order.json";
 import PRODUCT_DETAIL_EN from "../locales/en/product_detail.json";
+import SETTING_USER_EN from "../locales/en/settingUser.json";
+
 
 
 import GENERAL_VI from "../locales/vi/general.json";
@@ -17,7 +19,9 @@ import PRODUCT_VI from "../locales/vi/product.json";
 import CART_VI from "../locales/vi/cart.json";
 import BUY_VI from "../locales/vi/buy.json";
 import ORDER_VI from "../locales/vi/order.json";
-import PRODUCT_DETAIL_VN from "../locales/vi/product_detail.json"
+import PRODUCT_DETAIL_VN from "../locales/vi/product_detail.json";
+import SETTING_USER_VI from "../locales/vi/settingUser.json";
+
 
 
 export const locales = {
@@ -35,7 +39,8 @@ const resources = {
     cart: CART_EN,
     buy: BUY_EN,
     order: ORDER_EN,
-    product_detail: PRODUCT_DETAIL_EN
+    product_detail: PRODUCT_DETAIL_EN,
+    settingUser: SETTING_USER_EN
   },
   vi: {
     general: GENERAL_VI,
@@ -45,7 +50,9 @@ const resources = {
     cart: CART_VI,
     buy: BUY_VI,
     order: ORDER_VI,
-    product_detail: PRODUCT_DETAIL_VN
+    product_detail: PRODUCT_DETAIL_VN,
+    settingUser: SETTING_USER_VI
+
 
   }
 };
@@ -56,7 +63,7 @@ i18n
   .init({
     resources,
     lng: "vi",
-    ns: ["home", "login", "general", "product", "cart", "buy", "order", "product_detail"], 
+    ns: ["home", "login", "general", "product", "cart", "buy", "order", "product_detail", "settingUser"], 
     defaultNS,
     fallbackLng: "vi",
     interpolation: {
